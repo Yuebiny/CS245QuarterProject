@@ -10,11 +10,39 @@
 *      
 ****************************************************************/
 package Main;
+import java.util.Timer;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-
-public class TitleFrame extends javax.swing.JFrame {
-    public TitleFrame() {
+public class StartFrame extends javax.swing.JFrame {
+    final int STALLDELAY = 3;
+    
+    public StartFrame() {
         initComponents();
+    }
+    
+     
+     
+      public void run(){
+        StartFrame titleScreen = new StartFrame();  
+        titleScreen.setVisible(true);
+        stall(STALLDELAY);
+        titleScreen.dispose();
+        new MainMenuFrame().setVisible(true);
+    }
+      
+    public void stall(int num){
+        try {
+            TimeUnit.SECONDS.sleep(num);
+            System.out.println("stall sucessful");
+        } catch (InterruptedException ex) {
+            Logger.getLogger(StartFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+   
+    public void hide(){
+        //TitleFrame().setVisible(false);
     }
 
     /**
@@ -46,28 +74,26 @@ public class TitleFrame extends javax.swing.JFrame {
 
         BackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main/BackGround.jpg"))); // NOI18N
         BackGround.setText("jLabel1");
+        BackGround.setMaximumSize(new java.awt.Dimension(600, 400));
+        BackGround.setMinimumSize(new java.awt.Dimension(100, 40));
         BackGround.setPreferredSize(new java.awt.Dimension(600, 400));
         getContentPane().add(BackGround);
         BackGround.setBounds(0, 0, 600, 400);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String args[]) {
-        
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new TitleFrame().setVisible(true);
-            }
-        });
+        StartFrame Main = new StartFrame();
+        Main.run();  
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BackGround;
     private javax.swing.JLabel TeamName;
     private javax.swing.JLabel Title;
     // End of variables declaration//GEN-END:variables
+
+  
 }
