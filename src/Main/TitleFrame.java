@@ -38,18 +38,18 @@ public class TitleFrame extends javax.swing.JFrame {
         Title.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
         Title.setText("CS 245 Quarter Project");
         getContentPane().add(Title);
-        Title.setBounds(310, 50, 200, 14);
+        Title.setBounds(340, 50, 200, 14);
 
         TeamName.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         TeamName.setText("Team Diamond Dogs");
         getContentPane().add(TeamName);
-        TeamName.setBounds(380, 70, 150, 16);
+        TeamName.setBounds(400, 70, 150, 16);
 
-        BackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main/i2hyOY5.jpg"))); // NOI18N
+        BackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main/BackGround.jpg"))); // NOI18N
         BackGround.setText("jLabel1");
         BackGround.setPreferredSize(new java.awt.Dimension(600, 400));
         getContentPane().add(BackGround);
-        BackGround.setBounds(0, 0, 520, 330);
+        BackGround.setBounds(0, 0, 600, 400);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
