@@ -92,9 +92,7 @@ public class MainMenuFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_creditsButtonActionPerformed
 
-    public static void main(String args[]) {
-        
-    }
+   
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background;
