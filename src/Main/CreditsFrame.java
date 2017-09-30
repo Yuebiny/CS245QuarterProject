@@ -6,8 +6,10 @@ public class CreditsFrame extends javax.swing.JFrame {
     public CreditsFrame() {
         initComponents();
     }
-    public void backButton(){
-        System.out.println("hello");
+    public void backButton(){ 
+        //System.out.println("is this working?");
+        dispose();
+        new MainMenuFrame().setVisible(true);
     }
  
     @SuppressWarnings("unchecked")
@@ -78,6 +80,7 @@ public class CreditsFrame extends javax.swing.JFrame {
         backButton.setBounds(30, 310, 73, 23);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
