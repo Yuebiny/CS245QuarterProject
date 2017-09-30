@@ -21,15 +21,13 @@ public class StartFrame extends javax.swing.JFrame {
     public StartFrame() {
         initComponents();
     }
-    
-     
-     
       public void run(){
         StartFrame titleScreen = new StartFrame();  
         titleScreen.setVisible(true);
         stall(STALLDELAY);
         titleScreen.dispose();
         new MainMenuFrame().setVisible(true);
+        
     }
       
     public void stall(int num){
