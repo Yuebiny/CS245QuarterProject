@@ -26,6 +26,10 @@ public class MainMenuFrame extends javax.swing.JFrame {
        dispose();
        new CreditsFrame().setVisible(true);
     }
+    public void highScoreButtonPress(){
+       dispose();
+       new HighScoreFrame().setVisible(true);
+    }
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -64,6 +68,11 @@ public class MainMenuFrame extends javax.swing.JFrame {
 
         highscoreButton.setFont(new java.awt.Font("Tw Cen MT", 0, 11)); // NOI18N
         highscoreButton.setText("HighScores");
+        highscoreButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                highscoreButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(highscoreButton);
         highscoreButton.setBounds(390, 220, 90, 21);
 
@@ -90,6 +99,10 @@ public class MainMenuFrame extends javax.swing.JFrame {
     private void creditsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditsButtonActionPerformed
         creditsButtonPress();
     }//GEN-LAST:event_creditsButtonActionPerformed
+
+    private void highscoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highscoreButtonActionPerformed
+        highScoreButtonPress();// TODO add your handling cod here:
+    }//GEN-LAST:event_highscoreButtonActionPerformed
 
     public static void main(String args[]) {
         
