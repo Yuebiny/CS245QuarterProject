@@ -15,11 +15,14 @@ public class test extends javax.swing.JFrame {
     }
     
     private void showTime() {
+        //
+        //testing testing 
         new Timer(0, (ActionEvent e) -> {
             Date d = new Date();
             SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss a");
             timePlaceHolder.setFont(new Font("Tw Cen MT", Font.PLAIN, 12));
             timePlaceHolder.setText(s.format(d));
+            int x =1;
         }).start();
          
     }
