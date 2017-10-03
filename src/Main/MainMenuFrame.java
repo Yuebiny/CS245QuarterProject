@@ -17,8 +17,8 @@ import java.util.logging.Logger;
 
 public class MainMenuFrame extends javax.swing.JFrame {
     
-    
-    public MainMenuFrame() {
+    public MainMenuFrame() { 
+        
         initComponents();
     }
     
@@ -26,9 +26,15 @@ public class MainMenuFrame extends javax.swing.JFrame {
        dispose();
        new CreditsFrame().setVisible(true);
     }
+    
     public void highScoreButtonPress(){
        dispose();
        new HighScoreFrame().setVisible(true);
+    }
+    
+    public void gameFrameButtonPress(){
+       dispose();
+       new test().setVisible(true);
     }
     
     @SuppressWarnings("unchecked")
@@ -42,6 +48,7 @@ public class MainMenuFrame extends javax.swing.JFrame {
         Background = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(600, 400));
         setMinimumSize(new java.awt.Dimension(600, 400));
         setPreferredSize(new java.awt.Dimension(600, 400));
         getContentPane().setLayout(null);
@@ -93,7 +100,7 @@ public class MainMenuFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
-        // TODO add your handling code here:
+        gameFrameButtonPress();
     }//GEN-LAST:event_playButtonActionPerformed
 
     private void creditsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_creditsButtonActionPerformed
