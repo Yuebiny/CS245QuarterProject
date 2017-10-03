@@ -36,10 +36,7 @@ public class MainMenuFrame extends javax.swing.JFrame {
        dispose();
        new test().setVisible(true);
     }
-    public void highScoreButtonPress(){
-       dispose();
-       new HighScoreFrame().setVisible(true);
-    }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
