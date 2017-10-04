@@ -1,14 +1,15 @@
 /***************************************************************
-* file: TitleFrame.java
-* author: 
-* class: CS 245 – Computer Graphics
+* file: HighScoreFrame.java
+* author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
+* class: CS 245 - Programming Graphical User Interfaces
 *
-* assignment: Quarter Project
-* date last modified: 9/27/17
+* assignment: Hangman V1.0
+* date last modified: 10/3/17
 *
-* purpose: 
-*      
-****************************************************************/
+* purpose: This class appears first when the program is run, and stays for 3 
+* seconds, then transitions into the Main Menu.
+*
+****************************************************************/ 
 package Main;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
@@ -69,7 +70,7 @@ public class StartFrame extends javax.swing.JFrame {
         BackGround.setMinimumSize(new java.awt.Dimension(100, 40));
         BackGround.setPreferredSize(new java.awt.Dimension(600, 400));
         getContentPane().add(BackGround);
-        BackGround.setBounds(0, 0, 600, 400);
+        BackGround.setBounds(0, -90, 780, 480);
 
         pack();
         setLocationRelativeTo(null);

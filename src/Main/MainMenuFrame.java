@@ -1,14 +1,15 @@
 /***************************************************************
-* file: TitleFrame.java
-* author: 
-* class: CS 245 – Computer Graphics
+* file: MainMenuFrame.java
+* author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
+* class: CS 245 - Programming Graphical User Interfaces
 *
-* assignment: Quarter Project
-* date last modified: 9/27/17
+* assignment: Hangman V1.0
+* date last modified: 10/3/17
 *
-* purpose: 
-*      
-****************************************************************/
+* purpose: This class creates the Main Menu Frame that allows the user to click
+* play, high score, or credits.
+*
+****************************************************************/ 
 package Main;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
@@ -42,6 +43,8 @@ public class MainMenuFrame extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         creditsButton = new javax.swing.JButton();
         playButton = new javax.swing.JButton();
         highscoreButton = new javax.swing.JButton();
@@ -91,10 +94,10 @@ public class MainMenuFrame extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(280, 70, 280, 70);
 
-        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main/BackGround.jpg"))); // NOI18N
+        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main/MainMenu.jpg"))); // NOI18N
         Background.setText("Background");
         getContentPane().add(Background);
-        Background.setBounds(0, 0, 872, 476);
+        Background.setBounds(-30, 0, 770, 410);
 
         pack();
         setLocationRelativeTo(null);
@@ -121,6 +124,8 @@ public class MainMenuFrame extends javax.swing.JFrame {
     private javax.swing.JButton creditsButton;
     private javax.swing.JButton highscoreButton;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JButton playButton;
     // End of variables declaration//GEN-END:variables
 
