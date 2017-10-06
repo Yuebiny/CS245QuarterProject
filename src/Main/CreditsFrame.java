@@ -1,4 +1,15 @@
-
+/***************************************************************
+* file: CreditsFrame.java
+* author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
+* class: CS 245 - Programming Graphical User Interfaces
+*
+* assignment: Hangman V1.0
+* date last modified: 10/3/17
+*
+* purpose: This class creates a credit frame that displays everybody's name who
+* worked on this project.
+*
+****************************************************************/ 
 package Main;
 
 public class CreditsFrame extends javax.swing.JFrame {
