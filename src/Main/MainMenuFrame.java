@@ -111,6 +111,7 @@ public class MainMenuFrame extends javax.swing.JFrame {
         creditsButtonPress();
     }//GEN-LAST:event_creditsButtonActionPerformed
 
+
     private void highscoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highscoreButtonActionPerformed
         highScoreButtonPress();// TODO add your handling cod here:
     }//GEN-LAST:event_highscoreButtonActionPerformed
@@ -118,7 +119,7 @@ public class MainMenuFrame extends javax.swing.JFrame {
     public static void main(String args[]) {
         
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background;
     private javax.swing.JButton creditsButton;
