@@ -13,24 +13,105 @@
 package Main;
 import java.awt.*;
 import java.awt.event.*;
+import java.awt.geom.Line2D;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
+import javax.swing.JLabel;
 import javax.swing.Timer;
 public class GameGUI extends javax.swing.JFrame {
     
+    GameEngine game = new GameEngine();
     
     public GameGUI() {
         initComponents();
-        showDate();
-        showTime();
+        showDateAndTime();
+       
     }
+    //Method: goback
+    //purpose: this method brings the user back the main menu.
     public void goback(){
-        dispose();
+       dispose();
        new MainMenuFrame().setVisible(true);
     }
     
-    private void showTime() {
+    //Method: drawLetterLines
+    //purpose: this method draws the lines that will appear when the game starts, indicating to the player how many
+    //letters are in the answer
+    private void drawLetterLines(Graphics g){  
+        super.paint(g);
+        int numberOfLetters = game.getWordLength();
+        int x1 = 70;
+        int x2 = 110;
+        int y = 270;
+        
+        for(int i = 0; i< numberOfLetters; i++){
+            x1 = x2+5;
+            x2 += 50;
+            int test = (x1+x2)/2;
+            g.drawLine(x1+5,y,x2,y);
+            System.out.println(x1+5 +" "+ y +" "+ " " + x2+ " "+y);
+        }
+    }
+    
+    //Method: drawAnswers
+    //purpose: this method sets up jlabels above drawnlines for replacing text with after a correct answer is guessed.
+    private void drawAnswers(){
+        final int y = 40;
+        JLabel lb1 = new JLabel();
+        JLabel lb2 = new JLabel();
+        JLabel lb3 = new JLabel();
+        JLabel lb4 = new JLabel();
+        JLabel lb5 = new JLabel();
+        JLabel lb6 = new JLabel();
+        JLabel lb7 = new JLabel();
+        JLabel lb8 = new JLabel();
+        
+        textPanel.add(lb1);
+            lb1.setSize(10,10);
+            lb1.setText("A");
+        textPanel.add(lb2);
+            lb2.setSize(10,10);
+            lb2.setText("B");
+        textPanel.add(lb3);
+            lb3.setSize(10,10);
+            lb3.setText("C");
+        textPanel.add(lb4);
+            lb4.setSize(10,10);
+        textPanel.add(lb5);
+            lb5.setSize(10,10);
+        textPanel.add(lb6);
+            lb6.setSize(10,10);
+        textPanel.add(lb7);
+            lb7.setSize(10,10);
+        textPanel.add(lb8);
+            lb8.setSize(10,10);
+        
+        lb1.setLocation(120,y);
+        lb2.setLocation(170,y);
+        lb3.setLocation(220,y);
+        lb4.setLocation(270,y);
+        lb5.setLocation(320,y);
+        lb6.setLocation(370,y);
+        lb7.setLocation(420,y);
+        lb8.setLocation(470,y);     
+    }
+    @Override
+    public void paint(Graphics g) {
+        drawLetterLines(g);
+        drawAnswers();
+    
+   
+}
+    //Method: showDateAndTime
+    //purpose: this method starts the date and time components for the jlabel
+    private void showDateAndTime(){
+        timeComponent();
+        dateComponent();
+    }
+    //Method: timeComponent
+    //purpose: this method starts recording system time and places replaces a jlabel with it.
+    private void timeComponent() {
         new Timer(0, (ActionEvent e) -> {
             Date d = new Date();
             SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss a");
@@ -39,23 +120,20 @@ public class GameGUI extends javax.swing.JFrame {
             int x =1;
         }).start();
     }
-
-    private void showDate() {
+    
+    //Method: dateComponent
+    //purpose: this method starts recording system time and places replaces a jlabel with it.
+    private void dateComponent() {
         Date d = new Date();
         SimpleDateFormat s = new SimpleDateFormat("  MMMM dd yyyy");
         datePlaceHolder.setFont(new Font("Tw Cen MT", Font.PLAIN, 12));
         datePlaceHolder.setText(s.format(d));
     }
-   
-    private void enterLetter(String letter){
-        testLabel.setText(letter);
-    }
-    private void checkLetter(String letter){
-        
-    }
-    
+    //Method: helpButton
+    //purpose: this method diposes the current frame and opens the Help menu, used for game instructions.
     private void helpButton(){
-        
+        dispose();
+        new HelpFrame().setVisible(true);
     }
     
     @SuppressWarnings("unchecked")
@@ -66,9 +144,8 @@ public class GameGUI extends javax.swing.JFrame {
         namePlaceHolder = new javax.swing.JLabel();
         datePlaceHolder = new javax.swing.JLabel();
         timePlaceHolder = new javax.swing.JLabel();
-        jSeparator1 = new javax.swing.JSeparator();
-        jToolBar1 = new javax.swing.JToolBar();
-        testLabel = new javax.swing.JLabel();
+        hangPanel = new javax.swing.JPanel();
+        textPanel = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         AButton = new javax.swing.JButton();
         BButton = new javax.swing.JButton();
@@ -122,16 +199,15 @@ public class GameGUI extends javax.swing.JFrame {
         timePlaceHolder.setText("TIMEPLACEHOLDER");
         gamePanel.add(timePlaceHolder);
         timePlaceHolder.setBounds(510, 0, 70, 14);
-        gamePanel.add(jSeparator1);
-        jSeparator1.setBounds(290, 80, 0, 2);
 
-        jToolBar1.setRollover(true);
-        gamePanel.add(jToolBar1);
-        jToolBar1.setBounds(220, 0, 13, 2);
+        hangPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        gamePanel.add(hangPanel);
+        hangPanel.setBounds(10, 20, 580, 170);
 
-        testLabel.setText("123456");
-        gamePanel.add(testLabel);
-        testLabel.setBounds(190, 140, 200, 14);
+        textPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        textPanel.setLayout(null);
+        gamePanel.add(textPanel);
+        textPanel.setBounds(10, 190, 580, 60);
 
         getContentPane().add(gamePanel);
         gamePanel.setBounds(0, 0, 600, 260);
@@ -139,11 +215,11 @@ public class GameGUI extends javax.swing.JFrame {
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
 
-        AButton.setBackground(new java.awt.Color(255, 255, 255));
         AButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
         AButton.setText("A");
-        AButton.setToolTipText("Q BUTTON");
+        AButton.setToolTipText("A button");
         AButton.setAlignmentY(0.0F);
+        AButton.setFocusPainted(false);
         AButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AButtonActionPerformed(evt);
@@ -324,26 +400,26 @@ public class GameGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_LButtonActionPerformed
 
     private void AButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AButtonActionPerformed
-        enterLetter("a");
+       game.guessLetter('a');
+       AButton.setEnabled(false);
     }//GEN-LAST:event_AButtonActionPerformed
 
     private void ZButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ZButtonActionPerformed
         // TODO add your handling code here:
+         ZButton.setEnabled(false);
     }//GEN-LAST:event_ZButtonActionPerformed
 
     private void XButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XButtonActionPerformed
         // TODO add your handling code here:
+         XButton.setEnabled(false);
     }//GEN-LAST:event_XButtonActionPerformed
 
     private void BButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BButtonActionPerformed
         // TODO add your handling code here:
+         BButton.setEnabled(false);
     }//GEN-LAST:event_BButtonActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-    }
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AButton;
@@ -374,12 +450,11 @@ public class GameGUI extends javax.swing.JFrame {
     private javax.swing.JButton ZButton;
     private javax.swing.JLabel datePlaceHolder;
     private javax.swing.JPanel gamePanel;
+    private javax.swing.JPanel hangPanel;
     private javax.swing.JButton helpButton;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JToolBar jToolBar1;
     private javax.swing.JLabel namePlaceHolder;
-    private javax.swing.JLabel testLabel;
+    private javax.swing.JPanel textPanel;
     private javax.swing.JLabel timePlaceHolder;
     // End of variables declaration//GEN-END:variables
 

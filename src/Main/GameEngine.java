@@ -84,13 +84,14 @@ public class GameEngine {
         lettersUsed.add(guess);
         //returns the first index of the letter
         if (hiddenWord.indexOf(guess) >= -1){
-        return true;
-        } else {
-        guessesRemaining--;
-        if (guessesRemaining == 0)
-        {
+            return true;
+        } 
+        else {
+            guessesRemaining--;
+            
+            if (guessesRemaining == 0){
             gameOver = true;
-        }
+            }
         return false;
         }
     }
@@ -99,6 +100,10 @@ public class GameEngine {
     //purpose: returns the hidden word.
     public String getWord(){
         return hiddenWord;
+    }
+    public int getWordLength(){
+        int wordLength = hiddenWord.length();
+        return wordLength;
     }
     
 }

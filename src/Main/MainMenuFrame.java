@@ -28,7 +28,7 @@ public class MainMenuFrame extends javax.swing.JFrame {
        new HighScoreFrame().setVisible(true);
     }
     
-    public void gameFrameButtonPress(){
+    public void gameFrameButtonPress(){ 
        dispose();
        new GameGUI().setVisible(true);
     }
