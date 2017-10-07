@@ -18,8 +18,7 @@ public class CreditsFrame extends javax.swing.JFrame {
         initComponents();
     }
     
-    public void backButton(){ 
-        //System.out.println("is this working?");
+    public void backButton(){
         dispose();
         new MainMenuFrame().setVisible(true);
     }
@@ -96,14 +95,8 @@ public class CreditsFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
- 
-       backButton();
+        backButton();
     }//GEN-LAST:event_backButtonActionPerformed
-
-    
-    public static void main(String args[]) {
-        
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;
@@ -113,4 +106,5 @@ public class CreditsFrame extends javax.swing.JFrame {
     private javax.swing.JLabel name3;
     private javax.swing.JLabel name4;
     // End of variables declaration//GEN-END:variables
+
 }

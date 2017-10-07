@@ -8,18 +8,13 @@
 *
 * purpose: This class appears first when the program is run, and stays for 3 
 * seconds, then transitions into the Main Menu.
-*
 ****************************************************************/ 
 package Main;
-import java.util.Timer;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class StartFrame extends javax.swing.JFrame {
-    
-    final int STALLDELAY = 3;
-    
     public StartFrame() {
         initComponents();
     }
@@ -27,20 +22,18 @@ public class StartFrame extends javax.swing.JFrame {
     public void run(){
         StartFrame titleScreen = new StartFrame();  
         titleScreen.setVisible(true);
-        stall(STALLDELAY);
+        stall();
         titleScreen.dispose();
         new MainMenuFrame().setVisible(true);
     }
       
-    public void stall(int num){
+    public void stall(){
         try {
-            TimeUnit.SECONDS.sleep(num);
-            System.out.println("stall sucessful");
+            TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException ex) {
             Logger.getLogger(StartFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-   
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

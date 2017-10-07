@@ -11,15 +11,8 @@
 ****************************************************************/ 
 package Main;
 
-/**
- *
- * @author Computer
- */
 public class HighScoreFrame extends javax.swing.JFrame {
-
-    /**
-     * Creates new form HighScoreFrame
-     */
+    
     public HighScoreFrame() {
         initComponents();
     }
@@ -28,7 +21,6 @@ public class HighScoreFrame extends javax.swing.JFrame {
         dispose();
         new MainMenuFrame().setVisible(true);
     }
-
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -126,11 +118,6 @@ public class HighScoreFrame extends javax.swing.JFrame {
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
         backButton();
     }//GEN-LAST:event_backButtonActionPerformed
-
-   
-    public static void main(String args[]) {
-      
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backButton;

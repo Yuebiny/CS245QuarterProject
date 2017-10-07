@@ -23,6 +23,14 @@ import java.util.ArrayList;
  * @author matthhew
  */
 public class GameEngine {
+    
+    Random random = new Random();
+    StringBuffer misses = new StringBuffer("");
+    final int attempts = 6;
+    boolean solved;
+    private final String[] wordArray = {"abstract", "cemetery", "nurse","pharmacy","climbing" };
+    
+    
     private String hiddenWord;
     private int guessesRemaining;
     private boolean gameOver;
