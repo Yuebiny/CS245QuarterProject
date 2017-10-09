@@ -99,12 +99,12 @@ public class test extends javax.swing.JFrame {
         datePlaceHolder.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         datePlaceHolder.setText("DATEPLACEHOLDER");
         gamePanel.add(datePlaceHolder);
-        datePlaceHolder.setBounds(400, 0, 100, 14);
+        datePlaceHolder.setBounds(400, 0, 100, 26);
 
         timePlaceHolder.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         timePlaceHolder.setText("TIMEPLACEHOLDER");
         gamePanel.add(timePlaceHolder);
-        timePlaceHolder.setBounds(510, 0, 70, 14);
+        timePlaceHolder.setBounds(510, 0, 70, 26);
         gamePanel.add(jSeparator1);
         jSeparator1.setBounds(290, 80, 0, 2);
 
@@ -119,7 +119,7 @@ public class test extends javax.swing.JFrame {
             }
         });
         gamePanel.add(jButton2);
-        jButton2.setBounds(473, 20, 120, 23);
+        jButton2.setBounds(473, 20, 120, 35);
 
         getContentPane().add(gamePanel);
         gamePanel.setBounds(0, 0, 600, 280);
