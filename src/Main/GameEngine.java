@@ -15,14 +15,20 @@
 package Main;
 
 import java.util.Random;
-import java.util.ArrayList;
-        
-        
+import java.util.ArrayList;     
 /**
  *
  * @author matthhew
  */
 public class GameEngine {
+    
+    Random random = new Random();
+    StringBuffer misses = new StringBuffer("");
+    final int attempts = 6;
+    boolean solved;
+    private final String[] wordArray = {"abstract", "cemetery", "nurse","pharmacy","climbing" };
+    
+    
     private String hiddenWord;
     private int guessesRemaining;
     private boolean gameOver;
@@ -68,6 +74,7 @@ public class GameEngine {
         }
         
     }
+    
     //method: guessLetter
     //purpose: Adds the letter to letters guessed and checks to see if 
     //This letter was in the word.
@@ -76,13 +83,14 @@ public class GameEngine {
         lettersUsed.add(guess);
         //returns the first index of the letter
         if (hiddenWord.indexOf(guess) >= -1){
-        return true;
-        } else {
-        guessesRemaining--;
-        if (guessesRemaining == 0)
-        {
+            return true;
+        } 
+        else {
+            guessesRemaining--;
+            
+            if (guessesRemaining == 0){
             gameOver = true;
-        }
+            }
         return false;
         }
     }
@@ -91,6 +99,25 @@ public class GameEngine {
     //purpose: returns the hidden word.
     public String getWord(){
         return hiddenWord;
+    }
+    
+    //method: getWordLength
+    //purpose: returns the hiddenwords length+
+    public int getWordLength(){
+        int wordLength = hiddenWord.length();
+        return wordLength;
+    }
+    
+    public boolean[] getIndexes(char guess){
+        boolean[] indexAt = new boolean[hiddenWord.length()];
+        for(int i = 0; i < hiddenWord.length(); i++){
+            if(guess == hiddenWord.charAt(i)){
+                indexAt[i] = true;
+            } else {
+                indexAt[i] = false;
+            }
+        }
+        return indexAt;
     }
     
 }

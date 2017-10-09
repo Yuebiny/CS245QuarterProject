@@ -11,15 +11,10 @@
 *
 ****************************************************************/ 
 package Main;
-import java.util.Timer;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class MainMenuFrame extends javax.swing.JFrame {
     
-    public MainMenuFrame() { 
-        
+    public MainMenuFrame() {
         initComponents();
     }
     
@@ -33,12 +28,10 @@ public class MainMenuFrame extends javax.swing.JFrame {
        new HighScoreFrame().setVisible(true);
     }
     
-    public void gameFrameButtonPress(){
+    public void gameFrameButtonPress(){ 
        dispose();
-       new test().setVisible(true);
+       new GameGUI().setVisible(true);
     }
-    
-    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -113,13 +106,11 @@ public class MainMenuFrame extends javax.swing.JFrame {
 
 
     private void highscoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highscoreButtonActionPerformed
-        highScoreButtonPress();// TODO add your handling cod here:
+        highScoreButtonPress();
     }//GEN-LAST:event_highscoreButtonActionPerformed
 
-    public static void main(String args[]) {
-        
-    }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Background;
     private javax.swing.JButton creditsButton;
