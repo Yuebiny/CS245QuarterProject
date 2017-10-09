@@ -14,6 +14,9 @@ import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 public class GameGUI extends javax.swing.JFrame {
@@ -23,6 +26,7 @@ public class GameGUI extends javax.swing.JFrame {
     public GameGUI() {
         initComponents();
         showDateAndTime();
+        setAnswersOnLabels();
     }
     
     //Method: goback
@@ -35,8 +39,16 @@ public class GameGUI extends javax.swing.JFrame {
     //Method: drawLetterLines
     //purpose: this method draws the lines that will appear when the game starts, indicating to the player how many
     //letters are in the answer
-    private void drawLetterLines(Graphics g){  
-        super.paint(g);
+    private void draw(Graphics g){  
+       super.paint(g);
+       drawHangMan(g);
+       drawLetterLines(g);
+       drawHangManbase(g);
+       
+    }
+    
+    
+    private void drawLetterLines(Graphics g){
         int numberOfLetters = game.getWordLength();
         int x1 = 70;
         int x2 = 110;
@@ -49,9 +61,31 @@ public class GameGUI extends javax.swing.JFrame {
         }
     }
     
+    private void drawHangManbase(Graphics g){
+        g.setColor(Color.BLACK);
+        g.drawLine(200,200,300,200);//Base
+        g.drawLine(200,200,200,215);//Base Left
+        g.drawLine(300,200,300,215);//Base Right
+        g.drawLine(250,200,250,75); //Base
+        g.drawLine(250,75,400,75);  //Base ARM
+        g.drawLine(400,75,400,100);  
+    }
+    
+    private void drawHangMan(Graphics g){
+      
+            g.fillOval(385,80,30,30);   //HEAD
+            g.drawLine(400,175,400,75); //BODY+
+            g.drawLine(400,115,380,150);//LARM
+            g.drawLine(400,115,420,150);//LARM
+            g.drawLine(400,175,415,185);//
+            g.drawLine(400,175,385,185);//RLEG  
+
+    }
+   
+    
     //Method: drawAnswers
     //purpose: this method sets up jlabels above drawnlines for replacing text with after a correct answer is guessed.
-    private void drawAnswers(){
+    private void setAnswersOnLabels(){
         final int y = 30;
         
         for(int i = 0; i < lb.length; i++) {
@@ -89,7 +123,8 @@ public class GameGUI extends javax.swing.JFrame {
     @Override
     public void paint(Graphics g) {
         drawLetterLines(g);
-        drawAnswers();
+        draw(g);
+        
     }
     
     //Method: showDateAndTime
@@ -97,6 +132,7 @@ public class GameGUI extends javax.swing.JFrame {
     private void showDateAndTime(){
         timeComponent();
         dateComponent();
+        
     }
     
     //Method: timeComponent
@@ -143,7 +179,11 @@ public class GameGUI extends javax.swing.JFrame {
             String guess = Integer.toString(game.getGuessesRemaining());
             guessesNumLabel.setText(guess);
             if(game.getGuessesRemaining() == 0){
-                //Game Over Screen
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 dispose();
                  new gameOverFrame().setVisible(true);
             }
@@ -204,10 +244,10 @@ public class GameGUI extends javax.swing.JFrame {
         gamePanel.setPreferredSize(new java.awt.Dimension(600, 200));
         gamePanel.setLayout(null);
 
-        namePlaceHolder.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
+        namePlaceHolder.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
         namePlaceHolder.setText("HANGMAN");
         gamePanel.add(namePlaceHolder);
-        namePlaceHolder.setBounds(2, 2, 55, 14);
+        namePlaceHolder.setBounds(2, 2, 70, 16);
 
         datePlaceHolder.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         datePlaceHolder.setText("DATEPLACEHOLDER");
@@ -228,6 +268,7 @@ public class GameGUI extends javax.swing.JFrame {
         guessesLabel.setBounds(10, 140, 90, 20);
 
         guessesNumLabel.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        guessesNumLabel.setForeground(new java.awt.Color(255, 0, 0));
         guessesNumLabel.setText("6");
         hangPanel.add(guessesNumLabel);
         guessesNumLabel.setBounds(100, 140, 10, 20);
@@ -683,6 +724,8 @@ public class GameGUI extends javax.swing.JFrame {
     private javax.swing.JPanel textPanel;
     private javax.swing.JLabel timePlaceHolder;
     // End of variables declaration//GEN-END:variables
+
+    
 
     
 }
