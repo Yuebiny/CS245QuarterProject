@@ -108,6 +108,7 @@ public class GameEngine {
         return wordLength;
     }
     
+
     public boolean[] getIndexes(char guess){
         boolean[] indexAt = new boolean[hiddenWord.length()];
         for(int i = 0; i < hiddenWord.length(); i++){
@@ -119,5 +120,5 @@ public class GameEngine {
         }
         return indexAt;
     }
-    
+
 }
