@@ -130,7 +130,6 @@ public class GameGUI extends javax.swing.JFrame {
     //Method: helpButton
     //purpose: this method diposes the current frame and opens the Help menu, used for game instructions.
     private void helpButton(){
-        dispose();
         new HelpFrame().setVisible(true);
     }
     
@@ -191,20 +190,12 @@ public class GameGUI extends javax.swing.JFrame {
         datePlaceHolder.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         datePlaceHolder.setText("DATEPLACEHOLDER");
         gamePanel.add(datePlaceHolder);
-
-        datePlaceHolder.setBounds(400, 0, 100, 26);
-
         datePlaceHolder.setBounds(400, 0, 100, 14);
-
 
         timePlaceHolder.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         timePlaceHolder.setText("TIMEPLACEHOLDER");
         gamePanel.add(timePlaceHolder);
-
-        timePlaceHolder.setBounds(510, 0, 70, 26);
-
         timePlaceHolder.setBounds(510, 0, 70, 14);
-
 
         hangPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         gamePanel.add(hangPanel);
