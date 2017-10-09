@@ -15,9 +15,7 @@
 package Main;
 
 import java.util.Random;
-import java.util.ArrayList;
-        
-        
+import java.util.ArrayList;     
 /**
  *
  * @author matthhew
@@ -76,6 +74,7 @@ public class GameEngine {
         }
         
     }
+    
     //method: guessLetter
     //purpose: Adds the letter to letters guessed and checks to see if 
     //This letter was in the word.
@@ -101,6 +100,9 @@ public class GameEngine {
     public String getWord(){
         return hiddenWord;
     }
+    
+    //method: getWordLength
+    //purpose: returns the hiddenwords length+
     public int getWordLength(){
         int wordLength = hiddenWord.length();
         return wordLength;

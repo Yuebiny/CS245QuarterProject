@@ -13,10 +13,8 @@
 package Main;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.Line2D;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 public class GameGUI extends javax.swing.JFrame {
@@ -26,8 +24,8 @@ public class GameGUI extends javax.swing.JFrame {
     public GameGUI() {
         initComponents();
         showDateAndTime();
-       
     }
+    
     //Method: goback
     //purpose: this method brings the user back the main menu.
     public void goback(){
@@ -44,13 +42,11 @@ public class GameGUI extends javax.swing.JFrame {
         int x1 = 70;
         int x2 = 110;
         int y = 270;
-        
         for(int i = 0; i< numberOfLetters; i++){
             x1 = x2+5;
             x2 += 50;
             int test = (x1+x2)/2;
             g.drawLine(x1+5,y,x2,y);
-            System.out.println(x1+5 +" "+ y +" "+ " " + x2+ " "+y);
         }
     }
     
@@ -109,6 +105,7 @@ public class GameGUI extends javax.swing.JFrame {
         timeComponent();
         dateComponent();
     }
+    
     //Method: timeComponent
     //purpose: this method starts recording system time and places replaces a jlabel with it.
     private void timeComponent() {
@@ -129,6 +126,7 @@ public class GameGUI extends javax.swing.JFrame {
         datePlaceHolder.setFont(new Font("Tw Cen MT", Font.PLAIN, 12));
         datePlaceHolder.setText(s.format(d));
     }
+    
     //Method: helpButton
     //purpose: this method diposes the current frame and opens the Help menu, used for game instructions.
     private void helpButton(){
@@ -146,7 +144,7 @@ public class GameGUI extends javax.swing.JFrame {
         timePlaceHolder = new javax.swing.JLabel();
         hangPanel = new javax.swing.JPanel();
         textPanel = new javax.swing.JPanel();
-        jPanel1 = new javax.swing.JPanel();
+        letterPanel = new javax.swing.JPanel();
         AButton = new javax.swing.JButton();
         BButton = new javax.swing.JButton();
         CButton = new javax.swing.JButton();
@@ -212,119 +210,216 @@ public class GameGUI extends javax.swing.JFrame {
         getContentPane().add(gamePanel);
         gamePanel.setBounds(0, 0, 600, 260);
 
-        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.setLayout(new java.awt.GridLayout(2, 0, 0, 5));
+        letterPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        letterPanel.setLayout(new java.awt.GridLayout(2, 0, -1, 1));
 
-        AButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        AButton.setText("A");
+        AButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        AButton.setText("a");
         AButton.setToolTipText("A button");
         AButton.setAlignmentY(0.0F);
-        AButton.setFocusPainted(false);
         AButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 AButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(AButton);
+        letterPanel.add(AButton);
 
-        BButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        BButton.setText(" B");
+        BButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        BButton.setText("b");
+        BButton.setAlignmentY(0.0F);
+        BButton.setMaximumSize(new java.awt.Dimension(40, 24));
+        BButton.setMinimumSize(new java.awt.Dimension(40, 24));
+        BButton.setPreferredSize(new java.awt.Dimension(10, 10));
         BButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(BButton);
+        letterPanel.add(BButton);
 
-        CButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        CButton.setText("C");
+        CButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        CButton.setText("c");
         CButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(CButton);
+        letterPanel.add(CButton);
 
-        DButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        DButton.setText("D");
-        jPanel1.add(DButton);
+        DButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        DButton.setText("d");
+        DButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(DButton);
 
-        EButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        EButton.setText("E");
-        jPanel1.add(EButton);
+        EButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        EButton.setText("e");
+        EButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(EButton);
 
-        FButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        FButton.setText("F");
-        jPanel1.add(FButton);
+        FButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        FButton.setText("f");
+        FButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                FButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(FButton);
 
-        GButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        GButton.setText("G");
-        jPanel1.add(GButton);
+        GButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        GButton.setText("g");
+        GButton.setMaximumSize(new java.awt.Dimension(5, 5));
+        GButton.setMinimumSize(new java.awt.Dimension(5, 5));
+        GButton.setPreferredSize(new java.awt.Dimension(5, 5));
+        GButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(GButton);
 
-        HButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        HButton.setText(" H");
-        jPanel1.add(HButton);
+        HButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        HButton.setText("h");
+        HButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(HButton);
 
-        IButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        IButton.setText("I");
-        jPanel1.add(IButton);
+        IButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        IButton.setText("i");
+        IButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(IButton);
 
-        JButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        JButton.setText("J");
-        jPanel1.add(JButton);
+        JButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        JButton.setText("j");
+        JButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(JButton);
 
-        KButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        KButton.setText("K");
-        jPanel1.add(KButton);
+        KButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        KButton.setText("k");
+        KButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                KButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(KButton);
 
-        LButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
+        LButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         LButton.setText("L");
         LButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(LButton);
+        letterPanel.add(LButton);
 
-        MButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        MButton.setText("M");
-        jPanel1.add(MButton);
+        MButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14));
+        MButton.setText("m");
+        MButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(MButton);
 
-        NButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        NButton.setText("N");
-        jPanel1.add(NButton);
+        NButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        NButton.setText("n");
+        NButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                NButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(NButton);
 
-        OButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        OButton.setText("O");
-        jPanel1.add(OButton);
+        OButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        OButton.setText("o");
+        OButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(OButton);
 
-        PButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        PButton.setText("P");
-        jPanel1.add(PButton);
+        PButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        PButton.setText("p");
+        PButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                PButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(PButton);
 
-        QButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        QButton.setText("Q");
-        jPanel1.add(QButton);
+        QButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        QButton.setText("q");
+        QButton.setFocusPainted(false);
+        QButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                QButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(QButton);
 
-        RButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        RButton.setText("R");
-        jPanel1.add(RButton);
+        RButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        RButton.setText("r");
+        RButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(RButton);
 
-        SButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        SButton.setText("S");
-        jPanel1.add(SButton);
+        SButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        SButton.setText("s");
+        SButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(SButton);
 
-        TButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        TButton.setText("T");
-        jPanel1.add(TButton);
+        TButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        TButton.setText("t");
+        TButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(TButton);
 
-        UButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        UButton.setText("U");
-        jPanel1.add(UButton);
+        UButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        UButton.setText("u");
+        UButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                UButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(UButton);
 
-        VButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        VButton.setText("V");
-        jPanel1.add(VButton);
+        VButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        VButton.setText("v");
+        VButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                VButtonActionPerformed(evt);
+            }
+        });
+        letterPanel.add(VButton);
 
         WButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
         WButton.setText("w");
@@ -333,36 +428,36 @@ public class GameGUI extends javax.swing.JFrame {
                 WButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(WButton);
+        letterPanel.add(WButton);
 
-        YButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        YButton.setText("Y");
+        YButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        YButton.setText("y");
         YButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 YButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(YButton);
+        letterPanel.add(YButton);
 
-        XButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        XButton.setText("X");
+        XButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        XButton.setText("x");
         XButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 XButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(XButton);
+        letterPanel.add(XButton);
 
-        ZButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
-        ZButton.setText("Z");
+        ZButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        ZButton.setText("z");
         ZButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ZButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(ZButton);
+        letterPanel.add(ZButton);
 
-        helpButton.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
+        helpButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         helpButton.setText("?");
         helpButton.setPreferredSize(new java.awt.Dimension(20, 20));
         helpButton.addActionListener(new java.awt.event.ActionListener() {
@@ -370,10 +465,10 @@ public class GameGUI extends javax.swing.JFrame {
                 helpButtonActionPerformed(evt);
             }
         });
-        jPanel1.add(helpButton);
+        letterPanel.add(helpButton);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 260, 600, 110);
+        getContentPane().add(letterPanel);
+        letterPanel.setBounds(0, 260, 600, 110);
 
         pack();
         setLocationRelativeTo(null);
@@ -419,6 +514,78 @@ public class GameGUI extends javax.swing.JFrame {
          BButton.setEnabled(false);
     }//GEN-LAST:event_BButtonActionPerformed
 
+    private void DButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_DButtonActionPerformed
+
+    private void EButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EButtonActionPerformed
+
+    private void FButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_FButtonActionPerformed
+
+    private void GButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GButtonActionPerformed
+
+    private void HButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_HButtonActionPerformed
+
+    private void IButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_IButtonActionPerformed
+
+    private void JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JButtonActionPerformed
+
+    private void KButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_KButtonActionPerformed
+
+    private void MButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MButtonActionPerformed
+
+    private void NButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_NButtonActionPerformed
+
+    private void OButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_OButtonActionPerformed
+
+    private void PButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_PButtonActionPerformed
+
+    private void QButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_QButtonActionPerformed
+
+    private void RButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_RButtonActionPerformed
+
+    private void SButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_SButtonActionPerformed
+
+    private void TButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TButtonActionPerformed
+
+    private void UButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_UButtonActionPerformed
+
+    private void VButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_VButtonActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -452,7 +619,7 @@ public class GameGUI extends javax.swing.JFrame {
     private javax.swing.JPanel gamePanel;
     private javax.swing.JPanel hangPanel;
     private javax.swing.JButton helpButton;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel letterPanel;
     private javax.swing.JLabel namePlaceHolder;
     private javax.swing.JPanel textPanel;
     private javax.swing.JLabel timePlaceHolder;
