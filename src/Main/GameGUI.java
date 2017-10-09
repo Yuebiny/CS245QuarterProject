@@ -18,7 +18,7 @@ import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 public class GameGUI extends javax.swing.JFrame {
-    
+     JLabel[] lb = new JLabel[8];
     GameEngine game = new GameEngine();
     
     public GameGUI() {
@@ -54,43 +54,37 @@ public class GameGUI extends javax.swing.JFrame {
     //purpose: this method sets up jlabels above drawnlines for replacing text with after a correct answer is guessed.
     private void drawAnswers(){
         final int y = 40;
-        JLabel lb1 = new JLabel();
-        JLabel lb2 = new JLabel();
-        JLabel lb3 = new JLabel();
-        JLabel lb4 = new JLabel();
-        JLabel lb5 = new JLabel();
-        JLabel lb6 = new JLabel();
-        JLabel lb7 = new JLabel();
-        JLabel lb8 = new JLabel();
         
-        textPanel.add(lb1);
-            lb1.setSize(10,10);
-            lb1.setText("A");
-        textPanel.add(lb2);
-            lb2.setSize(10,10);
-            lb2.setText("B");
-        textPanel.add(lb3);
-            lb3.setSize(10,10);
-            lb3.setText("C");
-        textPanel.add(lb4);
-            lb4.setSize(10,10);
-        textPanel.add(lb5);
-            lb5.setSize(10,10);
-        textPanel.add(lb6);
-            lb6.setSize(10,10);
-        textPanel.add(lb7);
-            lb7.setSize(10,10);
-        textPanel.add(lb8);
-            lb8.setSize(10,10);
+        for(int i = 0; i < lb.length; i++) {
+            lb[i] = new JLabel();
+        }
         
-        lb1.setLocation(120,y);
-        lb2.setLocation(170,y);
-        lb3.setLocation(220,y);
-        lb4.setLocation(270,y);
-        lb5.setLocation(320,y);
-        lb6.setLocation(370,y);
-        lb7.setLocation(420,y);
-        lb8.setLocation(470,y);     
+        textPanel.add(lb[0]);
+            lb[0].setSize(10,10);
+        textPanel.add(lb[1]);
+            lb[1].setSize(10,10);
+        textPanel.add(lb[2]);
+            lb[2].setSize(10,10);
+        textPanel.add(lb[3]);
+            lb[3].setSize(10,10);
+        textPanel.add(lb[4]);
+            lb[4].setSize(10,10);
+        textPanel.add(lb[5]);
+            lb[5].setSize(10,10);
+        textPanel.add(lb[6]);
+            lb[6].setSize(10,10);
+        textPanel.add(lb[7]);
+            lb[7].setSize(10,10);
+            
+            // Sets location of letters above the lines
+        lb[0].setLocation(120,y);
+        lb[1].setLocation(170,y);
+        lb[2].setLocation(220,y);
+        lb[3].setLocation(270,y);
+        lb[4].setLocation(320,y);
+        lb[5].setLocation(370,y);
+        lb[6].setLocation(420,y);
+        lb[7].setLocation(470,y);     
     }
     @Override
     public void paint(Graphics g) {
@@ -132,6 +126,29 @@ public class GameGUI extends javax.swing.JFrame {
     private void helpButton(){
         new HelpFrame().setVisible(true);
     }
+    
+    //Method: guess
+    //purpose: this method will guessed the input letter to see if its in the word and then display that letter in the corresponding location's jlabel.
+    private void guess(char c ){
+    String string1 = Character.toString(c);
+    if (game.guessLetter(c)){
+        boolean[] indexToPrint = game.getIndexes(c);
+           for(int i = 0; i < game.getWordLength(); i++){
+               if( indexToPrint[i] == true){
+                   lb[i].setText(string1);
+               }
+           }
+    }
+    
+    else{
+        System.out.println("That letter was not in the word");
+        game.setGuessesRemaining(game.getGuessesRemaining()-1);
+        if(game.getGuessesRemaining() == 0){
+            System.out.println("GAME OVER");
+        }
+    }
+    
+}
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -478,118 +495,111 @@ public class GameGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_helpButtonActionPerformed
 
     private void WButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WButtonActionPerformed
-        // TODO add your handling code here:
+        guess('w');
     }//GEN-LAST:event_WButtonActionPerformed
 
     private void YButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YButtonActionPerformed
-        // TODO add your handling code here:
+        guess('y');
     }//GEN-LAST:event_YButtonActionPerformed
 
     private void CButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CButtonActionPerformed
-        // TODO add your handling code here:
+       guess('c');
     }//GEN-LAST:event_CButtonActionPerformed
 
     private void LButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LButtonActionPerformed
-        // TODO add your handling code here:
+        guess('l');
     }//GEN-LAST:event_LButtonActionPerformed
 
     private void AButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AButtonActionPerformed
-
-       if (game.guessLetter('a')){
-           boolean[] indexToPrint = game.getIndexes('a');
-           
-       }
-
-       game.guessLetter('a');
+        guess('a');
 
        AButton.setEnabled(false);
     }//GEN-LAST:event_AButtonActionPerformed
 
     private void ZButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ZButtonActionPerformed
-        // TODO add your handling code here:
+       guess('z');
          ZButton.setEnabled(false);
     }//GEN-LAST:event_ZButtonActionPerformed
 
     private void XButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XButtonActionPerformed
-        // TODO add your handling code here:
-         XButton.setEnabled(false);
+       System.out.println(game.getGuessesRemaining());
     }//GEN-LAST:event_XButtonActionPerformed
 
     private void BButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BButtonActionPerformed
-        // TODO add your handling code here:
+        guess('b');
          BButton.setEnabled(false);
     }//GEN-LAST:event_BButtonActionPerformed
 
     private void DButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DButtonActionPerformed
-        // TODO add your handling code here:
+        guess('d');
     }//GEN-LAST:event_DButtonActionPerformed
 
     private void EButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EButtonActionPerformed
-        // TODO add your handling code here:
+       guess('e');
     }//GEN-LAST:event_EButtonActionPerformed
 
     private void FButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FButtonActionPerformed
-        // TODO add your handling code here:
+    guess('f');
     }//GEN-LAST:event_FButtonActionPerformed
 
     private void GButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GButtonActionPerformed
-        // TODO add your handling code here:
+        guess('g');
     }//GEN-LAST:event_GButtonActionPerformed
 
     private void HButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HButtonActionPerformed
-        // TODO add your handling code here:
+      guess('h');
     }//GEN-LAST:event_HButtonActionPerformed
 
     private void IButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IButtonActionPerformed
-        // TODO add your handling code here:
+        guess('i');
     }//GEN-LAST:event_IButtonActionPerformed
 
     private void JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonActionPerformed
-        // TODO add your handling code here:
+        guess('j');
     }//GEN-LAST:event_JButtonActionPerformed
 
     private void KButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KButtonActionPerformed
-        // TODO add your handling code here:
+       guess('k');
     }//GEN-LAST:event_KButtonActionPerformed
 
     private void MButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MButtonActionPerformed
-        // TODO add your handling code here:
+       guess('m');
     }//GEN-LAST:event_MButtonActionPerformed
 
     private void NButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NButtonActionPerformed
-        // TODO add your handling code here:
+       guess('n');
     }//GEN-LAST:event_NButtonActionPerformed
 
     private void OButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OButtonActionPerformed
-        // TODO add your handling code here:
+        guess('o');
     }//GEN-LAST:event_OButtonActionPerformed
 
     private void PButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PButtonActionPerformed
-        // TODO add your handling code here:
+     guess('p');
     }//GEN-LAST:event_PButtonActionPerformed
 
     private void QButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QButtonActionPerformed
-        // TODO add your handling code here:
+       guess('q');
     }//GEN-LAST:event_QButtonActionPerformed
 
     private void RButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RButtonActionPerformed
-        // TODO add your handling code here:
+      guess('r');
     }//GEN-LAST:event_RButtonActionPerformed
 
     private void SButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SButtonActionPerformed
-        // TODO add your handling code here:
+      guess('s');
     }//GEN-LAST:event_SButtonActionPerformed
 
     private void TButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TButtonActionPerformed
-        // TODO add your handling code here:
+       guess('t');
     }//GEN-LAST:event_TButtonActionPerformed
 
     private void UButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UButtonActionPerformed
-        // TODO add your handling code here:
+        guess('u');
     }//GEN-LAST:event_UButtonActionPerformed
 
     private void VButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VButtonActionPerformed
-        // TODO add your handling code here:
+        guess('0');
     }//GEN-LAST:event_VButtonActionPerformed
 
    

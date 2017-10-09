@@ -23,24 +23,37 @@ import java.util.ArrayList;
 public class GameEngine {
     
     Random random = new Random();
-    StringBuffer misses = new StringBuffer("");
-    final int attempts = 6;
-    boolean solved;
-    private final String[] wordArray = {"abstract", "cemetery", "nurse","pharmacy","climbing" };
-    
+   
     
     private String hiddenWord;
     private int guessesRemaining;
     private boolean gameOver;
+    private boolean solved;
     
-    //Needed to redraw which letters are used.
     private ArrayList lettersUsed = new ArrayList();
+
+   
     
     public GameEngine() {
-        //According to project the user loses after 6 incorrect guesses.
-        guessesRemaining = 5;
         setHiddenWord();  
         gameOver = false;
+        setGuessesRemaining(6);
+    }
+
+    public int getGuessesRemaining() {
+        return guessesRemaining;
+    }
+
+    public void setGuessesRemaining(int guessesRemaining) {
+        this.guessesRemaining = guessesRemaining;
+    }
+
+    public boolean isGameOver() {
+        return gameOver;
+    }
+
+    public void setGameOver(boolean gameOver) {
+        this.gameOver = gameOver;
     }
     
     //Method: setHiddenWord
@@ -49,7 +62,7 @@ public class GameEngine {
     private void setHiddenWord(){
         Random rand = new Random(System.currentTimeMillis());
         //Gets a random number from 0-4 to determine the hiddenWord.
-        int number = rand.nextInt(5);
+        int number = 0;
         switch(number) {
             case 0:
                 hiddenWord = "abstract";
@@ -86,21 +99,17 @@ public class GameEngine {
             return true;
         } 
         else {
+            System.out.println("out of guesses");
             guessesRemaining--;
-            
             if (guessesRemaining == 0){
             gameOver = true;
+            System.out.println("out of guesses");
             }
         return false;
         }
     }
-    
-    //method: getWord
-    //purpose: returns the hidden word.
-    public String getWord(){
-        return hiddenWord;
-    }
-    
+        
+        
     //method: getWordLength
     //purpose: returns the hiddenwords length+
     public int getWordLength(){
