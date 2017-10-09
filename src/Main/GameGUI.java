@@ -9,7 +9,6 @@
 * purpose: This class creates the frame where the hangman game is played, as
 * well as all calculations that relate to the game.
 ****************************************************************/ 
-
 package Main;
 import java.awt.*;
 import java.awt.event.*;
@@ -53,30 +52,30 @@ public class GameGUI extends javax.swing.JFrame {
     //Method: drawAnswers
     //purpose: this method sets up jlabels above drawnlines for replacing text with after a correct answer is guessed.
     private void drawAnswers(){
-        final int y = 40;
+        final int y = 30;
         
         for(int i = 0; i < lb.length; i++) {
             lb[i] = new JLabel();
         }
         
         textPanel.add(lb[0]);
-            lb[0].setSize(10,10);
+            lb[0].setSize(15,15);
         textPanel.add(lb[1]);
-            lb[1].setSize(10,10);
+            lb[1].setSize(15,15);
         textPanel.add(lb[2]);
-            lb[2].setSize(10,10);
+            lb[2].setSize(15,15);
         textPanel.add(lb[3]);
-            lb[3].setSize(10,10);
+            lb[3].setSize(15,15);
         textPanel.add(lb[4]);
-            lb[4].setSize(10,10);
+            lb[4].setSize(15,15);
         textPanel.add(lb[5]);
-            lb[5].setSize(10,10);
+            lb[5].setSize(15,15);
         textPanel.add(lb[6]);
-            lb[6].setSize(10,10);
+            lb[6].setSize(15,15);
         textPanel.add(lb[7]);
-            lb[7].setSize(10,10);
+            lb[7].setSize(15,15);
             
-            // Sets location of letters above the lines
+// Sets location of letters above the lines
         lb[0].setLocation(120,y);
         lb[1].setLocation(170,y);
         lb[2].setLocation(220,y);
@@ -86,13 +85,13 @@ public class GameGUI extends javax.swing.JFrame {
         lb[6].setLocation(420,y);
         lb[7].setLocation(470,y);     
     }
+    
     @Override
     public void paint(Graphics g) {
         drawLetterLines(g);
         drawAnswers();
+    }
     
-   
-}
     //Method: showDateAndTime
     //purpose: this method starts the date and time components for the jlabel
     private void showDateAndTime(){
@@ -130,24 +129,28 @@ public class GameGUI extends javax.swing.JFrame {
     //Method: guess
     //purpose: this method will guessed the input letter to see if its in the word and then display that letter in the corresponding location's jlabel.
     private void guess(char c ){
-    String string1 = Character.toString(c);
-    if (game.guessLetter(c)){
-        boolean[] indexToPrint = game.getIndexes(c);
-           for(int i = 0; i < game.getWordLength(); i++){
-               if( indexToPrint[i] == true){
-                   lb[i].setText(string1);
+        String string1 = Character.toString(c);
+        if (game.guessLetter(c)){
+            boolean[] indexToPrint = game.getIndexes(c);
+               for(int i = 0; i < game.getWordLength(); i++){
+                   if( indexToPrint[i] == true){
+                       lb[i].setText(string1);
+                   }
                }
-           }
-    }
-    
-    else{
-        System.out.println("That letter was not in the word");
-        game.setGuessesRemaining(game.getGuessesRemaining()-1);
-        if(game.getGuessesRemaining() == 0){
-            System.out.println("GAME OVER");
         }
-    }
-    
+
+        else{
+            String guess = Integer.toString(game.getGuessesRemaining());
+            guessesNumLabel.setText(guess);
+            if(game.getGuessesRemaining() == 0){
+                //Game Over Screen
+                dispose();
+                 new gameOverFrame().setVisible(true);
+            }
+            else{
+            System.out.println("That letter was not in the word");
+            }
+        } 
 }
     
     @SuppressWarnings("unchecked")
@@ -159,6 +162,8 @@ public class GameGUI extends javax.swing.JFrame {
         datePlaceHolder = new javax.swing.JLabel();
         timePlaceHolder = new javax.swing.JLabel();
         hangPanel = new javax.swing.JPanel();
+        guessesLabel = new javax.swing.JLabel();
+        guessesNumLabel = new javax.swing.JLabel();
         textPanel = new javax.swing.JPanel();
         letterPanel = new javax.swing.JPanel();
         AButton = new javax.swing.JButton();
@@ -215,6 +220,18 @@ public class GameGUI extends javax.swing.JFrame {
         timePlaceHolder.setBounds(510, 0, 70, 14);
 
         hangPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        hangPanel.setLayout(null);
+
+        guessesLabel.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        guessesLabel.setText("Guesses Left  :");
+        hangPanel.add(guessesLabel);
+        guessesLabel.setBounds(10, 140, 90, 20);
+
+        guessesNumLabel.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        guessesNumLabel.setText("6");
+        hangPanel.add(guessesNumLabel);
+        guessesNumLabel.setBounds(100, 140, 10, 20);
+
         gamePanel.add(hangPanel);
         hangPanel.setBounds(10, 20, 580, 170);
 
@@ -496,23 +513,27 @@ public class GameGUI extends javax.swing.JFrame {
 
     private void WButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WButtonActionPerformed
         guess('w');
+        WButton.setEnabled(false);
     }//GEN-LAST:event_WButtonActionPerformed
 
     private void YButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_YButtonActionPerformed
         guess('y');
+        YButton.setEnabled(false);
     }//GEN-LAST:event_YButtonActionPerformed
 
     private void CButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CButtonActionPerformed
        guess('c');
+       CButton.setEnabled(false);
     }//GEN-LAST:event_CButtonActionPerformed
 
     private void LButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LButtonActionPerformed
         guess('l');
+        LButton.setEnabled(false);
     }//GEN-LAST:event_LButtonActionPerformed
 
     private void AButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AButtonActionPerformed
         guess('a');
-
+        
        AButton.setEnabled(false);
     }//GEN-LAST:event_AButtonActionPerformed
 
@@ -527,78 +548,98 @@ public class GameGUI extends javax.swing.JFrame {
 
     private void BButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BButtonActionPerformed
         guess('b');
-         BButton.setEnabled(false);
+        BButton.setEnabled(false);
+      
     }//GEN-LAST:event_BButtonActionPerformed
 
     private void DButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DButtonActionPerformed
         guess('d');
+        DButton.setEnabled(false);
     }//GEN-LAST:event_DButtonActionPerformed
 
     private void EButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EButtonActionPerformed
        guess('e');
+       EButton.setEnabled(false);
     }//GEN-LAST:event_EButtonActionPerformed
 
     private void FButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FButtonActionPerformed
     guess('f');
+    FButton.setEnabled(false);
     }//GEN-LAST:event_FButtonActionPerformed
 
     private void GButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GButtonActionPerformed
+        GButton.setEnabled(false);
         guess('g');
     }//GEN-LAST:event_GButtonActionPerformed
 
     private void HButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HButtonActionPerformed
-      guess('h');
+      HButton.setEnabled(false);
+        guess('h');
     }//GEN-LAST:event_HButtonActionPerformed
 
     private void IButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_IButtonActionPerformed
+        IButton.setEnabled(false);
         guess('i');
     }//GEN-LAST:event_IButtonActionPerformed
 
     private void JButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JButtonActionPerformed
+        JButton.setEnabled(false);
         guess('j');
     }//GEN-LAST:event_JButtonActionPerformed
 
     private void KButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KButtonActionPerformed
-       guess('k');
+       KButton.setEnabled(false);
+        guess('k');
     }//GEN-LAST:event_KButtonActionPerformed
 
     private void MButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MButtonActionPerformed
-       guess('m');
+       MButton.setEnabled(false);
+        guess('m');
     }//GEN-LAST:event_MButtonActionPerformed
 
     private void NButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NButtonActionPerformed
-       guess('n');
+       NButton.setEnabled(false);
+        guess('n');
     }//GEN-LAST:event_NButtonActionPerformed
 
     private void OButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OButtonActionPerformed
+        OButton.setEnabled(false);
         guess('o');
     }//GEN-LAST:event_OButtonActionPerformed
 
     private void PButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PButtonActionPerformed
-     guess('p');
+     PButton.setEnabled(false);
+        guess('p');
     }//GEN-LAST:event_PButtonActionPerformed
 
     private void QButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QButtonActionPerformed
-       guess('q');
+       QButton.setEnabled(false);
+        guess('q');
+       
     }//GEN-LAST:event_QButtonActionPerformed
 
     private void RButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RButtonActionPerformed
       guess('r');
+      RButton.setEnabled(false);
     }//GEN-LAST:event_RButtonActionPerformed
 
     private void SButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SButtonActionPerformed
-      guess('s');
+      SButton.setEnabled(false);
+        guess('s');
     }//GEN-LAST:event_SButtonActionPerformed
 
     private void TButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TButtonActionPerformed
-       guess('t');
+       TButton.setEnabled(false);
+        guess('t');
     }//GEN-LAST:event_TButtonActionPerformed
 
     private void UButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UButtonActionPerformed
+        UButton.setEnabled(false);
         guess('u');
     }//GEN-LAST:event_UButtonActionPerformed
 
     private void VButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_VButtonActionPerformed
+        VButton.setEnabled(false);
         guess('0');
     }//GEN-LAST:event_VButtonActionPerformed
 
@@ -633,6 +674,8 @@ public class GameGUI extends javax.swing.JFrame {
     private javax.swing.JButton ZButton;
     private javax.swing.JLabel datePlaceHolder;
     private javax.swing.JPanel gamePanel;
+    private javax.swing.JLabel guessesLabel;
+    private javax.swing.JLabel guessesNumLabel;
     private javax.swing.JPanel hangPanel;
     private javax.swing.JButton helpButton;
     private javax.swing.JPanel letterPanel;

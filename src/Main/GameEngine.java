@@ -62,7 +62,8 @@ public class GameEngine {
     private void setHiddenWord(){
         Random rand = new Random(System.currentTimeMillis());
         //Gets a random number from 0-4 to determine the hiddenWord.
-        int number = 0;
+        int number = random.nextInt(5);
+        
         switch(number) {
             case 0:
                 hiddenWord = "abstract";
@@ -82,9 +83,9 @@ public class GameEngine {
             default:
                 hiddenWord = "INVALID";
                 System.out.println("Somehow we got an error");
-                System.out.println(number);
                 break;
         }
+        System.out.println(getWord());
         
     }
     
@@ -95,21 +96,19 @@ public class GameEngine {
         //says the letter has been used.
         lettersUsed.add(guess);
         //returns the first index of the letter
-        if (hiddenWord.indexOf(guess) >= -1){
+        if (hiddenWord.indexOf(guess) != -1){
             return true;
         } 
         else {
-            System.out.println("out of guesses");
             guessesRemaining--;
-            if (guessesRemaining == 0){
-            gameOver = true;
-            System.out.println("out of guesses");
-            }
-        return false;
+            
+            return false;
         }
     }
         
-        
+    public String getWord(){
+     return hiddenWord;
+    } 
     //method: getWordLength
     //purpose: returns the hiddenwords length+
     public int getWordLength(){
