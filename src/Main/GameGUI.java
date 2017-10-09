@@ -36,9 +36,7 @@ public class GameGUI extends javax.swing.JFrame {
        new MainMenuFrame().setVisible(true);
     }
     
-    //Method: drawLetterLines
-    //purpose: this method draws the lines that will appear when the game starts, indicating to the player how many
-    //letters are in the answer
+    
     private void draw(Graphics g){  
        super.paint(g);
        drawHangMan(g);
@@ -47,7 +45,9 @@ public class GameGUI extends javax.swing.JFrame {
        
     }
     
-    
+    //Method: drawLetterLines
+    //purpose: this method draws the lines that will appear when the game starts, indicating to the player how many
+    //letters are in the answer
     private void drawLetterLines(Graphics g){
         int numberOfLetters = game.getWordLength();
         int x1 = 70;
@@ -63,12 +63,12 @@ public class GameGUI extends javax.swing.JFrame {
     
     private void drawHangManbase(Graphics g){
         g.setColor(Color.BLACK);
-        g.drawLine(200,200,300,200);//Base
+        g.drawLine(200,200,300,200);//Base Hori
         g.drawLine(200,200,200,215);//Base Left
         g.drawLine(300,200,300,215);//Base Right
-        g.drawLine(250,200,250,75); //Base
+        g.drawLine(250,200,250,75); //Base Vertical
         g.drawLine(250,75,400,75);  //Base ARM
-        g.drawLine(400,75,400,100);  
+        g.drawLine(400,75,400,100); //Base Rope 
     }
     
     private void drawHangMan(Graphics g){
@@ -77,7 +77,7 @@ public class GameGUI extends javax.swing.JFrame {
             g.drawLine(400,175,400,75); //BODY+
             g.drawLine(400,115,380,150);//LARM
             g.drawLine(400,115,420,150);//LARM
-            g.drawLine(400,175,415,185);//
+            g.drawLine(400,175,415,185);//LLEG
             g.drawLine(400,175,385,185);//RLEG  
 
     }
@@ -584,7 +584,8 @@ public class GameGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ZButtonActionPerformed
 
     private void XButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XButtonActionPerformed
-       System.out.println(game.getGuessesRemaining());
+        guess('x');
+        System.out.println(game.getGuessesRemaining());
     }//GEN-LAST:event_XButtonActionPerformed
 
     private void BButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BButtonActionPerformed
