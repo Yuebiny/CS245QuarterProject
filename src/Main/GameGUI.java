@@ -176,8 +176,15 @@ public class GameGUI extends javax.swing.JFrame {
         }
 
         else{
-            String guess = Integer.toString(game.getGuessesRemaining());
+            
+            String num = Integer.toString(game.getScore());
+            scoreNumLabel.setText(num);
+            
+            //Guesses Remaining labels
+            String guess = Integer.toString(game.getGuessesRemaining());  
             guessesNumLabel.setText(guess);
+            
+            
             if(game.getGuessesRemaining() == 0){
                 try {
                     TimeUnit.SECONDS.sleep(1);
@@ -204,6 +211,8 @@ public class GameGUI extends javax.swing.JFrame {
         hangPanel = new javax.swing.JPanel();
         guessesLabel = new javax.swing.JLabel();
         guessesNumLabel = new javax.swing.JLabel();
+        ScoreNameLabel = new javax.swing.JLabel();
+        scoreNumLabel = new javax.swing.JLabel();
         textPanel = new javax.swing.JPanel();
         letterPanel = new javax.swing.JPanel();
         AButton = new javax.swing.JButton();
@@ -260,18 +269,46 @@ public class GameGUI extends javax.swing.JFrame {
         timePlaceHolder.setBounds(510, 0, 70, 14);
 
         hangPanel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        hangPanel.setLayout(null);
 
         guessesLabel.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         guessesLabel.setText("Guesses Left  :");
-        hangPanel.add(guessesLabel);
-        guessesLabel.setBounds(10, 140, 90, 20);
 
-        guessesNumLabel.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        guessesNumLabel.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
         guessesNumLabel.setForeground(new java.awt.Color(255, 0, 0));
         guessesNumLabel.setText("6");
-        hangPanel.add(guessesNumLabel);
-        guessesNumLabel.setBounds(100, 140, 10, 20);
+
+        ScoreNameLabel.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        ScoreNameLabel.setText("Score:");
+
+        scoreNumLabel.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 14)); // NOI18N
+        scoreNumLabel.setForeground(new java.awt.Color(0, 153, 0));
+        scoreNumLabel.setText("100");
+
+        javax.swing.GroupLayout hangPanelLayout = new javax.swing.GroupLayout(hangPanel);
+        hangPanel.setLayout(hangPanelLayout);
+        hangPanelLayout.setHorizontalGroup(
+            hangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hangPanelLayout.createSequentialGroup()
+                .addGap(7, 7, 7)
+                .addComponent(guessesLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(guessesNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(371, 371, 371)
+                .addComponent(ScoreNameLabel)
+                .addGap(6, 6, 6)
+                .addComponent(scoreNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        hangPanelLayout.setVerticalGroup(
+            hangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(hangPanelLayout.createSequentialGroup()
+                .addGap(137, 137, 137)
+                .addGroup(hangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(guessesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(hangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(scoreNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(ScoreNameLabel))
+                    .addComponent(guessesNumLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        );
 
         gamePanel.add(hangPanel);
         hangPanel.setBounds(10, 20, 580, 170);
@@ -707,6 +744,7 @@ public class GameGUI extends javax.swing.JFrame {
     private javax.swing.JButton QButton;
     private javax.swing.JButton RButton;
     private javax.swing.JButton SButton;
+    private javax.swing.JLabel ScoreNameLabel;
     private javax.swing.JButton TButton;
     private javax.swing.JButton UButton;
     private javax.swing.JButton VButton;
@@ -722,6 +760,7 @@ public class GameGUI extends javax.swing.JFrame {
     private javax.swing.JButton helpButton;
     private javax.swing.JPanel letterPanel;
     private javax.swing.JLabel namePlaceHolder;
+    private javax.swing.JLabel scoreNumLabel;
     private javax.swing.JPanel textPanel;
     private javax.swing.JLabel timePlaceHolder;
     // End of variables declaration//GEN-END:variables

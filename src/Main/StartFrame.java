@@ -20,14 +20,12 @@ public class StartFrame extends javax.swing.JFrame {
     }
     
     public void run(){
-        
-       new GameGUI().setVisible(true);
-        //StartFrame titleScreen = new StartFrame();  
-        //titleScreen.setVisible(true);
-       // stall();
-        //titleScreen.dispose();
-        //new MainMenuFrame().setVisible(true);
-    }
+        StartFrame titleScreen = new StartFrame();  
+        titleScreen.setVisible(true);
+        stall();
+        titleScreen.dispose();
+        new MainMenuFrame().setVisible(true);
+    } 
       
     public void stall(){
         try {

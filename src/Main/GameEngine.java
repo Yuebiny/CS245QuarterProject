@@ -23,37 +23,35 @@ import java.util.ArrayList;
 public class GameEngine {
     
     Random random = new Random();
-   
     
     private String hiddenWord;
     private int guessesRemaining;
-    private boolean gameOver;
     private boolean solved;
-    
+    private boolean gameOver;
+    private int score;
     private ArrayList lettersUsed = new ArrayList();
-
-   
     
     public GameEngine() {
         setHiddenWord();  
         gameOver = false;
         setGuessesRemaining(6);
+        setScore(100);
     }
 
+     public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+       
+    }
     public int getGuessesRemaining() {
         return guessesRemaining;
     }
 
     public void setGuessesRemaining(int guessesRemaining) {
         this.guessesRemaining = guessesRemaining;
-    }
-
-    public boolean isGameOver() {
-        return gameOver;
-    }
-
-    public void setGameOver(boolean gameOver) {
-        this.gameOver = gameOver;
     }
     
     //Method: setHiddenWord
@@ -86,7 +84,6 @@ public class GameEngine {
                 break;
         }
         System.out.println(getWord());
-        
     }
     
     //method: guessLetter
@@ -101,7 +98,7 @@ public class GameEngine {
         } 
         else {
             guessesRemaining--;
-            
+            score -=10;
             return false;
         }
     }
@@ -109,6 +106,7 @@ public class GameEngine {
     public String getWord(){
      return hiddenWord;
     } 
+    
     //method: getWordLength
     //purpose: returns the hiddenwords length+
     public int getWordLength(){
