@@ -45,7 +45,7 @@ public class CreditsFrame extends javax.swing.JFrame {
         name1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         name1.setIconTextGap(0);
         getContentPane().add(name1);
-        name1.setBounds(270, 150, 56, 16);
+        name1.setBounds(270, 150, 80, 16);
 
         creditText.setFont(new java.awt.Font("Tw Cen MT", 0, 36)); // NOI18N
         creditText.setLabelFor(creditText);
@@ -61,7 +61,7 @@ public class CreditsFrame extends javax.swing.JFrame {
         name2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         name2.setIconTextGap(0);
         getContentPane().add(name2);
-        name2.setBounds(270, 210, 59, 16);
+        name2.setBounds(260, 210, 100, 16);
 
         name3.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         name3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -70,7 +70,7 @@ public class CreditsFrame extends javax.swing.JFrame {
         name3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         name3.setIconTextGap(0);
         getContentPane().add(name3);
-        name3.setBounds(270, 190, 76, 16);
+        name3.setBounds(270, 190, 100, 16);
 
         name4.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         name4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -79,7 +79,7 @@ public class CreditsFrame extends javax.swing.JFrame {
         name4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         name4.setIconTextGap(0);
         getContentPane().add(name4);
-        name4.setBounds(270, 170, 77, 16);
+        name4.setBounds(270, 170, 100, 16);
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {

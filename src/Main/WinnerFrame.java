@@ -60,7 +60,7 @@ public class WinnerFrame extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 194, Short.MAX_VALUE)
+            .addGap(0, 274, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -68,7 +68,7 @@ public class WinnerFrame extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(200, 290, 200, 40);
+        jPanel1.setBounds(160, 290, 280, 40);
 
         jButton1.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
         jButton1.setText("End");
@@ -80,7 +80,7 @@ public class WinnerFrame extends javax.swing.JFrame {
             }
         });
         getContentPane().add(jButton1);
-        jButton1.setBounds(490, 340, 73, 23);
+        jButton1.setBounds(463, 340, 100, 23);
 
         backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main/Win1.jpg"))); // NOI18N
         backGround.setText("jLabel1");
