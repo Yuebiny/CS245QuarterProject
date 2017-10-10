@@ -23,7 +23,7 @@ public class gameOverFrame extends javax.swing.JFrame {
     
     private void restartGame(){
         dispose();
-        new GameGUI().setVisible(true);
+        new MainMenuFrame().setVisible(true);
     }
     
 
@@ -46,7 +46,7 @@ public class gameOverFrame extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         playAgainButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
-        playAgainButton.setText("Play Again?");
+        playAgainButton.setText("End");
         playAgainButton.setToolTipText("If you dare.");
         playAgainButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray, java.awt.Color.lightGray));
         playAgainButton.addActionListener(new java.awt.event.ActionListener() {
