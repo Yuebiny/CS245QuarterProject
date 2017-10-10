@@ -4,7 +4,7 @@
 * class: CS 245 - Programming Graphical User Interfaces
 *
 * assignment: Hangman V1.0
-* date last modified: 10/3/17
+* date last modified: 10/9/17
 *
 * purpose: This class creates the frame where the hangman game is played, as
 * well as all calculations that relate to the game.
@@ -221,7 +221,7 @@ public class GameGUI extends javax.swing.JFrame {
 
                 if(game.getGuessesRemaining() == 0){
                     dispose();
-                    new GameOverFrame(game.getScore()).setVisible(true);
+                    new gameOverFrame(game.getScore()).setVisible(true);
                 }
             } 
         }
@@ -770,7 +770,7 @@ public class GameGUI extends javax.swing.JFrame {
 
     private void skipButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skipButtonActionPerformed
         dispose();
-        new GameOverFrame(0).setVisible(true);
+        new gameOverFrame(0).setVisible(true);
     }//GEN-LAST:event_skipButtonActionPerformed
 
    
