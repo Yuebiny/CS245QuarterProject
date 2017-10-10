@@ -27,13 +27,12 @@ public class GameEngine {
     private String hiddenWord;
     private int guessesRemaining;
     private boolean solved;
-    private boolean gameOver;
-    private int score;
+   
+    public int score;
     private ArrayList lettersUsed = new ArrayList();
     
     public GameEngine() {
-        setHiddenWord();  
-        gameOver = false;
+        setHiddenWord();
         setGuessesRemaining(6);
         setScore(100);
     }
@@ -83,7 +82,6 @@ public class GameEngine {
                 System.out.println("Somehow we got an error");
                 break;
         }
-        System.out.println(getWord());
     }
     
     //method: guessLetter
@@ -98,7 +96,9 @@ public class GameEngine {
         } 
         else {
             guessesRemaining--;
-            score -=10;
+            if(score>0){
+                score -=10;
+            }
             return false;
         }
     }

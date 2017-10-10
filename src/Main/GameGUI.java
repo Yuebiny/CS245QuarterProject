@@ -14,13 +14,11 @@ import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.concurrent.TimeUnit;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JLabel;
 import javax.swing.Timer;
 public class GameGUI extends javax.swing.JFrame {
-     JLabel[] lb = new JLabel[8];
+    
+    JLabel[] lb = new JLabel[8];
     GameEngine game = new GameEngine();
     
     public GameGUI() {
@@ -123,8 +121,7 @@ public class GameGUI extends javax.swing.JFrame {
     @Override
     public void paint(Graphics g) {
         drawLetterLines(g);
-        draw(g);
-        
+        draw(g); 
     }
     
     //Method: showDateAndTime
@@ -184,18 +181,9 @@ public class GameGUI extends javax.swing.JFrame {
             String guess = Integer.toString(game.getGuessesRemaining());  
             guessesNumLabel.setText(guess);
             
-            
             if(game.getGuessesRemaining() == 0){
-                try {
-                    TimeUnit.SECONDS.sleep(1);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(GameGUI.class.getName()).log(Level.SEVERE, null, ex);
-                }
                 dispose();
-                 new gameOverFrame().setVisible(true);
-            }
-            else{
-            System.out.println("That letter was not in the word");
+                new gameOverFrame(game.getScore()).setVisible(true);
             }
         } 
 }
@@ -213,6 +201,7 @@ public class GameGUI extends javax.swing.JFrame {
         guessesNumLabel = new javax.swing.JLabel();
         ScoreNameLabel = new javax.swing.JLabel();
         scoreNumLabel = new javax.swing.JLabel();
+        skipButton = new javax.swing.JButton();
         textPanel = new javax.swing.JPanel();
         letterPanel = new javax.swing.JPanel();
         AButton = new javax.swing.JButton();
@@ -284,6 +273,13 @@ public class GameGUI extends javax.swing.JFrame {
         scoreNumLabel.setForeground(new java.awt.Color(0, 153, 0));
         scoreNumLabel.setText("100");
 
+        skipButton.setText("Skip");
+        skipButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                skipButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout hangPanelLayout = new javax.swing.GroupLayout(hangPanel);
         hangPanel.setLayout(hangPanelLayout);
         hangPanelLayout.setHorizontalGroup(
@@ -297,11 +293,17 @@ public class GameGUI extends javax.swing.JFrame {
                 .addComponent(ScoreNameLabel)
                 .addGap(6, 6, 6)
                 .addComponent(scoreNumLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, hangPanelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(skipButton)
+                .addContainerGap())
         );
         hangPanelLayout.setVerticalGroup(
             hangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(hangPanelLayout.createSequentialGroup()
-                .addGap(137, 137, 137)
+                .addContainerGap()
+                .addComponent(skipButton)
+                .addGap(103, 103, 103)
                 .addGroup(hangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(guessesLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(hangPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -622,7 +624,6 @@ public class GameGUI extends javax.swing.JFrame {
 
     private void XButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XButtonActionPerformed
         guess('x');
-        System.out.println(game.getGuessesRemaining());
     }//GEN-LAST:event_XButtonActionPerformed
 
     private void BButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BButtonActionPerformed
@@ -722,6 +723,11 @@ public class GameGUI extends javax.swing.JFrame {
         guess('0');
     }//GEN-LAST:event_VButtonActionPerformed
 
+    private void skipButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skipButtonActionPerformed
+        dispose();
+        new gameOverFrame(0).setVisible(true);
+    }//GEN-LAST:event_skipButtonActionPerformed
+
    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -761,6 +767,7 @@ public class GameGUI extends javax.swing.JFrame {
     private javax.swing.JPanel letterPanel;
     private javax.swing.JLabel namePlaceHolder;
     private javax.swing.JLabel scoreNumLabel;
+    private javax.swing.JButton skipButton;
     private javax.swing.JPanel textPanel;
     private javax.swing.JLabel timePlaceHolder;
     // End of variables declaration//GEN-END:variables

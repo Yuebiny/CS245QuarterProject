@@ -1,25 +1,21 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Main;
 
-/**
- *
- * @author Computer
- */
 public class gameOverFrame extends javax.swing.JFrame {
 
     
-    public gameOverFrame() {
+    public gameOverFrame(int x) {
+        int score = x;
         initComponents();
+        String num = Integer.toString(x);
+        scoreNum.setText(num);
     }
     
     private void restartGame(){
         dispose();
         new GameGUI().setVisible(true);
     }
+    
 
     
     @SuppressWarnings("unchecked")
@@ -27,6 +23,8 @@ public class gameOverFrame extends javax.swing.JFrame {
     private void initComponents() {
 
         playAgainButton = new javax.swing.JButton();
+        scoreLabel = new javax.swing.JLabel();
+        scoreNum = new javax.swing.JLabel();
         backGroundImg = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,6 +47,17 @@ public class gameOverFrame extends javax.swing.JFrame {
         getContentPane().add(playAgainButton);
         playAgainButton.setBounds(490, 310, 110, 23);
 
+        scoreLabel.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        scoreLabel.setText("Score:");
+        getContentPane().add(scoreLabel);
+        scoreLabel.setBounds(420, 190, 44, 21);
+
+        scoreNum.setFont(new java.awt.Font("Tw Cen MT", 0, 18)); // NOI18N
+        scoreNum.setForeground(new java.awt.Color(255, 0, 0));
+        scoreNum.setText("num");
+        getContentPane().add(scoreNum);
+        scoreNum.setBounds(470, 190, 70, 20);
+
         backGroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main/gameOver.png"))); // NOI18N
         backGroundImg.setPreferredSize(new java.awt.Dimension(600, 400));
         getContentPane().add(backGroundImg);
@@ -66,5 +75,7 @@ public class gameOverFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backGroundImg;
     private javax.swing.JButton playAgainButton;
+    private javax.swing.JLabel scoreLabel;
+    private javax.swing.JLabel scoreNum;
     // End of variables declaration//GEN-END:variables
 }
