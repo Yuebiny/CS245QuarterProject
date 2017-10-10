@@ -22,7 +22,8 @@ public class GameGUI extends javax.swing.JFrame {
     
     JLabel[] lb = new JLabel[8];
     GameEngine game = new GameEngine();
-    String Answer = game.getWord();
+    boolean solved = false;
+    int counter;
     ArrayList lettersUsed = new ArrayList();
     int numberOfLetters=0;
     
@@ -121,6 +122,7 @@ public class GameGUI extends javax.swing.JFrame {
         
         for(int i = 0; i < lb.length; i++) {
             lb[i] = new JLabel();
+            lb[i].setText("");
         }
         
         textPanel.add(lb[0]);
@@ -188,6 +190,7 @@ public class GameGUI extends javax.swing.JFrame {
         new HelpFrame().setVisible(true);
     }
    
+   
     
     
     //Method: guess
@@ -195,33 +198,40 @@ public class GameGUI extends javax.swing.JFrame {
     private void guess(char c){
         repaint();
         
-        String string1 = Character.toString(c);
-        if (game.guessLetter(c)){
-            boolean[] indexToPrint = game.getIndexes(c);
-            for(int i = 0; i < game.getWordLength(); i++){
-               if( indexToPrint[i] == true){
-                   lb[i].setText(string1);
-                  
-                 
+        if(solved == false){
+            String string1 = Character.toString(c);
+            if (game.guessLetter(c)){
+                boolean[] indexToPrint = game.getIndexes(c);
+                for(int i = 0; i < game.getWordLength(); i++){
+                   if( indexToPrint[i] == true){
+                       lb[i].setText(string1);
+                       counter++;
+                       if(counter == game.getWordLength()){ // Win Condition is when you have the number of letters on board as the number of letters in the word.
+                           solved = true;
+                       }
+                   }
                }
-           }
-        }
-
-        else{
-            
-            String num = Integer.toString(game.getScore());
-            scoreNumLabel.setText(num);
-            
-            //Guesses Remaining labels
-            String guess = Integer.toString(game.getGuessesRemaining());  
-            guessesNumLabel.setText(guess);
-            
-            if(game.getGuessesRemaining() == 0){
-                dispose();
-                new gameOverFrame(game.getScore()).setVisible(true);
             }
-        } 
-}
+            else{
+
+                String num = Integer.toString(game.getScore());
+                scoreNumLabel.setText(num);
+                String guess = Integer.toString(game.getGuessesRemaining());  
+                guessesNumLabel.setText(guess);
+
+                if(game.getGuessesRemaining() == 0){
+                    dispose();
+                    new GameOverFrame(game.getScore()).setVisible(true);
+                }
+            } 
+        }
+        
+        if(solved == true){
+            dispose();
+            new WinnerFrame(game.getScore()).setVisible(true);
+        }
+    }
+    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -760,7 +770,7 @@ public class GameGUI extends javax.swing.JFrame {
 
     private void skipButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skipButtonActionPerformed
         dispose();
-        new gameOverFrame(0).setVisible(true);
+        new GameOverFrame(0).setVisible(true);
     }//GEN-LAST:event_skipButtonActionPerformed
 
    

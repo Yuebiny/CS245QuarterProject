@@ -24,7 +24,7 @@ public class GameEngine {
     
     Random random = new Random();
     
-    private String hiddenWord;
+    public String hiddenWord;
     private int guessesRemaining;
     private boolean solved;
     
@@ -68,7 +68,7 @@ public class GameEngine {
         Random rand = new Random(System.currentTimeMillis());
         //Gets a random number from 0-4 to determine the hiddenWord.
         int number = random.nextInt(5);
-        
+        //int number = 0;
         switch(number) {
             case 0:
                 hiddenWord = "abstract";
