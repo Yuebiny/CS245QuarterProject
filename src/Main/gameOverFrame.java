@@ -1,4 +1,15 @@
-
+/***************************************************************
+* file: gameOverFrame.java
+* author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
+* class: CS 245 - Programming Graphical User Interfaces
+*
+* assignment: Hangman V1.0
+* date last modified: 10/3/17
+*
+* purpose: This class creates the frame to show the player that they have lost 
+* the game as well as displays their score and gives them an option to return 
+* to the main menu
+****************************************************************/ 
 package Main;
 
 public class gameOverFrame extends javax.swing.JFrame {

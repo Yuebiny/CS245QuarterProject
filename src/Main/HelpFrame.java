@@ -1,8 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+/***************************************************************
+* file: HelpFrame.java
+* author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
+* class: CS 245 - Programming Graphical User Interfaces
+*
+* assignment: Hangman V1.0
+* date last modified: 10/9/17
+*
+* purpose: This class creates a menu that shows the player how to play the game 
+* when the question mark button is pressed
+****************************************************************/ 
 package Main;
 
 /**
