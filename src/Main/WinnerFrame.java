@@ -25,7 +25,7 @@ public class WinnerFrame extends javax.swing.JFrame {
     
     private void restartGame(){
         dispose();
-        new GameGUI().setVisible(true);
+        new MainMenuFrame().setVisible(true);
     }
    
     @SuppressWarnings("unchecked")

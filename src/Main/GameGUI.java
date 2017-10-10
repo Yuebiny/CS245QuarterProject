@@ -480,7 +480,7 @@ public class GameGUI extends javax.swing.JFrame {
         letterPanel.add(KButton);
 
         LButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
-        LButton.setText("L");
+        LButton.setText("l");
         LButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 LButtonActionPerformed(evt);
@@ -668,6 +668,7 @@ public class GameGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_ZButtonActionPerformed
 
     private void XButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XButtonActionPerformed
+        XButton.setEnabled(false);
         guess('x');
     }//GEN-LAST:event_XButtonActionPerformed
 
