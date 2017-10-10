@@ -2,7 +2,6 @@
 package Main;
 
 public class gameOverFrame extends javax.swing.JFrame {
-
     
     public gameOverFrame(int x) {
         int score = x;

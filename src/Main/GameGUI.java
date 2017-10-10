@@ -13,6 +13,8 @@ package Main;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.Timer;
@@ -20,6 +22,10 @@ public class GameGUI extends javax.swing.JFrame {
     
     JLabel[] lb = new JLabel[8];
     GameEngine game = new GameEngine();
+    String Answer = game.getWord();
+    ArrayList lettersUsed = new ArrayList();
+    int numberOfLetters=0;
+    
     
     public GameGUI() {
         initComponents();
@@ -35,19 +41,22 @@ public class GameGUI extends javax.swing.JFrame {
     }
     
     
-    private void draw(Graphics g){  
-       super.paint(g);
-       drawHangMan(g);
-       drawLetterLines(g);
-       drawHangManbase(g);
-       
-    }
     
+    @Override
+     public void paint(Graphics g) {
+       super.paint(g);
+       drawWordLines(g);       
+       drawHangManbase(g);       
+       drawHangMan(g);  
+    }
+     
+     
+     
     //Method: drawLetterLines
     //purpose: this method draws the lines that will appear when the game starts, indicating to the player how many
     //letters are in the answer
-    private void drawLetterLines(Graphics g){
-        int numberOfLetters = game.getWordLength();
+    private void drawWordLines(Graphics g){
+        numberOfLetters = game.getWordLength();
         int x1 = 70;
         int x2 = 110;
         int y = 270;
@@ -61,25 +70,49 @@ public class GameGUI extends javax.swing.JFrame {
     
     private void drawHangManbase(Graphics g){
         g.setColor(Color.BLACK);
-        g.drawLine(200,200,300,200);//Base Hori
-        g.drawLine(200,200,200,215);//Base Left
-        g.drawLine(300,200,300,215);//Base Right
-        g.drawLine(250,200,250,75); //Base Vertical
-        g.drawLine(250,75,400,75);  //Base ARM
-        g.drawLine(400,75,400,100); //Base Rope 
+        g.drawLine(200,200,300,200);    //Base Hori
+        g.drawLine(200,200,200,215);    //Base Left
+        g.drawLine(300,200,300,215);    //Base Right
+        g.drawLine(250,200,250,75);     //Base Vertical
+        g.drawLine(250,75,400,75);      //Base ARM
+        g.drawLine(400,75,400,100);     //Base Rope 
     }
     
     private void drawHangMan(Graphics g){
-      
+        g.setColor(Color.RED);
+        if (game.getGuessesRemaining() == 5){
             g.fillOval(385,80,30,30);   //HEAD
-            g.drawLine(400,175,400,75); //BODY+
+        }
+        if (game.getGuessesRemaining() == 4){
+            g.fillOval(385,80,30,30);   //HEAD
+            g.drawLine(400,175,400,75); //BODY
+        } 
+        if (game.getGuessesRemaining() == 3){
+            g.fillOval(385,80,30,30);   //HEAD
+            g.drawLine(400,175,400,75); //BODY
+            g.drawLine(400,115,380,150);//LARM
+        } 
+        if (game.getGuessesRemaining() == 2){
+            g.fillOval(385,80,30,30);   //HEAD
+            g.drawLine(400,175,400,75); //BODY
+            g.drawLine(400,115,380,150);//LARM
+            g.drawLine(400,115,420,150);//LARM
+        } 
+        if (game.getGuessesRemaining() == 1){
+            g.fillOval(385,80,30,30);   //HEAD
+            g.drawLine(400,175,400,75); //BODY
             g.drawLine(400,115,380,150);//LARM
             g.drawLine(400,115,420,150);//LARM
             g.drawLine(400,175,415,185);//LLEG
-            g.drawLine(400,175,385,185);//RLEG  
-
+        } 
+        if (game.getGuessesRemaining() == 0){
+            g.fillOval(385,80,30,30);   //HEAD
+            g.drawLine(400,175,400,75); //BODY
+            g.drawLine(400,115,380,150);//LARM
+            g.drawLine(400,115,420,150);//LARM
+            g.drawLine(400,175,415,185);//LLEG
+        }
     }
-   
     
     //Method: drawAnswers
     //purpose: this method sets up jlabels above drawnlines for replacing text with after a correct answer is guessed.
@@ -107,7 +140,7 @@ public class GameGUI extends javax.swing.JFrame {
         textPanel.add(lb[7]);
             lb[7].setSize(15,15);
             
-// Sets location of letters above the lines
+       
         lb[0].setLocation(120,y);
         lb[1].setLocation(170,y);
         lb[2].setLocation(220,y);
@@ -118,18 +151,14 @@ public class GameGUI extends javax.swing.JFrame {
         lb[7].setLocation(470,y);     
     }
     
-    @Override
-    public void paint(Graphics g) {
-        drawLetterLines(g);
-        draw(g); 
-    }
+  
+   
     
     //Method: showDateAndTime
     //purpose: this method starts the date and time components for the jlabel
     private void showDateAndTime(){
         timeComponent();
         dateComponent();
-        
     }
     
     //Method: timeComponent
@@ -158,18 +187,24 @@ public class GameGUI extends javax.swing.JFrame {
     private void helpButton(){
         new HelpFrame().setVisible(true);
     }
+   
+    
     
     //Method: guess
     //purpose: this method will guessed the input letter to see if its in the word and then display that letter in the corresponding location's jlabel.
-    private void guess(char c ){
+    private void guess(char c){
+        repaint();
+        
         String string1 = Character.toString(c);
         if (game.guessLetter(c)){
             boolean[] indexToPrint = game.getIndexes(c);
-               for(int i = 0; i < game.getWordLength(); i++){
-                   if( indexToPrint[i] == true){
-                       lb[i].setText(string1);
-                   }
+            for(int i = 0; i < game.getWordLength(); i++){
+               if( indexToPrint[i] == true){
+                   lb[i].setText(string1);
+                  
+                 
                }
+           }
         }
 
         else{

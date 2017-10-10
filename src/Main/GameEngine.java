@@ -27,7 +27,7 @@ public class GameEngine {
     private String hiddenWord;
     private int guessesRemaining;
     private boolean solved;
-   
+    
     public int score;
     private ArrayList lettersUsed = new ArrayList();
     
@@ -35,6 +35,14 @@ public class GameEngine {
         setHiddenWord();
         setGuessesRemaining(6);
         setScore(100);
+    }
+
+    public boolean isSolved() {
+        return solved;
+    }
+
+    public void setSolved(boolean solved) {
+        this.solved = solved;
     }
 
      public int getScore() {
@@ -126,5 +134,14 @@ public class GameEngine {
         }
         return indexAt;
     }
-
+    
+    private boolean wordIsComplete() {
+		for (int i = 0; i < hiddenWord.length(); i++) {
+			char cr = hiddenWord.charAt(i);
+			if ( hiddenWord.indexOf(cr) == -1 ) {
+				return false;
+			}
+		}
+		return true;
+	}
 }
