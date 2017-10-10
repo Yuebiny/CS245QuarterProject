@@ -135,13 +135,5 @@ public class GameEngine {
         return indexAt;
     }
     
-    private boolean wordIsComplete() {
-		for (int i = 0; i < hiddenWord.length(); i++) {
-			char cr = hiddenWord.charAt(i);
-			if ( hiddenWord.indexOf(cr) == -1 ) {
-				return false;
-			}
-		}
-		return true;
-	}
+  
 }
