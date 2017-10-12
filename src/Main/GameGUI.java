@@ -42,16 +42,13 @@ public class GameGUI extends javax.swing.JFrame {
     }
     
     
-    
     @Override
-     public void paint(Graphics g) {
+        public void paint(Graphics g) {
        super.paint(g);
        drawWordLines(g);       
        drawHangManbase(g);       
        drawHangMan(g);  
     }
-     
-     
      
     //Method: drawLetterLines
     //purpose: this method draws the lines that will appear when the game starts, indicating to the player how many

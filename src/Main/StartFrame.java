@@ -20,11 +20,13 @@ public class StartFrame extends javax.swing.JFrame {
     }
     
     public void run(){
-        StartFrame titleScreen = new StartFrame();  
-        titleScreen.setVisible(true);
-        stall();
-        titleScreen.dispose();
-        new MainMenuFrame().setVisible(true);
+        new ColorTrap().setVisible(true);
+        //Commented out working on color game ******
+        //StartFrame titleScreen = new StartFrame();  
+        //titleScreen.setVisible(true);
+        //stall();
+        //titleScreen.dispose();
+        //new MainMenuFrame().setVisible(true);
     } 
       
     public void stall(){
@@ -57,7 +59,7 @@ public class StartFrame extends javax.swing.JFrame {
         getContentPane().add(TeamName);
         TeamName.setBounds(400, 70, 150, 16);
 
-        BackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main/BackGround.jpg"))); // NOI18N
+        BackGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Res/BackGround.jpg"))); // NOI18N
         BackGround.setText("jLabel1");
         BackGround.setMaximumSize(new java.awt.Dimension(600, 400));
         BackGround.setMinimumSize(new java.awt.Dimension(100, 40));

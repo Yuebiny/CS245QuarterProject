@@ -87,7 +87,7 @@ public class MainMenuFrame extends javax.swing.JFrame {
         getContentPane().add(jLabel1);
         jLabel1.setBounds(280, 70, 280, 70);
 
-        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Main/MainMenu.jpg"))); // NOI18N
+        Background.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Res/MainMenu.jpg"))); // NOI18N
         Background.setText("Background");
         getContentPane().add(Background);
         Background.setBounds(-30, 0, 770, 410);
