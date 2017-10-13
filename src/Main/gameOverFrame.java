@@ -66,7 +66,7 @@ public class gameOverFrame extends javax.swing.JFrame {
         getContentPane().add(endButton);
         endButton.setBounds(463, 300, 110, 21);
 
-        backGroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Res/gameOver.png"))); // NOI18N
+        backGroundImg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Res/GameOver.png"))); // NOI18N
         backGroundImg.setPreferredSize(new java.awt.Dimension(600, 400));
         getContentPane().add(backGroundImg);
         backGroundImg.setBounds(0, -40, 1296, 443);
