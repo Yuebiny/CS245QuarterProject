@@ -72,7 +72,7 @@ public class ColorTrap extends javax.swing.JFrame {
         for(int i = 0; i < 5; i++){
             int randNum = rand.nextInt(500);
             setColor(g);
-            g.fillOval(randNum, randNum, 100, 100);
+            g.fillOval(i+50, i+200, 100, 100);
         }
         
     }
@@ -135,16 +135,11 @@ public class ColorTrap extends javax.swing.JFrame {
                 colorLabel.setText("YELLOW");
                 break;
             case 3:
-                 colorLabel.setText("PINK");
+                 colorLabel.setText("BLUE");
                 break;
             case 4:
-                 colorLabel.setText("ORANGE");
-                break;
-            case 5:
-                 colorLabel.setText("POTATO");
-                break;
-            case 6:
-                 colorLabel.setText("GREY");
+                 colorLabel.setText("MAGENTA");
+         
                  break;
             default:
                  System.out.println();
@@ -170,6 +165,7 @@ public class ColorTrap extends javax.swing.JFrame {
         colorLabel = new javax.swing.JLabel();
         datePlaceHolder = new javax.swing.JLabel();
         timePlaceHolder = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -182,6 +178,13 @@ public class ColorTrap extends javax.swing.JFrame {
 
         timePlaceHolder.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         timePlaceHolder.setText("TIMEPLACEHOLDER");
+
+        jButton1.setText("Repaint");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -197,7 +200,10 @@ public class ColorTrap extends javax.swing.JFrame {
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(colorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(43, 43, 43))))
+                        .addGap(43, 43, 43))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(30, 30, 30))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -208,18 +214,25 @@ public class ColorTrap extends javax.swing.JFrame {
                     .addComponent(timePlaceHolder))
                 .addGap(45, 45, 45)
                 .addComponent(colorLabel)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 221, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(31, 31, 31))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        repaint();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel colorLabel;
     private javax.swing.JLabel datePlaceHolder;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel timePlaceHolder;
     // End of variables declaration//GEN-END:variables
 }
