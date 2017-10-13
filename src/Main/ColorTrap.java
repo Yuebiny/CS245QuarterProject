@@ -2,16 +2,19 @@
 package Main;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import static java.lang.Math.random;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Random;
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
-import javax.swing.JDialog;
 import javax.swing.KeyStroke;
+import javax.swing.Timer;
 
 
 public class ColorTrap extends javax.swing.JFrame {
@@ -19,36 +22,62 @@ public class ColorTrap extends javax.swing.JFrame {
     
     public ColorTrap() {
         initComponents();
+        showDateAndTime();
         escapeListener();
-        
+    }
+    
+    //Method: showDateAndTime
+    //purpose: this method starts the date and time components for the jlabel
+    private void showDateAndTime(){
+        timeComponent();
+        dateComponent();
+    }
+    
+    //Method: timeComponent
+    //purpose: this method starts recording system time and places replaces a jlabel with it.
+    private void timeComponent() {
+        new Timer(0, (ActionEvent e) -> {
+            Date d = new Date();
+            SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss a");
+            timePlaceHolder.setFont(new Font("Tw Cen MT", Font.PLAIN, 12));
+            timePlaceHolder.setText(s.format(d));
+            int x =1;
+        }).start();
+    }
+    
+    //Method: dateComponent
+    //purpose: this method starts recording system time and places replaces a jlabel with it.
+    private void dateComponent() {
+        Date d = new Date();
+        SimpleDateFormat s = new SimpleDateFormat("  MMMM dd yyyy");
+        datePlaceHolder.setFont(new Font("Tw Cen MT", Font.PLAIN, 12));
+        datePlaceHolder.setText(s.format(d));
     }
     
     @Override
      public void paint(Graphics g) {
        super.paint(g);
+       Graphics2D g2 = (Graphics2D) g;
+       g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
+       
        setWord();
-       drawCircles(g);       
+       setWordColor();
+       drawRandomCircles(g);       
          
     }
      
-    public void drawCircles(Graphics g){
-        setColor(g);
-        g.fillOval(50, 50, 100,100);
-        setColor(g);
-        g.fillOval(100, 100, 100,100);
-        setColor(g);
-        g.fillOval(150, 150, 100,100);
-        setColor(g);
-        g.fillOval(200, 200, 100,100);
-        setColor(g);
-        g.fillOval(250, 250, 100,100);
-        setColor(g);
-        g.fillOval(300,300, 100,100);
-        setColor(g);
-        g.fillOval(350,350, 100,100);  
+    public void drawRandomCircles(Graphics g){
+        boolean circlePresent = false;
+        
+        for(int i = 0; i < 5; i++){
+            int randNum = rand.nextInt(500);
+            setColor(g);
+            g.fillOval(randNum, randNum, 100, 100);
+        }
+        
     }
     private void setColor(Graphics g){
-        int randNum = rand.nextInt(7);
+        int randNum = rand.nextInt(5);
         switch(randNum){
             case 0:
                 g.setColor(Color.GREEN);
@@ -63,14 +92,30 @@ public class ColorTrap extends javax.swing.JFrame {
                  g.setColor(Color.YELLOW);
                 break;
             case 4:
-                 g.setColor(Color.PINK);
+                 g.setColor(Color.MAGENTA);
                 break;
-            case 5:
-                 g.setColor(Color.ORANGE);
+            default:
+                 System.out.println();
+        }
+    }
+    private void setWordColor(){
+       int randNum = rand.nextInt(5);
+        switch(randNum){
+            case 0:
+                colorLabel.setForeground(Color.GREEN);
                 break;
-            case 6:
-                 g.setColor(Color.darkGray);
-                 break;
+            case 1:
+                colorLabel.setForeground(Color.BLUE);
+                break;
+            case 2:
+               colorLabel.setForeground(Color.RED);
+                break;
+            case 3:
+                 colorLabel.setForeground(Color.YELLOW);
+                break;
+            case 4:
+                 colorLabel.setForeground(Color.MAGENTA);
+                break;
             default:
                  System.out.println();
                 
@@ -107,7 +152,7 @@ public class ColorTrap extends javax.swing.JFrame {
         
         }
     }
-    public void escapeListener(){
+    public final void escapeListener(){
          getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
         KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Cancel");
         getRootPane().getActionMap().put("Cancel", new AbstractAction(){ 
@@ -123,28 +168,47 @@ public class ColorTrap extends javax.swing.JFrame {
     private void initComponents() {
 
         colorLabel = new javax.swing.JLabel();
+        datePlaceHolder = new javax.swing.JLabel();
+        timePlaceHolder = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        colorLabel.setFont(new java.awt.Font("Tw Cen MT", 0, 24)); // NOI18N
-        colorLabel.setText("COLORPLACEHOLDER");
-        colorLabel.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        colorLabel.setBackground(new java.awt.Color(255, 51, 0));
+        colorLabel.setFont(new java.awt.Font("Tw Cen MT", 0, 50)); // NOI18N
+        colorLabel.setText("colorLabel");
+
+        datePlaceHolder.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        datePlaceHolder.setText("DATEPLACEHOLDER");
+
+        timePlaceHolder.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        timePlaceHolder.setText("TIMEPLACEHOLDER");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(217, 217, 217)
-                .addComponent(colorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(203, Short.MAX_VALUE))
+                .addContainerGap(358, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(datePlaceHolder, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(timePlaceHolder, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(colorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(43, 43, 43))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(85, 85, 85)
-                .addComponent(colorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(264, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(datePlaceHolder)
+                    .addComponent(timePlaceHolder))
+                .addGap(45, 45, 45)
+                .addComponent(colorLabel)
+                .addContainerGap(275, Short.MAX_VALUE))
         );
 
         pack();
@@ -155,5 +219,7 @@ public class ColorTrap extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel colorLabel;
+    private javax.swing.JLabel datePlaceHolder;
+    private javax.swing.JLabel timePlaceHolder;
     // End of variables declaration//GEN-END:variables
 }
