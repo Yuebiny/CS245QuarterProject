@@ -10,24 +10,40 @@
 * seconds, then transitions into the Main Menu.
 ****************************************************************/ 
 package Main;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class StartFrame extends javax.swing.JFrame {
+    
+    private final HighScore hiScoreRecords = new HighScore(0,"0", 0);
+    
     public StartFrame() {
         initComponents();
     }
     
-    public void run(){
-        new ColorTrap().setVisible(true);
+    public void run() throws IOException{
+        //new ColorTrap().setVisible(true);
+        new ScoreInput(5).setVisible(true);
+        
+        
+        
+        
+        //hiScoreRecords.readNumbers();
+        //
+        //.out.println(hiScoreRecords.getRecordNumber(4).getScore());
+        
         //Commented out working on color game ******
         //StartFrame titleScreen = new StartFrame();  
         //titleScreen.setVisible(true);
         //stall();
         //titleScreen.dispose();
         //new MainMenuFrame().setVisible(true);
-    } 
+    
+    }
       
     public void stall(){
         try {
@@ -71,7 +87,7 @@ public class StartFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    public static void main(String args[]) {
+    public static void main(String args[]) throws IOException {
         StartFrame Main = new StartFrame();
         Main.run();  
     }
