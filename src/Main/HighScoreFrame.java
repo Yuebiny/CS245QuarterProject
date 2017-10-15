@@ -11,25 +11,27 @@
 ****************************************************************/ 
 package Main;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public final class HighScoreFrame extends javax.swing.JFrame {
     
     private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
     
-    public HighScoreFrame() {
+    public HighScoreFrame() throws IOException {
         initComponents();
         hiScoreRecords.loadScoreFromFile();
         setHighScoresOnJlabels();
     }
     
-    public void setHighScoresOnJlabels(){
-        //hiScoreRecords.loadScoreFromFile();
-        //hiScoreEntry1.setText(hiScoreRecords.getRecordNumber(0).getInitials()+"...."+hiScoreRecords.getRecordNumber(0).getScore());
-        //hiScoreEntry2.setText(hiScoreRecords.getRecordNumber(1).getInitials()+"...."+hiScoreRecords.getRecordNumber(1).getScore());
-        // hiScoreEntry3.setText(hiScoreRecords.getRecordNumber(2).getInitials()+"...."+hiScoreRecords.getRecordNumber(2).getScore());
-        //hiScoreEntry4.setText(hiScoreRecords.getRecordNumber(3).getInitials()+"...."+hiScoreRecords.getRecordNumber(3).getScore());
-        // hiScoreEntry5.setText(hiScoreRecords.getRecordNumber(4).getInitials()+"...."+hiScoreRecords.getRecordNumber(4).getScore());
+    public void setHighScoresOnJlabels() throws IOException{
+        hiScoreRecords.SorterAndRewrite();
+        //
+        hiScoreEntry1.setText(hiScoreRecords.getRecordNumber(0).getInitials()+"...."+hiScoreRecords.getRecordNumber(0).getScore());
+        hiScoreEntry2.setText(hiScoreRecords.getRecordNumber(1).getInitials()+"...."+hiScoreRecords.getRecordNumber(1).getScore());
+        hiScoreEntry3.setText(hiScoreRecords.getRecordNumber(2).getInitials()+"...."+hiScoreRecords.getRecordNumber(2).getScore());
+        hiScoreEntry4.setText(hiScoreRecords.getRecordNumber(3).getInitials()+"...."+hiScoreRecords.getRecordNumber(3).getScore());
+        hiScoreEntry5.setText(hiScoreRecords.getRecordNumber(4).getInitials()+"...."+hiScoreRecords.getRecordNumber(4).getScore());
      
     }
     

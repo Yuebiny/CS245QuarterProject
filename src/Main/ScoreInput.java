@@ -13,7 +13,7 @@ import java.util.logging.Logger;
 public class ScoreInput extends javax.swing.JFrame {
     
 private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
-    public int score;
+public int score;
     
     public ScoreInput(int x) {
         initComponents();
@@ -167,6 +167,7 @@ private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
        jLabel1.setText("Saved!");
        initialsJTextFieldActionPerformed(evt);
        initialsJTextField.setText("");// Reset Text Field  back to empty
+   
     }//GEN-LAST:event_saveButtonActionPerformed
 
     private void mainMenuButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mainMenuButtonActionPerformed

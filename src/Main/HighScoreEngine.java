@@ -30,31 +30,51 @@ public class HighScoreEngine <T>{
             Scanner scanner  = new Scanner(new FileReader("Scores.txt"));
             String line;
             HighScoreEngine record;
-            
-            while (scanner.hasNextLine()){
+           
+            if(scanner.nextLine()!= ""){
                 line = scanner.nextLine();
-                String[] results = line.split(" ");
                 
-                String initals = results[0];
-                int score = Integer.parseInt(results[1]);
-                
-                record = new HighScoreEngine(initals,score);
-                highScoreRecords.add(record);
-            }
-        } 
+                while (scanner.hasNextLine()){
+                    line = scanner.nextLine();
+
+                    String[] results = line.split(" ");
+
+                    String initals = results[0];
+                    int score = Integer.parseInt(results[1]);
+
+                    record = new HighScoreEngine(initals,score);
+                    highScoreRecords.add(record);
+                }
+            
+            } 
+        }
         catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+    }
+    public void SorterAndRewrite() throws IOException{
+        BufferedReader reader = new BufferedReader(new FileReader("SortedScores.txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("SortedScores.txt"));
+        
+        Collections.sort(highScoreRecords, new marksCompare());
+        
+        //Rewrites the new sorted scores in order based on Greatest to lowest
+        
+            for(int i = 0; i < highScoreRecords.size(); i++){
+                writer.write(highScoreRecords.get(i).initials+" "+highScoreRecords.get(i).score);
+                writer.newLine();
+            }
+            
+        reader.close();
+        writer.close();   
     }
     
     public void writing(String inputData) throws IOException {
     // InputData must be as 'Position Initals Score'. IE " ABC 100"
     BufferedWriter fileInput = new BufferedWriter(new FileWriter(new File("Scores.txt"),true));
-    
     fileInput.newLine(); // New line to keep the records straight
     fileInput.write(inputData+" "+getScore());
     fileInput.close();
-    
     }
     
     class nameCompare implements Comparator<HighScoreEngine>{
@@ -73,33 +93,8 @@ public class HighScoreEngine <T>{
         }
     }
     
-    public void Sorter() throws IOException{
-        BufferedReader reader = new BufferedReader(new FileReader("Scores.txt"));
-        ArrayList<HighScoreEngine> scoreRecords = new ArrayList<HighScoreEngine>();
-        String currentLine = reader.readLine();
-         
-        while (currentLine != null){
-            String[] studentDetail = currentLine.split(" "); 
-            String name = studentDetail[0]; 
-            int marks = Integer.valueOf(studentDetail[1]);
-            scoreRecords.add(new HighScoreEngine(name, marks)); 
-            currentLine = reader.readLine();
-        }
-        
-        Collections.sort(scoreRecords, new marksCompare());
-        BufferedWriter writer = new BufferedWriter(new FileWriter("Scores.txt"));
-        
-            for (HighScoreEngine scores : scoreRecords){
-                writer.write(scores.initials);
-                writer.write(" "+scores.score);
-                writer.write("\n");
-            }
-            
-            
-        reader.close();
-        writer.close();
     
-    }
+    
     
     @Override
     public String toString(){

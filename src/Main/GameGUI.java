@@ -226,7 +226,7 @@ public class GameGUI extends javax.swing.JFrame {
         
         if(solved == true){
             dispose();
-            new WinnerFrame(game.getScore()).setVisible(true);
+            new ScoreInput(game.getScore()).setVisible(true);
         }
     }
     
