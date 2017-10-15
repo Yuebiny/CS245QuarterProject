@@ -82,7 +82,7 @@ public class WinnerFrame extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(463, 340, 100, 23);
 
-        backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Res/Win1.jpg"))); // NOI18N
+        backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Res/Winner.jpg"))); // NOI18N
         backGround.setText("jLabel1");
         getContentPane().add(backGround);
         backGround.setBounds(0, -30, 630, 440);

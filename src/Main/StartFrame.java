@@ -19,7 +19,7 @@ import java.util.logging.Logger;
 
 public class StartFrame extends javax.swing.JFrame {
     
-    private final HighScore hiScoreRecords = new HighScore(0,"0", 0);
+    private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
     
     public StartFrame() {
         initComponents();
@@ -27,7 +27,7 @@ public class StartFrame extends javax.swing.JFrame {
     
     public void run() throws IOException{
         //new ColorTrap().setVisible(true);
-        new ScoreInput(5).setVisible(true); // using score 5 as example temporarily
+        //new ScoreInput(5).setVisible(true); // using score 5 as example temporarily
         
         
         
@@ -38,11 +38,11 @@ public class StartFrame extends javax.swing.JFrame {
         //.out.println(hiScoreRecords.getRecordNumber(4).getScore());
         
         //Commented out working on color game ******
-        //StartFrame titleScreen = new StartFrame();  
-        //titleScreen.setVisible(true);
-        //stall();
-        //titleScreen.dispose();
-        //new MainMenuFrame().setVisible(true);
+        StartFrame titleScreen = new StartFrame();  
+        titleScreen.setVisible(true);
+        stall();
+        titleScreen.dispose();
+        new MainMenuFrame().setVisible(true);
     
     }
       

@@ -218,7 +218,8 @@ public class GameGUI extends javax.swing.JFrame {
 
                 if(game.getGuessesRemaining() == 0){
                     dispose();
-                    new gameOverFrame(game.getScore()).setVisible(true);
+                    new ScoreInput(game.getScore()).setVisible(true);
+                   // new gameOverFrame(game.getScore()).setVisible(true);
                 }
             } 
         }
