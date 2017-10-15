@@ -46,20 +46,20 @@ public class HighScore <T>{
             e.printStackTrace();
         }
     }
+    
     public void writing(String inputData) throws IOException {
     // InputData must be as 'Position Initals Score'. IE "1 ABC 100"
     BufferedWriter fileInput = new BufferedWriter(new FileWriter(new File("Scores.txt"),true));
     fileInput.newLine(); // New line to keep the records straight
-    fileInput.write(inputData);
+    fileInput.write(getNumberOfRecords()+1+" "+inputData+" "+getScore());
+    System.out.println(getNumberOfRecords());
     fileInput.close();
-    
-    
-    
-    String inputLine = inputData;
-    
     }
 
- 
+    public void checkHiScores() {
+       
+    }
+    
     @Override
     public String toString(){
         return  position + " " +initials + " " + score ;
@@ -92,9 +92,12 @@ public class HighScore <T>{
     public void setInitials(String initials) {
         this.initials = initials;
     }
+    
     public int getNumberOfRecords() {
         return highScoreRecords.size();
     }
+    
+    
     
 } 
     

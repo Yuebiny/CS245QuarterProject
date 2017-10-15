@@ -27,7 +27,8 @@ public class StartFrame extends javax.swing.JFrame {
     
     public void run() throws IOException{
         //new ColorTrap().setVisible(true);
-        new ScoreInput(5).setVisible(true);
+        new ScoreInput(5).setVisible(true); // using score 5 as example temporarily
+        
         
         
         
