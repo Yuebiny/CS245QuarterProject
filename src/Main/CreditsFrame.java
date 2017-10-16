@@ -12,27 +12,12 @@
 ****************************************************************/ 
 package Main;
 
-/**
- *
- * @author Computer
- */
 public class CreditsFrame extends javax.swing.JFrame {
-
-    /**
-     *
-     */
     public CreditsFrame() {
         initComponents();
     }
-    
-    /**
-     *
-     */
-    public void backButton(){
-        dispose();
-        new MainMenuFrame().setVisible(true);
-    }
  
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -104,8 +89,11 @@ public class CreditsFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    //Method: backButtonActionPerformed
+    //purpose: brings use back to main menu and closes credits frame
     private void backButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backButtonActionPerformed
-        backButton();
+        dispose();
+        new MainMenuFrame().setVisible(true);
     }//GEN-LAST:event_backButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

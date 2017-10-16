@@ -1,4 +1,17 @@
-
+/***************************************************************
+* file: MainMenuFrame.java
+* author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
+* class: CS 245 - Programming Graphical User Interfaces
+*
+* assignment: Hangman V1.0
+* date last modified: 10/15/17
+*
+* purpose: This class is to contain the word that needs to be guess,
+* the letters that have been revealed, and the remaining guesses. This
+* class does not deal with user input and calls other classes to handle
+* user input.
+*
+****************************************************************/ 
 package Main;
 
 import java.awt.Color;
@@ -16,16 +29,11 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
 
-/**
- *
- * @author Computer
- */
+
 public class ColorTrap extends javax.swing.JFrame {
     Random rand = new Random();
     
-    /**
-     *
-     */
+  
     public ColorTrap() {
         initComponents();
         showDateAndTime();
@@ -65,11 +73,10 @@ public class ColorTrap extends javax.swing.JFrame {
        super.paint(g);
        Graphics2D g2 = (Graphics2D) g;
        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING,RenderingHints.VALUE_ANTIALIAS_ON);
-       
        //setWord();
        //setWordColor();
        //drawRandomCircles(g);       
-         
+ 
     }
      
     /**

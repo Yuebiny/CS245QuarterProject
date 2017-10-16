@@ -18,20 +18,12 @@ package Main;
  */
 public class WinnerFrame extends javax.swing.JFrame {
 
-    /**
-     *
-     * @param x
-     */
+    
     public WinnerFrame(int x) {
         int score = x;
         initComponents();
         String num = Integer.toString(x);
         scoreNum.setText(num);
-    }
-    
-    private void restartGame(){
-        dispose();
-        new MainMenuFrame().setVisible(true);
     }
    
     @SuppressWarnings("unchecked")
@@ -41,7 +33,7 @@ public class WinnerFrame extends javax.swing.JFrame {
         scoreLabel = new javax.swing.JLabel();
         scoreNum = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        endButton = new javax.swing.JButton();
         backGround = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -76,17 +68,17 @@ public class WinnerFrame extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(160, 290, 280, 40);
 
-        jButton1.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
-        jButton1.setText("End");
-        jButton1.setToolTipText("Restart");
-        jButton1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        endButton.setFont(new java.awt.Font("Tw Cen MT", 0, 14)); // NOI18N
+        endButton.setText("End");
+        endButton.setToolTipText("Restart");
+        endButton.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        endButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                endButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1);
-        jButton1.setBounds(463, 340, 100, 23);
+        getContentPane().add(endButton);
+        endButton.setBounds(463, 340, 100, 23);
 
         backGround.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Res/Winner.jpg"))); // NOI18N
         backGround.setText("jLabel1");
@@ -97,15 +89,16 @@ public class WinnerFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        restartGame();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void endButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_endButtonActionPerformed
+        dispose();
+        new MainMenuFrame().setVisible(true);
+    }//GEN-LAST:event_endButtonActionPerformed
 
   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel backGround;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton endButton;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel scoreLabel;
     private javax.swing.JLabel scoreNum;

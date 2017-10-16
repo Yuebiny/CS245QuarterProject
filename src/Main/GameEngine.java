@@ -4,7 +4,7 @@
 * class: CS 245 - Programming Graphical User Interfaces
 *
 * assignment: Hangman V1.0
-* date last modified: 10/5/17
+* date last modified: 10/15/17
 *
 * purpose: This class is to contain the word that needs to be guess,
 * the letters that have been revealed, and the remaining guesses. This
@@ -16,81 +16,54 @@ package Main;
 
 import java.util.Random;
 import java.util.ArrayList;     
+import java.util.logging.Logger;
 /**
  *
  * @author matthhew
  */
-public class GameEngine {
+public final class GameEngine {
     
     Random random = new Random();
     
-    /**
-     *
-     */
+    
     public String hiddenWord;
     private int guessesRemaining;
     private boolean solved;
-    
-    /**
-     *
-     */
     public int score;
-    private ArrayList lettersUsed = new ArrayList();
+    private final ArrayList lettersUsed = new ArrayList<>();
     
-    /**
-     *
-     */
     public GameEngine() {
         setHiddenWord();
         setGuessesRemaining(6);
         setScore(100);
     }
 
-    /**
-     *
-     * @return
-     */
     public boolean isSolved() {
         return solved;
     }
 
-    /**
-     *
-     * @param solved
-     */
+   
     public void setSolved(boolean solved) {
         this.solved = solved;
     }
 
-    /**
-     *
-     * @return
-     */
+   
     public int getScore() {
         return score;
     }
 
-    /**
-     *
-     * @param score
-     */
+   
     public void setScore(int score) {
         this.score = score;
        
     }
 
-    /**
-     *
-     * @return
-     */
+   
     public int getGuessesRemaining() {
         return guessesRemaining;
     }
 
-    /**
-     *
-     * @param guessesRemaining
-     */
+  
     public void setGuessesRemaining(int guessesRemaining) {
         this.guessesRemaining = guessesRemaining;
     }
@@ -129,12 +102,6 @@ public class GameEngine {
     //method: guessLetter
     //purpose: Adds the letter to letters guessed and checks to see if 
     //This letter was in the word.
-
-    /**
-     *
-     * @param guess
-     * @return
-     */
         public boolean guessLetter(char guess){
         //says the letter has been used.
         lettersUsed.add(guess);
@@ -151,42 +118,26 @@ public class GameEngine {
         }
     }
         
-    /**
-     *
-     * @return
-     */
     public String getWord(){
      return hiddenWord;
     } 
     
     //method: getWordLength
     //purpose: returns the hiddenwords length+
-
-    /**
-     *
-     * @return
-     */
     public int getWordLength(){
         int wordLength = hiddenWord.length();
         return wordLength;
     }
     
-    /**
-     *
-     * @param guess
-     * @return
-     */
+    
     public boolean[] getIndexes(char guess){
         boolean[] indexAt = new boolean[hiddenWord.length()];
         for(int i = 0; i < hiddenWord.length(); i++){
-            if(guess == hiddenWord.charAt(i)){
-                indexAt[i] = true;
-            } else {
-                indexAt[i] = false;
-            }
+            indexAt[i] = guess == hiddenWord.charAt(i);
         }
         return indexAt;
     }
+    private static final Logger LOG = Logger.getLogger(GameEngine.class.getName());
     
     
 }

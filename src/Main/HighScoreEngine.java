@@ -12,30 +12,20 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-/**
- *
- * @author Computer
- * @param <T>
- */
 public class HighScoreEngine <T>{
     
     private int score;
     private String initials;
     private final ArrayList<HighScoreEngine> highScoreRecords = new ArrayList<>();
     
-    /**
-     *
-     * @param initials
-     * @param score
-     */
+    //Default constructor for the highscore engine
     public HighScoreEngine(String initials,int score){
         this.initials = initials;
         this.score = score;
     }
     
-    /**
-     *
-     */
+    /*Method: loadScoreFromFile
+    purpose: Loads the score from the file and places them into a record arraylist for reading back from later*/ 
     public void loadScoreFromFile() {
         try {
             Scanner scanner  = new Scanner(new FileReader("Scores.txt"));
@@ -59,44 +49,35 @@ public class HighScoreEngine <T>{
         }
     }
 
-    /**
-     *
-     * @throws IOException
-     */
+    /*Method: SorterAndRewrite
+    purpose: this method sorts the scores based on the value and places them into a new text file*/ 
     public void SorterAndRewrite() throws IOException{
         BufferedReader reader = new BufferedReader(new FileReader("SortedScores.txt"));
         BufferedWriter writer = new BufferedWriter(new FileWriter("SortedScores.txt"));
         Collections.sort(highScoreRecords, new marksCompare());
         
         //Rewrites the new sorted scores in order based on Greatest to lowest
-            //System.out.println(highScoreRecords.size());
             for(int i = 0; i < highScoreRecords.size(); i++){
                 writer.write(highScoreRecords.get(i).initials+" "+highScoreRecords.get(i).score);
                 writer.newLine();
             }
-            
         reader.close();
         writer.close();   
     }
     
-    /**
-     *
-     * @param inputData
-     * @throws IOException
-     */
+   /*Method: writing
+    purpose: this method is used to input initials and score into the textfile*/ 
     public void writing(String inputData) throws IOException {
-        try ( // InputData must be as 'Position Initals Score'. IE " ABC 100"
-                BufferedWriter fileInput = new BufferedWriter(new FileWriter(new File("Scores.txt"),true))) {
+        // File saved as 'Initals, Score'. IE " ABC 100"
+        try ( 
+            BufferedWriter fileInput = new BufferedWriter(new FileWriter(new File("Scores.txt"),true))) {
             fileInput.newLine(); // New line to keep the records straight
             fileInput.write(inputData+" "+getScore());
-        } // New line to keep the records straight
+        }
     }
     
-    /**
-     *
-     * @param hiScore
-     * @return
-     */
+    /*Method: isHighScore
+    purpose: this method is used to check if the score obtained is greated than one already on record in the textfile*/
     public boolean isHighScore(int hiScore){
       for(int i = 0; i < getNumberOfRecords(); i++){
           if(hiScore > highScoreRecords.get(i).score){
@@ -104,8 +85,7 @@ public class HighScoreEngine <T>{
           }
       }
       // hiscore was lower
-        return false;
-           
+        return false;    
     }
     
     class nameCompare implements Comparator<HighScoreEngine>{
@@ -132,51 +112,26 @@ public class HighScoreEngine <T>{
         return  initials + " " + score ;
     }
     
-    /**
-     *
-     * @param i
-     * @return
-     */
     public HighScoreEngine getRecordNumber(int i){
         return highScoreRecords.get(i);
     }
     
-    /**
-     *
-     * @return
-     */
     public int getScore() {
         return score;
     }
-
-    /**
-     *
-     * @param score
-     */
+    
     public void setScore(int score) {
         this.score = score;
     }
-
-    /**
-     *
-     * @return
-     */
+    
     public String getInitials() {
         return initials;
     }
-
-    /**
-     *
-     * @param initials
-     */
+    
     public void setInitials(String initials) {
         this.initials = initials;
     }
     
-    /**
-     *
-     * @return
-     */
     public int getNumberOfRecords() {
         return highScoreRecords.size();
     }

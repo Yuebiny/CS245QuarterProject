@@ -1,15 +1,16 @@
-/***************************************************************
-* file: GameFrame.java
-* author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
-* class: CS 245 - Programming Graphical User Interfaces
-*
-* assignment: Hangman V1.0
-* date last modified: 10/9/17
-*
-* purpose: This class creates the frame where the hangman game is played, as
-* well as all calculations that relate to the game.
-****************************************************************/ 
+/** *************************************************************
+ * file: GameFrame.java
+ * author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
+ * class: CS 245 - Programming Graphical User Interfaces
+ *
+ * assignment: Hangman V1.0
+ * date last modified: 10/9/17
+ *
+ * purpose: This class creates the frame where the hangman game is played, as
+ * well as all calculations that relate to the game.
+ *************************************************************** */
 package Main;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.text.SimpleDateFormat;
@@ -18,155 +19,144 @@ import java.util.Arrays;
 import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.Timer;
+
 public class GameGUI extends javax.swing.JFrame {
-    
+
     private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
     JLabel[] lb = new JLabel[8];
     GameEngine game = new GameEngine();
     boolean solved = false;
     int counter;
     ArrayList lettersUsed = new ArrayList();
-    int numberOfLetters=0;
-    
-    /**
-     *
-     */
+    int numberOfLetters = 0;
+
     public GameGUI() {
         initComponents();
         showDateAndTime();
         setAnswersOnLabels();
     }
-    
+
     //Method: goback
     //purpose: this method brings the user back the main menu.
+    public void goback() {
+        dispose();
+        new MainMenuFrame().setVisible(true);
+    }
 
-    /**
-     *
-     */
-    public void goback(){
-       dispose();
-       new MainMenuFrame().setVisible(true);
-    }
-    
-    
     @Override
-        public void paint(Graphics g) {
-       super.paint(g);
-       drawWordLines(g);       
-       drawHangManbase(g);       
-       drawHangMan(g);  
+    public void paint(Graphics g) {
+        super.paint(g);
+        drawWordLines(g);
+        drawHangManbase(g);
+        drawHangMan(g);
     }
-     
+
     //Method: drawLetterLines
     //purpose: this method draws the lines that will appear when the game starts, indicating to the player how many
     //letters are in the answer
-    private void drawWordLines(Graphics g){
+    private void drawWordLines(Graphics g) {
         numberOfLetters = game.getWordLength();
         int x1 = 70;
         int x2 = 110;
         int y = 270;
-        for(int i = 0; i< numberOfLetters; i++){
-            x1 = x2+5;
+        for (int i = 0; i < numberOfLetters; i++) {
+            x1 = x2 + 5;
             x2 += 50;
-            int test = (x1+x2)/2;
-            g.drawLine(x1+5,y,x2,y);
+            int test = (x1 + x2) / 2;
+            g.drawLine(x1 + 5, y, x2, y);
         }
     }
-    
-    private void drawHangManbase(Graphics g){
+
+    private void drawHangManbase(Graphics g) {
         g.setColor(Color.BLACK);
-        g.drawLine(200,200,300,200);    //Base Hori
-        g.drawLine(200,200,200,215);    //Base Left
-        g.drawLine(300,200,300,215);    //Base Right
-        g.drawLine(250,200,250,75);     //Base Vertical
-        g.drawLine(250,75,400,75);      //Base ARM
-        g.drawLine(400,75,400,100);     //Base Rope 
+        g.drawLine(200, 200, 300, 200);    //Base Hori
+        g.drawLine(200, 200, 200, 215);    //Base Left
+        g.drawLine(300, 200, 300, 215);    //Base Right
+        g.drawLine(250, 200, 250, 75);     //Base Vertical
+        g.drawLine(250, 75, 400, 75);      //Base ARM
+        g.drawLine(400, 75, 400, 100);     //Base Rope 
     }
-    
-    private void drawHangMan(Graphics g){
+
+    private void drawHangMan(Graphics g) {
         g.setColor(Color.RED);
-        if (game.getGuessesRemaining() == 5){
-            g.fillOval(385,80,30,30);   //HEAD
+        if (game.getGuessesRemaining() == 5) {
+            g.fillOval(385, 80, 30, 30);   //HEAD
         }
-        if (game.getGuessesRemaining() == 4){
-            g.fillOval(385,80,30,30);   //HEAD
-            g.drawLine(400,175,400,75); //BODY
-        } 
-        if (game.getGuessesRemaining() == 3){
-            g.fillOval(385,80,30,30);   //HEAD
-            g.drawLine(400,175,400,75); //BODY
-            g.drawLine(400,115,380,150);//LARM
-        } 
-        if (game.getGuessesRemaining() == 2){
-            g.fillOval(385,80,30,30);   //HEAD
-            g.drawLine(400,175,400,75); //BODY
-            g.drawLine(400,115,380,150);//LARM
-            g.drawLine(400,115,420,150);//LARM
-        } 
-        if (game.getGuessesRemaining() == 1){
-            g.fillOval(385,80,30,30);   //HEAD
-            g.drawLine(400,175,400,75); //BODY
-            g.drawLine(400,115,380,150);//LARM
-            g.drawLine(400,115,420,150);//LARM
-            g.drawLine(400,175,415,185);//LLEG
-        } 
-        if (game.getGuessesRemaining() == 0){
-            g.fillOval(385,80,30,30);   //HEAD
-            g.drawLine(400,175,400,75); //BODY
-            g.drawLine(400,115,380,150);//LARM
-            g.drawLine(400,115,420,150);//LARM
-            g.drawLine(400,175,415,185);//LLEG
+        if (game.getGuessesRemaining() == 4) {
+            g.fillOval(385, 80, 30, 30);   //HEAD
+            g.drawLine(400, 175, 400, 75); //BODY
+        }
+        if (game.getGuessesRemaining() == 3) {
+            g.fillOval(385, 80, 30, 30);   //HEAD
+            g.drawLine(400, 175, 400, 75); //BODY
+            g.drawLine(400, 115, 380, 150);//LARM
+        }
+        if (game.getGuessesRemaining() == 2) {
+            g.fillOval(385, 80, 30, 30);   //HEAD
+            g.drawLine(400, 175, 400, 75); //BODY
+            g.drawLine(400, 115, 380, 150);//LARM
+            g.drawLine(400, 115, 420, 150);//LARM
+        }
+        if (game.getGuessesRemaining() == 1) {
+            g.fillOval(385, 80, 30, 30);   //HEAD
+            g.drawLine(400, 175, 400, 75); //BODY
+            g.drawLine(400, 115, 380, 150);//LARM
+            g.drawLine(400, 115, 420, 150);//LARM
+            g.drawLine(400, 175, 415, 185);//LLEG
+        }
+        if (game.getGuessesRemaining() == 0) {
+            g.fillOval(385, 80, 30, 30);   //HEAD
+            g.drawLine(400, 175, 400, 75); //BODY
+            g.drawLine(400, 115, 380, 150);//LARM
+            g.drawLine(400, 115, 420, 150);//LARM
+            g.drawLine(400, 175, 415, 185);//LLEG
         }
     }
-    
+
     //Method: drawAnswers
     //purpose: this method sets up jlabels above drawnlines for replacing text with after a correct answer is guessed.
-    private void setAnswersOnLabels(){
+    private void setAnswersOnLabels() {
         final int y = 30;
-        
-        for(int i = 0; i < lb.length; i++) {
+
+        for (int i = 0; i < lb.length; i++) {
             lb[i] = new JLabel();
             lb[i].setText("");
         }
-        
+
         textPanel.add(lb[0]);
-            lb[0].setSize(15,15);
+        lb[0].setSize(15, 15);
         textPanel.add(lb[1]);
-            lb[1].setSize(15,15);
+        lb[1].setSize(15, 15);
         textPanel.add(lb[2]);
-            lb[2].setSize(15,15);
+        lb[2].setSize(15, 15);
         textPanel.add(lb[3]);
-            lb[3].setSize(15,15);
+        lb[3].setSize(15, 15);
         textPanel.add(lb[4]);
-            lb[4].setSize(15,15);
+        lb[4].setSize(15, 15);
         textPanel.add(lb[5]);
-            lb[5].setSize(15,15);
+        lb[5].setSize(15, 15);
         textPanel.add(lb[6]);
-            lb[6].setSize(15,15);
+        lb[6].setSize(15, 15);
         textPanel.add(lb[7]);
-            lb[7].setSize(15,15);
-            
-       
-        lb[0].setLocation(120,y);
-        lb[1].setLocation(170,y);
-        lb[2].setLocation(220,y);
-        lb[3].setLocation(270,y);
-        lb[4].setLocation(320,y);
-        lb[5].setLocation(370,y);
-        lb[6].setLocation(420,y);
-        lb[7].setLocation(470,y);     
+        lb[7].setSize(15, 15);
+
+        lb[0].setLocation(120, y);
+        lb[1].setLocation(170, y);
+        lb[2].setLocation(220, y);
+        lb[3].setLocation(270, y);
+        lb[4].setLocation(320, y);
+        lb[5].setLocation(370, y);
+        lb[6].setLocation(420, y);
+        lb[7].setLocation(470, y);
     }
-    
-  
-   
-    
+
     //Method: showDateAndTime
     //purpose: this method starts the date and time components for the jlabel
-    private void showDateAndTime(){
+    private void showDateAndTime() {
         timeComponent();
         dateComponent();
     }
-    
+
     //Method: timeComponent
     //purpose: this method starts recording system time and places replaces a jlabel with it.
     private void timeComponent() {
@@ -175,10 +165,10 @@ public class GameGUI extends javax.swing.JFrame {
             SimpleDateFormat s = new SimpleDateFormat("hh:mm:ss a");
             timePlaceHolder.setFont(new Font("Tw Cen MT", Font.PLAIN, 12));
             timePlaceHolder.setText(s.format(d));
-            int x =1;
+            int x = 1;
         }).start();
     }
-    
+
     //Method: dateComponent
     //purpose: this method starts recording system time and places replaces a jlabel with it.
     private void dateComponent() {
@@ -187,62 +177,55 @@ public class GameGUI extends javax.swing.JFrame {
         datePlaceHolder.setFont(new Font("Tw Cen MT", Font.PLAIN, 12));
         datePlaceHolder.setText(s.format(d));
     }
-    
+
     //Method: helpButton
     //purpose: this method diposes the current frame and opens the Help menu, used for game instructions.
-    private void helpButton(){
+    private void helpButton() {
         new HelpFrame().setVisible(true);
     }
-   
-   
-    
-    
+
     //Method: guess
     //purpose: this method will guessed the input letter to see if its in the word and then display that letter in the corresponding location's jlabel.
-    private void guess(char c){
+    private void guess(char c) {
         repaint();
-        
-        if(solved == false){
+
+        if (solved == false) {
             String string1 = Character.toString(c);
-            if (game.guessLetter(c)){
+            if (game.guessLetter(c)) {
                 boolean[] indexToPrint = game.getIndexes(c);
-                for(int i = 0; i < game.getWordLength(); i++){
-                   if( indexToPrint[i] == true){
-                       lb[i].setText(string1);
-                       counter++;
-                       if(counter == game.getWordLength()){ // Win Condition is when you have the number of letters on board as the number of letters in the word.
-                           solved = true;
-                       }
-                   }
-               }
-            }
-            else{
+                for (int i = 0; i < game.getWordLength(); i++) {
+                    if (indexToPrint[i] == true) {
+                        lb[i].setText(string1);
+                        counter++;
+                        if (counter == game.getWordLength()) { // Win Condition is when you have the number of letters on board as the number of letters in the word.
+                            solved = true;
+                        }
+                    }
+                }
+            } else {
 
                 String num = Integer.toString(game.getScore());
                 scoreNumLabel.setText(num);
-                String guess = Integer.toString(game.getGuessesRemaining());  
+                String guess = Integer.toString(game.getGuessesRemaining());
                 guessesNumLabel.setText(guess);
 
-                if(game.getGuessesRemaining() == 0){
+                if (game.getGuessesRemaining() == 0) {
                     dispose();
-                    if(hiScoreRecords.isHighScore(game.getScore()) == true){
+                    if (hiScoreRecords.isHighScore(game.getScore()) == true) {
                         new ScoreInput(game.getScore()).setVisible(true);
-                    }
-                    else{
+                    } else {
                         new gameOverFrame(game.getScore()).setVisible(true);
                     }
                 }
-            } 
+            }
         }
-        
-        if(solved == true){
+
+        if (solved == true) {
             dispose();
             new ScoreInput(game.getScore()).setVisible(true);
         }
     }
-    
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -643,7 +626,7 @@ public class GameGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void helpButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_helpButtonActionPerformed
-           helpButton();        // TODO add your handling code here:
+        helpButton();
     }//GEN-LAST:event_helpButtonActionPerformed
 
     private void WButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_WButtonActionPerformed
@@ -657,8 +640,8 @@ public class GameGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_YButtonActionPerformed
 
     private void CButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CButtonActionPerformed
-       guess('c');
-       CButton.setEnabled(false);
+        guess('c');
+        CButton.setEnabled(false);
     }//GEN-LAST:event_CButtonActionPerformed
 
     private void LButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LButtonActionPerformed
@@ -668,13 +651,12 @@ public class GameGUI extends javax.swing.JFrame {
 
     private void AButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AButtonActionPerformed
         guess('a');
-        
-       AButton.setEnabled(false);
+        AButton.setEnabled(false);
     }//GEN-LAST:event_AButtonActionPerformed
 
     private void ZButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ZButtonActionPerformed
-       guess('z');
-         ZButton.setEnabled(false);
+        guess('z');
+        ZButton.setEnabled(false);
     }//GEN-LAST:event_ZButtonActionPerformed
 
     private void XButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_XButtonActionPerformed
@@ -685,7 +667,7 @@ public class GameGUI extends javax.swing.JFrame {
     private void BButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BButtonActionPerformed
         guess('b');
         BButton.setEnabled(false);
-      
+
     }//GEN-LAST:event_BButtonActionPerformed
 
     private void DButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DButtonActionPerformed
@@ -694,13 +676,13 @@ public class GameGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_DButtonActionPerformed
 
     private void EButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EButtonActionPerformed
-       guess('e');
-       EButton.setEnabled(false);
+        guess('e');
+        EButton.setEnabled(false);
     }//GEN-LAST:event_EButtonActionPerformed
 
     private void FButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FButtonActionPerformed
-    guess('f');
-    FButton.setEnabled(false);
+        guess('f');
+        FButton.setEnabled(false);
     }//GEN-LAST:event_FButtonActionPerformed
 
     private void GButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GButtonActionPerformed
@@ -709,7 +691,7 @@ public class GameGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_GButtonActionPerformed
 
     private void HButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HButtonActionPerformed
-      HButton.setEnabled(false);
+        HButton.setEnabled(false);
         guess('h');
     }//GEN-LAST:event_HButtonActionPerformed
 
@@ -724,17 +706,17 @@ public class GameGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_JButtonActionPerformed
 
     private void KButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_KButtonActionPerformed
-       KButton.setEnabled(false);
+        KButton.setEnabled(false);
         guess('k');
     }//GEN-LAST:event_KButtonActionPerformed
 
     private void MButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MButtonActionPerformed
-       MButton.setEnabled(false);
+        MButton.setEnabled(false);
         guess('m');
     }//GEN-LAST:event_MButtonActionPerformed
 
     private void NButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NButtonActionPerformed
-       NButton.setEnabled(false);
+        NButton.setEnabled(false);
         guess('n');
     }//GEN-LAST:event_NButtonActionPerformed
 
@@ -744,28 +726,28 @@ public class GameGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_OButtonActionPerformed
 
     private void PButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PButtonActionPerformed
-     PButton.setEnabled(false);
+        PButton.setEnabled(false);
         guess('p');
     }//GEN-LAST:event_PButtonActionPerformed
 
     private void QButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_QButtonActionPerformed
-       QButton.setEnabled(false);
+        QButton.setEnabled(false);
         guess('q');
-       
+
     }//GEN-LAST:event_QButtonActionPerformed
 
     private void RButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RButtonActionPerformed
-      guess('r');
-      RButton.setEnabled(false);
+        guess('r');
+        RButton.setEnabled(false);
     }//GEN-LAST:event_RButtonActionPerformed
 
     private void SButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SButtonActionPerformed
-      SButton.setEnabled(false);
+        SButton.setEnabled(false);
         guess('s');
     }//GEN-LAST:event_SButtonActionPerformed
 
     private void TButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TButtonActionPerformed
-       TButton.setEnabled(false);
+        TButton.setEnabled(false);
         guess('t');
     }//GEN-LAST:event_TButtonActionPerformed
 
@@ -784,7 +766,6 @@ public class GameGUI extends javax.swing.JFrame {
         new gameOverFrame(0).setVisible(true);
     }//GEN-LAST:event_skipButtonActionPerformed
 
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AButton;
@@ -828,11 +809,4 @@ public class GameGUI extends javax.swing.JFrame {
     private javax.swing.JLabel timePlaceHolder;
     // End of variables declaration//GEN-END:variables
 
-   
-
-    
-
-    
-
-    
 }

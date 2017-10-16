@@ -1,73 +1,39 @@
-/***************************************************************
-* file: HighScoreFrame.java
-* author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
-* class: CS 245 - Programming Graphical User Interfaces
-*
-* assignment: Hangman V1.0
-* date last modified: 10/3/17
-*
-* purpose: This class appears first when the program is run, and stays for 3 
-* seconds, then transitions into the Main Menu.
-****************************************************************/ 
+/** *************************************************************
+ * file: HighScoreFrame.java
+ * author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
+ * class: CS 245 - Programming Graphical User Interfaces
+ *
+ * assignment: Hangman V1.0
+ * date last modified: 10/3/17
+ *
+ * purpose: This class appears first when the program is run, and stays for 3
+ * seconds, then transitions into the Main Menu.
+ *************************************************************** */
 package Main;
-import java.io.FileReader;
+
 import java.io.IOException;
-import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Computer
- */
 public class StartFrame extends javax.swing.JFrame {
-    
-    private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
-    
-    /**
-     *
-     */
+
     public StartFrame() {
         initComponents();
     }
-    
-    /**
-     *
-     * @throws IOException
-     */
-    public void run() throws IOException{
-        //new ColorTrap().setVisible(true);
-        //new ScoreInput(5).setVisible(true); // using score 5 as example temporarily
-        
-        
-        
-        
-        
-        //hiScoreRecords.readNumbers();
-        //
-        //.out.println(hiScoreRecords.getRecordNumber(4).getScore());
-        
-        //Commented out working on color game ******
-        StartFrame titleScreen = new StartFrame();  
-        titleScreen.setVisible(true);
-        stall();
-        titleScreen.dispose();
+
+    public void run() throws IOException {
         new MainMenuFrame().setVisible(true);
-    
     }
-      
-    /**
-     *
-     */
-    public void stall(){
+
+    public void stall() {
         try {
             TimeUnit.SECONDS.sleep(3);
         } catch (InterruptedException ex) {
             Logger.getLogger(StartFrame.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -102,21 +68,19 @@ public class StartFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     *
-     * @param args
-     * @throws IOException
-     */
     public static void main(String args[]) throws IOException {
         StartFrame Main = new StartFrame();
-        Main.run();  
+        Main.setVisible(true);
+        Main.stall();
+        Main.dispose();
+        Main.run();
+
     }
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel BackGround;
     private javax.swing.JLabel TeamName;
     private javax.swing.JLabel Title;
     // End of variables declaration//GEN-END:variables
 
-  
 }

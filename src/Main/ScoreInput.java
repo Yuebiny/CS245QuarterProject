@@ -1,9 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
+/***************************************************************
+* file: ScoreInput.java
+* author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
+* class: CS 245 - Programming Graphical User Interfaces
+*
+* assignment: Hangman V1.0
+* date last modified: 10/15/17
+*
+* purpose: This class was made for score input after losing or winning the game.
+*
+****************************************************************/ 
 package Main;
 
 import java.io.IOException;
@@ -18,34 +23,20 @@ public class ScoreInput extends javax.swing.JFrame {
     
 private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
 
-    /**
-     *
-     */
     public int score;
     
-    /**
-     *
-     * @param x
-     */
     public ScoreInput(int x) {
         initComponents();
         String num = Integer.toString(x);
         scoreNumLabel.setText(num);
         setScore(x);
         hiScoreRecords.loadScoreFromFile();
-       
     }
-
-    /**
-     *
-     * @param score
-     */
+    
     public void setScore(int score) {
         this.score = score;
     }
     
-   
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -179,8 +170,7 @@ private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
     }// </editor-fold>//GEN-END:initComponents
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-      
-       jLabel1.setText("Saved!");
+        jLabel1.setText("Saved!");
        initialsJTextFieldActionPerformed(evt);
        initialsJTextField.setText("");// Reset Text Field  back to empty
    
@@ -193,12 +183,13 @@ private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
 
     private void initialsJTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_initialsJTextFieldActionPerformed
         initialsJTextField.getText();
-    try {
-        hiScoreRecords.setScore(score);
-        hiScoreRecords.writing(initialsJTextField.getText());
-    } catch (IOException ex) {
-        Logger.getLogger(ScoreInput.class.getName()).log(Level.SEVERE, null, ex);
-    }
+        try {
+            hiScoreRecords.setScore(score);
+            hiScoreRecords.writing(initialsJTextField.getText());
+        } 
+        catch (IOException ex) {
+            Logger.getLogger(ScoreInput.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_initialsJTextFieldActionPerformed
 
    

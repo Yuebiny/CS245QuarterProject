@@ -1,52 +1,38 @@
-/***************************************************************
-* file: HighScoreFrame.java
-* author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
-* class: CS 245 - Programming Graphical User Interfaces
-*
-* assignment: Hangman V1.0
-* date last modified: 10/3/17
-*
-* purpose: This class creates the frame that shows the high scores for the game
-*
-****************************************************************/ 
+/** *************************************************************
+ * file: HighScoreFrame.java
+ * author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
+ * class: CS 245 - Programming Graphical User Interfaces
+ *
+ * assignment: Hangman V1.0
+ * date last modified: 10/3/17
+ *
+ * purpose: This class creates the frame that shows the high scores for the game
+ *
+ *************************************************************** */
 package Main;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
-/**
- *
- * @author Computer
- */
 public final class HighScoreFrame extends javax.swing.JFrame {
-    
+
     private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
-    
-    /**
-     *
-     * @throws IOException
-     */
+
     public HighScoreFrame() throws IOException {
         initComponents();
         hiScoreRecords.loadScoreFromFile();
         setHighScoresOnJlabels();
     }
-    
-    /**
-     *
-     * @throws IOException
-     */
-    public void setHighScoresOnJlabels() throws IOException{
-        
+
+    public void setHighScoresOnJlabels() throws IOException {
         hiScoreRecords.SorterAndRewrite();
-        hiScoreEntry1.setText(hiScoreRecords.getRecordNumber(0).getInitials()+"...."+hiScoreRecords.getRecordNumber(0).getScore());
-        hiScoreEntry2.setText(hiScoreRecords.getRecordNumber(1).getInitials()+"...."+hiScoreRecords.getRecordNumber(1).getScore());
-        hiScoreEntry3.setText(hiScoreRecords.getRecordNumber(2).getInitials()+"...."+hiScoreRecords.getRecordNumber(2).getScore());
-        hiScoreEntry4.setText(hiScoreRecords.getRecordNumber(3).getInitials()+"...."+hiScoreRecords.getRecordNumber(3).getScore());
-        hiScoreEntry5.setText(hiScoreRecords.getRecordNumber(4).getInitials()+"...."+hiScoreRecords.getRecordNumber(4).getScore());
-        hiScoreEntry6.setText(hiScoreRecords.getRecordNumber(5).getInitials()+"...."+hiScoreRecords.getRecordNumber(5).getScore());
+        hiScoreEntry1.setText(hiScoreRecords.getRecordNumber(0).getInitials() + "...." + hiScoreRecords.getRecordNumber(0).getScore());
+        hiScoreEntry2.setText(hiScoreRecords.getRecordNumber(1).getInitials() + "...." + hiScoreRecords.getRecordNumber(1).getScore());
+        hiScoreEntry3.setText(hiScoreRecords.getRecordNumber(2).getInitials() + "...." + hiScoreRecords.getRecordNumber(2).getScore());
+        hiScoreEntry4.setText(hiScoreRecords.getRecordNumber(3).getInitials() + "...." + hiScoreRecords.getRecordNumber(3).getScore());
+        hiScoreEntry5.setText(hiScoreRecords.getRecordNumber(4).getInitials() + "...." + hiScoreRecords.getRecordNumber(4).getScore());
+        hiScoreEntry6.setText(hiScoreRecords.getRecordNumber(5).getInitials() + "...." + hiScoreRecords.getRecordNumber(5).getScore());
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
