@@ -12,22 +12,42 @@
 ****************************************************************/ 
 package Main;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author Computer
+ */
 public class MainMenuFrame extends javax.swing.JFrame {
     
+    /**
+     *
+     */
     public MainMenuFrame() {
         initComponents();
     }
     
+    /**
+     *
+     */
     public void creditsButtonPress(){
        dispose();
        new CreditsFrame().setVisible(true);
     }
     
-    public void highScoreButtonPress(){
+    /**
+     *
+     */
+    public void highScoreButtonPress() throws IOException{
        dispose();
        new HighScoreFrame().setVisible(true);
     }
     
+    /**
+     *
+     */
     public void gameFrameButtonPress(){ 
        dispose();
        new GameGUI().setVisible(true);
@@ -106,7 +126,11 @@ public class MainMenuFrame extends javax.swing.JFrame {
 
 
     private void highscoreButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_highscoreButtonActionPerformed
-        highScoreButtonPress();
+        try {
+            highScoreButtonPress();
+        } catch (IOException ex) {
+            Logger.getLogger(MainMenuFrame.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_highscoreButtonActionPerformed
 
 

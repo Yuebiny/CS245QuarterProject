@@ -14,16 +14,28 @@ package Main;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Computer
+ */
 public final class HighScoreFrame extends javax.swing.JFrame {
     
     private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
     
+    /**
+     *
+     * @throws IOException
+     */
     public HighScoreFrame() throws IOException {
         initComponents();
         hiScoreRecords.loadScoreFromFile();
         setHighScoresOnJlabels();
     }
     
+    /**
+     *
+     * @throws IOException
+     */
     public void setHighScoresOnJlabels() throws IOException{
         
         hiScoreRecords.SorterAndRewrite();
@@ -32,6 +44,7 @@ public final class HighScoreFrame extends javax.swing.JFrame {
         hiScoreEntry3.setText(hiScoreRecords.getRecordNumber(2).getInitials()+"...."+hiScoreRecords.getRecordNumber(2).getScore());
         hiScoreEntry4.setText(hiScoreRecords.getRecordNumber(3).getInitials()+"...."+hiScoreRecords.getRecordNumber(3).getScore());
         hiScoreEntry5.setText(hiScoreRecords.getRecordNumber(4).getInitials()+"...."+hiScoreRecords.getRecordNumber(4).getScore());
+        hiScoreEntry6.setText(hiScoreRecords.getRecordNumber(5).getInitials()+"...."+hiScoreRecords.getRecordNumber(5).getScore());
     }
     
     @SuppressWarnings("unchecked")
@@ -44,6 +57,7 @@ public final class HighScoreFrame extends javax.swing.JFrame {
         hiScoreEntry3 = new javax.swing.JLabel();
         hiScoreEntry4 = new javax.swing.JLabel();
         hiScoreEntry5 = new javax.swing.JLabel();
+        hiScoreEntry6 = new javax.swing.JLabel();
         backButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -61,6 +75,8 @@ public final class HighScoreFrame extends javax.swing.JFrame {
         hiScoreEntry4.setText("ABC.....000");
 
         hiScoreEntry5.setText("ABC.....000");
+
+        hiScoreEntry6.setText("ABC.....000");
 
         backButton.setText("Back");
         backButton.addActionListener(new java.awt.event.ActionListener() {
@@ -82,13 +98,14 @@ public final class HighScoreFrame extends javax.swing.JFrame {
                         .addGap(215, 215, 215)
                         .addComponent(creditsLabel))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(274, 274, 274)
+                        .addGap(275, 275, 275)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(hiScoreEntry5)
                             .addComponent(hiScoreEntry4)
                             .addComponent(hiScoreEntry3)
                             .addComponent(hiScoreEntry2)
-                            .addComponent(hiScoreEntry1))))
+                            .addComponent(hiScoreEntry1)
+                            .addComponent(hiScoreEntry6))))
                 .addContainerGap(197, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -96,7 +113,7 @@ public final class HighScoreFrame extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(50, 50, 50)
                 .addComponent(creditsLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
+                .addGap(49, 49, 49)
                 .addComponent(hiScoreEntry1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(hiScoreEntry2)
@@ -106,7 +123,9 @@ public final class HighScoreFrame extends javax.swing.JFrame {
                 .addComponent(hiScoreEntry4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(hiScoreEntry5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(hiScoreEntry6)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(backButton)
                 .addContainerGap())
         );
@@ -128,5 +147,6 @@ public final class HighScoreFrame extends javax.swing.JFrame {
     private javax.swing.JLabel hiScoreEntry3;
     private javax.swing.JLabel hiScoreEntry4;
     private javax.swing.JLabel hiScoreEntry5;
+    private javax.swing.JLabel hiScoreEntry6;
     // End of variables declaration//GEN-END:variables
 }

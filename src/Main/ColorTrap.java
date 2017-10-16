@@ -16,10 +16,16 @@ import javax.swing.JComponent;
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
 
-
+/**
+ *
+ * @author Computer
+ */
 public class ColorTrap extends javax.swing.JFrame {
     Random rand = new Random();
     
+    /**
+     *
+     */
     public ColorTrap() {
         initComponents();
         showDateAndTime();
@@ -66,6 +72,10 @@ public class ColorTrap extends javax.swing.JFrame {
          
     }
      
+    /**
+     *
+     * @param g
+     */
     public void drawRandomCircles(Graphics g){
         boolean circlePresent = false;
         
@@ -147,6 +157,10 @@ public class ColorTrap extends javax.swing.JFrame {
         
         }
     }
+
+    /**
+     *
+     */
     public final void escapeListener(){
          getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
         KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Cancel");

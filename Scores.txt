@@ -1,8 +1,8 @@
-Vikas 100
-Shloka 100
-Shyam 100
-Abhi 100
-Bhavani 100
-Nalini 100
-ARG 100
-AAA 40
+//Highscore base file will set all highscores to 0 Must contain 6 base records. A-F
+AAA 50
+BBB 50
+CCC 50
+DDD 50
+EEE 50
+FFF 50
+ARG 90

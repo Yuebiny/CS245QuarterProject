@@ -12,10 +12,16 @@
 ****************************************************************/ 
 package Main;
 
-
+/**
+ *
+ * @author Computer
+ */
 public class WinnerFrame extends javax.swing.JFrame {
 
-    
+    /**
+     *
+     * @param x
+     */
     public WinnerFrame(int x) {
         int score = x;
         initComponents();

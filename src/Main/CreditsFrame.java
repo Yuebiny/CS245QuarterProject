@@ -12,12 +12,22 @@
 ****************************************************************/ 
 package Main;
 
+/**
+ *
+ * @author Computer
+ */
 public class CreditsFrame extends javax.swing.JFrame {
 
+    /**
+     *
+     */
     public CreditsFrame() {
         initComponents();
     }
     
+    /**
+     *
+     */
     public void backButton(){
         dispose();
         new MainMenuFrame().setVisible(true);

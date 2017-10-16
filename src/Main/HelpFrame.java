@@ -17,7 +17,9 @@ package Main;
  */
 public class HelpFrame extends javax.swing.JFrame {
 
-  
+    /**
+     *
+     */
     public HelpFrame() {
         initComponents();
     }

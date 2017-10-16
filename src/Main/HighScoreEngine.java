@@ -12,20 +12,30 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-
-
+/**
+ *
+ * @author Computer
+ * @param <T>
+ */
 public class HighScoreEngine <T>{
     
     private int score;
     private String initials;
     private final ArrayList<HighScoreEngine> highScoreRecords = new ArrayList<>();
     
-    
+    /**
+     *
+     * @param initials
+     * @param score
+     */
     public HighScoreEngine(String initials,int score){
         this.initials = initials;
         this.score = score;
     }
     
+    /**
+     *
+     */
     public void loadScoreFromFile() {
         try {
             Scanner scanner  = new Scanner(new FileReader("Scores.txt"));
@@ -33,8 +43,7 @@ public class HighScoreEngine <T>{
             HighScoreEngine record;
            
             if(scanner.nextLine()!= ""){
-                line = scanner.nextLine();
-                while (scanner.hasNextLine()){
+                 while (scanner.hasNextLine()){
                     line = scanner.nextLine();
                     String[] results = line.split(" ");
                     String initals = results[0];
@@ -43,22 +52,26 @@ public class HighScoreEngine <T>{
                     highScoreRecords.add(record);
                 }
             } 
+           
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
         }
     }
+
+    /**
+     *
+     * @throws IOException
+     */
     public void SorterAndRewrite() throws IOException{
         BufferedReader reader = new BufferedReader(new FileReader("SortedScores.txt"));
         BufferedWriter writer = new BufferedWriter(new FileWriter("SortedScores.txt"));
-        
         Collections.sort(highScoreRecords, new marksCompare());
         
         //Rewrites the new sorted scores in order based on Greatest to lowest
-        System.out.println(highScoreRecords.size());
+            //System.out.println(highScoreRecords.size());
             for(int i = 0; i < highScoreRecords.size(); i++){
                 writer.write(highScoreRecords.get(i).initials+" "+highScoreRecords.get(i).score);
-                
                 writer.newLine();
             }
             
@@ -66,24 +79,32 @@ public class HighScoreEngine <T>{
         writer.close();   
     }
     
+    /**
+     *
+     * @param inputData
+     * @throws IOException
+     */
     public void writing(String inputData) throws IOException {
-    // InputData must be as 'Position Initals Score'. IE " ABC 100"
-    BufferedWriter fileInput = new BufferedWriter(new FileWriter(new File("Scores.txt"),true));
-    fileInput.newLine(); // New line to keep the records straight
-    fileInput.write(inputData+" "+getScore());
-    fileInput.close();
+        try ( // InputData must be as 'Position Initals Score'. IE " ABC 100"
+                BufferedWriter fileInput = new BufferedWriter(new FileWriter(new File("Scores.txt"),true))) {
+            fileInput.newLine(); // New line to keep the records straight
+            fileInput.write(inputData+" "+getScore());
+        } // New line to keep the records straight
     }
     
+    /**
+     *
+     * @param hiScore
+     * @return
+     */
     public boolean isHighScore(int hiScore){
       for(int i = 0; i < getNumberOfRecords(); i++){
-          if(hiScore >= highScoreRecords.get(i).score){
-              System.out.println("Highscore was greater than all values");
+          if(hiScore > highScoreRecords.get(i).score){
               return true;
           }
       }
-       
-      System.out.println("hiScore was lower");
-         return false;
+      // hiscore was lower
+        return false;
            
     }
     
@@ -111,27 +132,51 @@ public class HighScoreEngine <T>{
         return  initials + " " + score ;
     }
     
+    /**
+     *
+     * @param i
+     * @return
+     */
     public HighScoreEngine getRecordNumber(int i){
         return highScoreRecords.get(i);
     }
     
-   
+    /**
+     *
+     * @return
+     */
     public int getScore() {
         return score;
     }
 
+    /**
+     *
+     * @param score
+     */
     public void setScore(int score) {
         this.score = score;
     }
 
+    /**
+     *
+     * @return
+     */
     public String getInitials() {
         return initials;
     }
 
+    /**
+     *
+     * @param initials
+     */
     public void setInitials(String initials) {
         this.initials = initials;
     }
     
+    /**
+     *
+     * @return
+     */
     public int getNumberOfRecords() {
         return highScoreRecords.size();
     }

@@ -10,11 +10,23 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ * @author Computer
+ */
 public class ScoreInput extends javax.swing.JFrame {
     
 private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
-public int score;
+
+    /**
+     *
+     */
+    public int score;
     
+    /**
+     *
+     * @param x
+     */
     public ScoreInput(int x) {
         initComponents();
         String num = Integer.toString(x);
@@ -24,6 +36,10 @@ public int score;
        
     }
 
+    /**
+     *
+     * @param score
+     */
     public void setScore(int score) {
         this.score = score;
     }

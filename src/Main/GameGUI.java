@@ -28,7 +28,9 @@ public class GameGUI extends javax.swing.JFrame {
     ArrayList lettersUsed = new ArrayList();
     int numberOfLetters=0;
     
-    
+    /**
+     *
+     */
     public GameGUI() {
         initComponents();
         showDateAndTime();
@@ -37,6 +39,10 @@ public class GameGUI extends javax.swing.JFrame {
     
     //Method: goback
     //purpose: this method brings the user back the main menu.
+
+    /**
+     *
+     */
     public void goback(){
        dispose();
        new MainMenuFrame().setVisible(true);

@@ -12,7 +12,8 @@ package Main;
  */
 public class gameOverFrame extends javax.swing.JFrame {
 
-    /** Creates new form gameOverFrame */
+    /** Creates new form gameOverFrame
+     * @param x */
     public gameOverFrame(int x) {
         initComponents();
         String num = Integer.toString(x);

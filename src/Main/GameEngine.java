@@ -24,39 +24,73 @@ public class GameEngine {
     
     Random random = new Random();
     
+    /**
+     *
+     */
     public String hiddenWord;
     private int guessesRemaining;
     private boolean solved;
     
+    /**
+     *
+     */
     public int score;
     private ArrayList lettersUsed = new ArrayList();
     
+    /**
+     *
+     */
     public GameEngine() {
         setHiddenWord();
         setGuessesRemaining(6);
         setScore(100);
     }
 
+    /**
+     *
+     * @return
+     */
     public boolean isSolved() {
         return solved;
     }
 
+    /**
+     *
+     * @param solved
+     */
     public void setSolved(boolean solved) {
         this.solved = solved;
     }
 
-     public int getScore() {
+    /**
+     *
+     * @return
+     */
+    public int getScore() {
         return score;
     }
 
+    /**
+     *
+     * @param score
+     */
     public void setScore(int score) {
         this.score = score;
        
     }
+
+    /**
+     *
+     * @return
+     */
     public int getGuessesRemaining() {
         return guessesRemaining;
     }
 
+    /**
+     *
+     * @param guessesRemaining
+     */
     public void setGuessesRemaining(int guessesRemaining) {
         this.guessesRemaining = guessesRemaining;
     }
@@ -95,6 +129,12 @@ public class GameEngine {
     //method: guessLetter
     //purpose: Adds the letter to letters guessed and checks to see if 
     //This letter was in the word.
+
+    /**
+     *
+     * @param guess
+     * @return
+     */
         public boolean guessLetter(char guess){
         //says the letter has been used.
         lettersUsed.add(guess);
@@ -111,18 +151,31 @@ public class GameEngine {
         }
     }
         
+    /**
+     *
+     * @return
+     */
     public String getWord(){
      return hiddenWord;
     } 
     
     //method: getWordLength
     //purpose: returns the hiddenwords length+
+
+    /**
+     *
+     * @return
+     */
     public int getWordLength(){
         int wordLength = hiddenWord.length();
         return wordLength;
     }
     
-
+    /**
+     *
+     * @param guess
+     * @return
+     */
     public boolean[] getIndexes(char guess){
         boolean[] indexAt = new boolean[hiddenWord.length()];
         for(int i = 0; i < hiddenWord.length(); i++){

@@ -37,13 +37,14 @@
                       <Component id="creditsLabel" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="274" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="275" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="hiScoreEntry5" min="-2" max="-2" attributes="0"/>
                           <Component id="hiScoreEntry4" min="-2" max="-2" attributes="0"/>
                           <Component id="hiScoreEntry3" min="-2" max="-2" attributes="0"/>
                           <Component id="hiScoreEntry2" min="-2" max="-2" attributes="0"/>
                           <Component id="hiScoreEntry1" min="-2" max="-2" attributes="0"/>
+                          <Component id="hiScoreEntry6" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -56,7 +57,7 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
               <Component id="creditsLabel" min="-2" pref="51" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="73" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="49" max="-2" attributes="0"/>
               <Component id="hiScoreEntry1" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="hiScoreEntry2" min="-2" max="-2" attributes="0"/>
@@ -66,7 +67,9 @@
               <Component id="hiScoreEntry4" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="hiScoreEntry5" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="78" max="32767" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="hiScoreEntry6" min="-2" max="-2" attributes="0"/>
+              <EmptySpace pref="77" max="32767" attributes="0"/>
               <Component id="backButton" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -103,6 +106,11 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="hiScoreEntry5">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="ABC.....000"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JLabel" name="hiScoreEntry6">
       <Properties>
         <Property name="text" type="java.lang.String" value="ABC.....000"/>
       </Properties>

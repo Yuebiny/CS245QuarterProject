@@ -1,6 +1,7 @@
-XXX 40
-Shyam 0
-Abhi 0
-Bhavani 0
-Nalini 0
-ARG 0
+ARG 90
+AAA 50
+BBB 50
+CCC 50
+DDD 50
+EEE 50
+FFF 50

@@ -17,14 +17,25 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+/**
+ *
+ * @author Computer
+ */
 public class StartFrame extends javax.swing.JFrame {
     
     private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
     
+    /**
+     *
+     */
     public StartFrame() {
         initComponents();
     }
     
+    /**
+     *
+     * @throws IOException
+     */
     public void run() throws IOException{
         //new ColorTrap().setVisible(true);
         //new ScoreInput(5).setVisible(true); // using score 5 as example temporarily
@@ -46,6 +57,9 @@ public class StartFrame extends javax.swing.JFrame {
     
     }
       
+    /**
+     *
+     */
     public void stall(){
         try {
             TimeUnit.SECONDS.sleep(3);
@@ -88,6 +102,11 @@ public class StartFrame extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     *
+     * @param args
+     * @throws IOException
+     */
     public static void main(String args[]) throws IOException {
         StartFrame Main = new StartFrame();
         Main.run();  
