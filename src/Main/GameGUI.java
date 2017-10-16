@@ -20,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.Timer;
 public class GameGUI extends javax.swing.JFrame {
     
+    private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
     JLabel[] lb = new JLabel[8];
     GameEngine game = new GameEngine();
     boolean solved = false;
@@ -218,8 +219,12 @@ public class GameGUI extends javax.swing.JFrame {
 
                 if(game.getGuessesRemaining() == 0){
                     dispose();
-                    new ScoreInput(game.getScore()).setVisible(true);
-                   // new gameOverFrame(game.getScore()).setVisible(true);
+                    if(hiScoreRecords.isHighScore(game.getScore()) == true){
+                        new ScoreInput(game.getScore()).setVisible(true);
+                    }
+                    else{
+                        new gameOverFrame(game.getScore()).setVisible(true);
+                    }
                 }
             } 
         }
@@ -229,6 +234,7 @@ public class GameGUI extends javax.swing.JFrame {
             new ScoreInput(game.getScore()).setVisible(true);
         }
     }
+    
     
     
     @SuppressWarnings("unchecked")
@@ -815,6 +821,10 @@ public class GameGUI extends javax.swing.JFrame {
     private javax.swing.JPanel textPanel;
     private javax.swing.JLabel timePlaceHolder;
     // End of variables declaration//GEN-END:variables
+
+   
+
+    
 
     
 

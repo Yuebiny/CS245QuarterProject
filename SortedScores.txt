@@ -1,5 +1,6 @@
-CCC 8
-DDD 7
-EEE 6
-FFF 5
-GGG 4
+XXX 40
+Shyam 0
+Abhi 0
+Bhavani 0
+Nalini 0
+ARG 0

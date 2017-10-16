@@ -13,6 +13,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 
+
 public class HighScoreEngine <T>{
     
     private int score;
@@ -33,19 +34,14 @@ public class HighScoreEngine <T>{
            
             if(scanner.nextLine()!= ""){
                 line = scanner.nextLine();
-                
                 while (scanner.hasNextLine()){
                     line = scanner.nextLine();
-
                     String[] results = line.split(" ");
-
                     String initals = results[0];
                     int score = Integer.parseInt(results[1]);
-
                     record = new HighScoreEngine(initals,score);
                     highScoreRecords.add(record);
                 }
-            
             } 
         }
         catch (FileNotFoundException e) {
@@ -59,9 +55,10 @@ public class HighScoreEngine <T>{
         Collections.sort(highScoreRecords, new marksCompare());
         
         //Rewrites the new sorted scores in order based on Greatest to lowest
-        
+        System.out.println(highScoreRecords.size());
             for(int i = 0; i < highScoreRecords.size(); i++){
                 writer.write(highScoreRecords.get(i).initials+" "+highScoreRecords.get(i).score);
+                
                 writer.newLine();
             }
             
@@ -75,6 +72,19 @@ public class HighScoreEngine <T>{
     fileInput.newLine(); // New line to keep the records straight
     fileInput.write(inputData+" "+getScore());
     fileInput.close();
+    }
+    
+    public boolean isHighScore(int hiScore){
+      for(int i = 0; i < getNumberOfRecords(); i++){
+          if(hiScore >= highScoreRecords.get(i).score){
+              System.out.println("Highscore was greater than all values");
+              return true;
+          }
+      }
+       
+      System.out.println("hiScore was lower");
+         return false;
+           
     }
     
     class nameCompare implements Comparator<HighScoreEngine>{

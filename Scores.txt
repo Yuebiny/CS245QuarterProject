@@ -1,7 +1,8 @@
-AAA 10
-BBB 9
-CCC 8
-DDD 7
-EEE 6
-FFF 5
-GGG 4
+Vikas 100
+Shloka 100
+Shyam 100
+Abhi 100
+Bhavani 100
+Nalini 100
+ARG 100
+AAA 40
