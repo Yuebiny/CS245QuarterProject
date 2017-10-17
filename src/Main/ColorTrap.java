@@ -42,7 +42,9 @@ public final class ColorTrap extends javax.swing.JFrame {
         initComponents();
         showDateAndTime();
         escapeListener();
-        resetBoard();
+        setWord();
+        setWordColor();
+        //resetBoard();
     }
     
     public int getScore() {
@@ -395,6 +397,7 @@ public final class ColorTrap extends javax.swing.JFrame {
         purpleButton.setForeground(new java.awt.Color(255, 255, 255));
         purpleButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Res/purpleUnpressed.png"))); // NOI18N
         purpleButton.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        purpleButton.setBorderPainted(false);
         purpleButton.setContentAreaFilled(false);
         purpleButton.setDefaultCapable(false);
         purpleButton.setFocusPainted(false);
