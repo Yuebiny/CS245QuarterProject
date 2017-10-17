@@ -46,13 +46,11 @@ public final class HangManEngine {
     public void setSolved(boolean solved) {
         this.solved = solved;
     }
-
-   
+    
     public int getScore() {
         return score;
     }
-
-   
+    
     public void setScore(int score) {
         this.score = score;
        

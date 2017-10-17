@@ -15,26 +15,12 @@
 package Main;
 
 import java.util.Random;
-import java.util.ArrayList;     
-import java.util.logging.Logger;
 
 public final class ColorTrapEngine {
     
     Random random = new Random();
-    
-    
-   
-    private boolean finished;
     public int score;
     public int turnsRemaining;
-
-    public int getTurnsRemaining() {
-        return turnsRemaining;
-    }
-
-    public void setTurnsRemaining(int turnsRemaining) {
-        this.turnsRemaining = turnsRemaining;
-    }
     
     
     public ColorTrapEngine() {
@@ -42,15 +28,19 @@ public final class ColorTrapEngine {
         setTurnsRemaining(4);
     }
     
+     public int getTurnsRemaining() {
+        return turnsRemaining;
+    }
+
+    public void setTurnsRemaining(int turnsRemaining) {
+        this.turnsRemaining = turnsRemaining;
+    }
+    
     public boolean isFinished() {
         if(turnsRemaining == 0){
             return true;
         }
         return false;
-    }
-
-    public void setFinished(boolean finished) {
-        this.finished = finished;
     }
     
     public int getScore() {

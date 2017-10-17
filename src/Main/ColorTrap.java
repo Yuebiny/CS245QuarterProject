@@ -34,17 +34,7 @@ public final class ColorTrap extends javax.swing.JFrame {
     Random rand = new Random();
     ColorTrapEngine CTE = new ColorTrapEngine();
     private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
-    
     int score;
-
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
-    }
-   
     
     public ColorTrap(int x) {
         hiScoreRecords.loadScoreFromFile();
@@ -54,27 +44,48 @@ public final class ColorTrap extends javax.swing.JFrame {
         escapeListener();
         resetBoard();
     }
-
+    
+    public int getScore() {
+        return score;
+    }
+    
+    public void setScore(int score) {
+        this.score = score;
+    }
+    
+    
+    //Method: resetBoard
+    //purpose: this method resets the board to a new states and also
+    //checks if the game is finished and is a highscore.
     public void resetBoard() {
+        
         if (CTE.isFinished() == true) {
             dispose();
             System.out.println(CTE.getScore()+getScore());
-            if (hiScoreRecords.isHighScore(CTE.getScore()+getScore()) == true) {
-                        new ScoreInput(CTE.getScore()+getScore()).setVisible(true);
-                    } else {
-                        new gameOverFrame(CTE.getScore()+getScore()).setVisible(true);
-                    }
+            if (hiScoreRecords.isHighScore(CTE.getScore()+getScore()) == true) { // If score is greater than a score in score.txt
+                new ScoreInput(CTE.getScore()+getScore()).setVisible(true);
+            } 
+            else {
+                new WinnerFrame(CTE.getScore()+getScore()).setVisible(true); // If not then just move to the game overscreen
+            }
         }
-        String num = Integer.toString(CTE.getScore()+getScore());
-        scorePlaceHolderLabel.setText(num);
+        
+        //Sets the jlabel for the score at the top to the current running score.
+        String scoreNumber = Integer.toString(CTE.getScore()+getScore());
+        scorePlaceHolderLabel.setText(scoreNumber);
 
-        removeButtons();
+        
         setWord();
         setWordColor();
+        
+        removeButtons();
         randomAddButtons();
 
     }
 
+    //Method: removeButtons
+    //purpose: this method removes all the buttons from the panel
+    //used right before adding the buttons back randomly.
     private void removeButtons() {
         jPanel1.remove(purpleButton);
         jPanel1.remove(redButton);
@@ -87,6 +98,9 @@ public final class ColorTrap extends javax.swing.JFrame {
         jPanel1.remove(empty4);
     }
 
+    //Method: randomAddButtons
+    //purpose: this method inserts the buttons in random orders
+    //which will place them in different spots in the gridlayout
     private void randomAddButtons() {
         //sets a random preset "random location" for the button 
            int number = rand.nextInt(9);
@@ -272,6 +286,8 @@ public final class ColorTrap extends javax.swing.JFrame {
         datePlaceHolder.setText(s.format(d));
     }
 
+    //Method: setWordColor
+    //purpose: sets the jlabel for the word at the top of the game a random color.
     private void setWordColor() {
         int randNum = rand.nextInt(5);
         switch (randNum) {
@@ -296,12 +312,13 @@ public final class ColorTrap extends javax.swing.JFrame {
         }
     }
 
+    //Method: setWord
+    //purpose: sets the jlabel for the word at the top of the game a certain word
     private void setWord() {
         int randNum = rand.nextInt(4);
         switch (randNum) {
             case 0:
                 colorLabel.setText("GREEN");
-
                 break;
             case 1:
                 colorLabel.setText("RED");
@@ -314,7 +331,7 @@ public final class ColorTrap extends javax.swing.JFrame {
                 colorLabel.setText("BLUE");
                 break;
             case 4:
-                colorLabel.setText("MAGENTA");
+                colorLabel.setText("PURPLE");
 
                 break;
             default:
@@ -323,29 +340,30 @@ public final class ColorTrap extends javax.swing.JFrame {
         }
     }
 
+    //Method: paint
+    //purpose: used to make smoother lines
     @Override
     public void paint(Graphics g) {
         super.paint(g);
         Graphics2D g2 = (Graphics2D) g;
         g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
     }
-
+    
+    //Method: escapeListener
+    //purpose: this method is used to close the program whenever 'ESC' is pressed.
     public final void escapeListener() {
         getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(
                 KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Cancel");
         getRootPane().getActionMap().put("Cancel", new AbstractAction() {
-
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
             }
         });
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        RECOLOR = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         purpleButton = new javax.swing.JButton();
         redButton = new javax.swing.JButton();
@@ -368,15 +386,6 @@ public final class ColorTrap extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(600, 400));
         setResizable(false);
         getContentPane().setLayout(null);
-
-        RECOLOR.setText("MIX!");
-        RECOLOR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                RECOLORActionPerformed(evt);
-            }
-        });
-        getContentPane().add(RECOLOR);
-        RECOLOR.setBounds(180, 10, 50, 20);
 
         jPanel1.setMaximumSize(new java.awt.Dimension(600, 250));
         jPanel1.setMinimumSize(new java.awt.Dimension(600, 250));
@@ -559,7 +568,6 @@ public final class ColorTrap extends javax.swing.JFrame {
         if (colorLabel.getText() == "GREEN") {
             CTE.setScore(CTE.getScore() + 100);
         }
-
         resetBoard();
         CTE.setTurnsRemaining(CTE.getTurnsRemaining() - 1);
     }//GEN-LAST:event_greenButtonActionPerformed
@@ -580,17 +588,8 @@ public final class ColorTrap extends javax.swing.JFrame {
         CTE.setTurnsRemaining(CTE.getTurnsRemaining() - 1);
     }//GEN-LAST:event_purpleButtonActionPerformed
 
-    private void RECOLORActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RECOLORActionPerformed
-        setWord();
-        setWordColor();
-        removeButtons();
-        randomAddButtons();
-
-    }//GEN-LAST:event_RECOLORActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton RECOLOR;
     private javax.swing.JButton blueButton;
     private javax.swing.JLabel colorLabel;
     private javax.swing.JLabel datePlaceHolder;

@@ -22,7 +22,6 @@ import javax.swing.Timer;
 
 public class GameGUI extends javax.swing.JFrame {
 
-   
     JLabel[] lb = new JLabel[8];
     HangManEngine game = new HangManEngine();
     boolean solved = false;
@@ -203,7 +202,6 @@ public class GameGUI extends javax.swing.JFrame {
                     }
                 }
             } else {
-
                 String num = Integer.toString(game.getScore());
                 scoreNumLabel.setText(num);
                 String guess = Integer.toString(game.getGuessesRemaining());
@@ -212,19 +210,13 @@ public class GameGUI extends javax.swing.JFrame {
                 if (game.getGuessesRemaining() == 0) {
                     dispose();
                     new ColorTrap(game.getScore()).setVisible(true);
-                    
-//                    if (hiScoreRecords.isHighScore(game.getScore()) == true) {
-//                        new ScoreInput(game.getScore()).setVisible(true);
-//                    } else {
-//                        new gameOverFrame(game.getScore()).setVisible(true);
-//                    }
                 }
             }
         }
 
         if (solved == true) {
-                dispose();
-                new ColorTrap(game.getScore()).setVisible(true);
+            dispose();
+            new ColorTrap(game.getScore()).setVisible(true);
         }
     }
 
@@ -763,9 +755,10 @@ public class GameGUI extends javax.swing.JFrame {
         guess('0');
     }//GEN-LAST:event_VButtonActionPerformed
 
+    //Skipping the first game will cause your score for that part to be 0.
     private void skipButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_skipButtonActionPerformed
         dispose();
-        new gameOverFrame(0).setVisible(true);
+        new ColorTrap(0).setVisible(true);
     }//GEN-LAST:event_skipButtonActionPerformed
 
 
