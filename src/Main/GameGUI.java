@@ -22,7 +22,7 @@ import javax.swing.Timer;
 
 public class GameGUI extends javax.swing.JFrame {
 
-    private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
+   
     JLabel[] lb = new JLabel[8];
     HangManEngine game = new HangManEngine();
     boolean solved = false;
@@ -211,18 +211,20 @@ public class GameGUI extends javax.swing.JFrame {
 
                 if (game.getGuessesRemaining() == 0) {
                     dispose();
-                    if (hiScoreRecords.isHighScore(game.getScore()) == true) {
-                        new ScoreInput(game.getScore()).setVisible(true);
-                    } else {
-                        new gameOverFrame(game.getScore()).setVisible(true);
-                    }
+                    new ColorTrap(game.getScore()).setVisible(true);
+                    
+//                    if (hiScoreRecords.isHighScore(game.getScore()) == true) {
+//                        new ScoreInput(game.getScore()).setVisible(true);
+//                    } else {
+//                        new gameOverFrame(game.getScore()).setVisible(true);
+//                    }
                 }
             }
         }
 
         if (solved == true) {
-            dispose();
-            new ScoreInput(game.getScore()).setVisible(true);
+                dispose();
+                new ColorTrap(game.getScore()).setVisible(true);
         }
     }
 

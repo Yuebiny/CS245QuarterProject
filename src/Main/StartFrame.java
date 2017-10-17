@@ -69,12 +69,11 @@ public class StartFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     public static void main(String args[]) throws IOException {
-        new ColorTrap().setVisible(true);
-        //StartFrame Main = new StartFrame();
-        //Main.setVisible(true);
-        //Main.stall();
-        //Main.dispose();
-        //Main.run();
+        StartFrame Main = new StartFrame();
+        Main.setVisible(true);
+        Main.stall();
+        Main.dispose();
+        Main.run();
 
     }
 

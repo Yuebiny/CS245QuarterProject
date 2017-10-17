@@ -1,8 +1,9 @@
 //Highscore base file will set all highscores to 0 Must contain 6 base records. A-F
-AAA 50
-BBB 50
-CCC 50
-DDD 50
-EEE 50
-FFF 50
-AAA 60
+AAA 400
+BBB 400
+CCC 400
+DDD 400
+EEE 400
+FFF 400
+AAA 400
+PERFECTSCORE 600

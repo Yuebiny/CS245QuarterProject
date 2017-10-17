@@ -15,60 +15,82 @@
 package Main;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.GridBagConstraints;
-import java.awt.PopupMenu;
 import java.awt.RenderingHints;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
-import static java.lang.Math.random;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Random;
 import javax.swing.AbstractAction;
-import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
-
 import javax.swing.KeyStroke;
 import javax.swing.Timer;
 
 public final class ColorTrap extends javax.swing.JFrame {
 
     Random rand = new Random();
+    ColorTrapEngine CTE = new ColorTrapEngine();
+    private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
     
-    public ColorTrap() {
+    int score;
+
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
+   
+    
+    public ColorTrap(int x) {
+        hiScoreRecords.loadScoreFromFile();
+        setScore(x);
         initComponents();
         showDateAndTime();
         escapeListener();
+        resetBoard();
+    }
+
+    public void resetBoard() {
+        if (CTE.isFinished() == true) {
+            dispose();
+            System.out.println(CTE.getScore()+getScore());
+            if (hiScoreRecords.isHighScore(CTE.getScore()+getScore()) == true) {
+                        new ScoreInput(CTE.getScore()+getScore()).setVisible(true);
+                    } else {
+                        new gameOverFrame(CTE.getScore()+getScore()).setVisible(true);
+                    }
+        }
+        String num = Integer.toString(CTE.getScore()+getScore());
+        scorePlaceHolderLabel.setText(num);
+
+        removeButtons();
         setWord();
         setWordColor();
-        removeButtons();
         randomAddButtons();
+
     }
 
     private void removeButtons() {
-       jPanel1.remove(purpleButton);
-       jPanel1.remove(redButton);
-       jPanel1.remove(yellowButton);
-       jPanel1.remove(greenButton);
-       jPanel1.remove(blueButton);
-       jPanel1.remove(empty1);
-       jPanel1.remove(empty2);
-       jPanel1.remove(empty3);
-       jPanel1.remove(empty4);
+        jPanel1.remove(purpleButton);
+        jPanel1.remove(redButton);
+        jPanel1.remove(yellowButton);
+        jPanel1.remove(greenButton);
+        jPanel1.remove(blueButton);
+        jPanel1.remove(empty1);
+        jPanel1.remove(empty2);
+        jPanel1.remove(empty3);
+        jPanel1.remove(empty4);
     }
-    
-    private void randomAddButtons(){
-        //Gets a random number from 0-4 to determine the hiddenWord.
-        for(int i=0;i<10;i++){
-            int number = rand.nextInt(9);
-            System.out.println(i);
-            switch(number) {
+
+    private void randomAddButtons() {
+        //sets a random preset "random location" for the button 
+           int number = rand.nextInt(9);
+            switch (number) {
                 case 0:
                     jPanel1.add(purpleButton);
                     jPanel1.add(redButton);
@@ -93,9 +115,8 @@ public final class ColorTrap extends javax.swing.JFrame {
                     break;
                 case 2:
                     jPanel1.add(empty3);
-                   
                     jPanel1.add(purpleButton);
-                     jPanel1.add(empty4);
+                    jPanel1.add(empty4);
                     jPanel1.add(redButton);
                     jPanel1.add(yellowButton);
                     jPanel1.add(greenButton);
@@ -113,7 +134,7 @@ public final class ColorTrap extends javax.swing.JFrame {
                     jPanel1.add(greenButton);
                     jPanel1.add(blueButton);
                     jPanel1.add(empty1);
-                    
+
                     break;
                 case 4:
                     jPanel1.add(empty3);
@@ -121,7 +142,7 @@ public final class ColorTrap extends javax.swing.JFrame {
                     jPanel1.add(empty4);
                     jPanel1.add(redButton);
                     jPanel1.add(yellowButton);
-                     jPanel1.add(empty2);
+                    jPanel1.add(empty2);
                     jPanel1.add(greenButton);
                     jPanel1.add(empty1);
                     jPanel1.add(blueButton);
@@ -161,6 +182,18 @@ public final class ColorTrap extends javax.swing.JFrame {
                     jPanel1.add(purpleButton);
                     break;
                 case 8:
+                    jPanel1.add(empty2);
+                    jPanel1.add(empty3);
+
+                    jPanel1.add(blueButton);
+                    jPanel1.add(empty1);
+                    jPanel1.add(purpleButton);
+                    jPanel1.add(greenButton);
+                    jPanel1.add(empty4);
+                    jPanel1.add(yellowButton);
+                    jPanel1.add(redButton);
+                    break;
+                case 9:
                     jPanel1.add(purpleButton);
                     jPanel1.add(greenButton);
                     jPanel1.add(blueButton);
@@ -171,13 +204,46 @@ public final class ColorTrap extends javax.swing.JFrame {
                     jPanel1.add(yellowButton);
                     jPanel1.add(redButton);
                     break;
+                case 10:
+                    jPanel1.add(blueButton);
+                    jPanel1.add(empty4);
+                    jPanel1.add(greenButton);
+                    jPanel1.add(empty1);
+                    jPanel1.add(empty2);
+                    jPanel1.add(purpleButton);
+                    jPanel1.add(empty3);
+                    jPanel1.add(yellowButton);
+                    jPanel1.add(redButton);
+                    break;
+                case 11:
+                    jPanel1.add(empty1);
+                    jPanel1.add(empty2);
+                    jPanel1.add(empty3);
+                    jPanel1.add(purpleButton);
+                    jPanel1.add(greenButton);
+                    jPanel1.add(blueButton);
+                    jPanel1.add(redButton);
+                    jPanel1.add(empty4);
+                    jPanel1.add(yellowButton);
+                    break;
+                case 12:
+                    jPanel1.add(empty1);
+                    jPanel1.add(empty2);
+                    jPanel1.add(yellowButton);
+                    jPanel1.add(redButton);
+                    jPanel1.add(blueButton);
+                    jPanel1.add(empty3);
+                    jPanel1.add(empty4);
+                    jPanel1.add(purpleButton);
+                    jPanel1.add(greenButton);
+                    break;
                 default:
                     System.out.println("Somehow we got an error");
                     break;
             }
-        }
+        
     }
-    
+
     //Method: showDateAndTime
     //purpose: this method starts the date and time components for the jlabel
     private void showDateAndTime() {
@@ -235,9 +301,11 @@ public final class ColorTrap extends javax.swing.JFrame {
         switch (randNum) {
             case 0:
                 colorLabel.setText("GREEN");
+
                 break;
             case 1:
                 colorLabel.setText("RED");
+
                 break;
             case 2:
                 colorLabel.setText("ORANGE");
@@ -308,7 +376,7 @@ public final class ColorTrap extends javax.swing.JFrame {
             }
         });
         getContentPane().add(RECOLOR);
-        RECOLOR.setBounds(140, 10, 80, 20);
+        RECOLOR.setBounds(180, 10, 50, 20);
 
         jPanel1.setMaximumSize(new java.awt.Dimension(600, 250));
         jPanel1.setMinimumSize(new java.awt.Dimension(600, 250));
@@ -325,11 +393,6 @@ public final class ColorTrap extends javax.swing.JFrame {
         purpleButton.setMinimumSize(new java.awt.Dimension(110, 110));
         purpleButton.setPreferredSize(new java.awt.Dimension(110, 110));
         purpleButton.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Res/purplePressed.png"))); // NOI18N
-        purpleButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                purpleButtonMouseEntered(evt);
-            }
-        });
         purpleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 purpleButtonActionPerformed(evt);
@@ -348,11 +411,6 @@ public final class ColorTrap extends javax.swing.JFrame {
         redButton.setMinimumSize(new java.awt.Dimension(110, 110));
         redButton.setPreferredSize(new java.awt.Dimension(110, 110));
         redButton.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Res/redButtonPressed.png"))); // NOI18N
-        redButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                redButtonMouseEntered(evt);
-            }
-        });
         redButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 redButtonActionPerformed(evt);
@@ -371,11 +429,6 @@ public final class ColorTrap extends javax.swing.JFrame {
         greenButton.setMinimumSize(new java.awt.Dimension(110, 110));
         greenButton.setPreferredSize(new java.awt.Dimension(110, 110));
         greenButton.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Res/greenPressed.png"))); // NOI18N
-        greenButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                greenButtonMouseEntered(evt);
-            }
-        });
         greenButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 greenButtonActionPerformed(evt);
@@ -394,11 +447,6 @@ public final class ColorTrap extends javax.swing.JFrame {
         blueButton.setMinimumSize(new java.awt.Dimension(110, 110));
         blueButton.setPreferredSize(new java.awt.Dimension(110, 110));
         blueButton.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Res/bluePressed.png"))); // NOI18N
-        blueButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                blueButtonMouseEntered(evt);
-            }
-        });
         blueButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 blueButtonActionPerformed(evt);
@@ -417,11 +465,6 @@ public final class ColorTrap extends javax.swing.JFrame {
         yellowButton.setMinimumSize(new java.awt.Dimension(110, 110));
         yellowButton.setPreferredSize(new java.awt.Dimension(110, 110));
         yellowButton.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/Res/yellowButtonPressed.png"))); // NOI18N
-        yellowButton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                yellowButtonMouseEntered(evt);
-            }
-        });
         yellowButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 yellowButtonActionPerformed(evt);
@@ -476,13 +519,15 @@ public final class ColorTrap extends javax.swing.JFrame {
         getContentPane().add(timePlaceHolder);
         timePlaceHolder.setBounds(520, 0, 70, 14);
 
+        scoreLabel.setFont(new java.awt.Font("Tw Cen MT", 0, 11)); // NOI18N
         scoreLabel.setText("Score :");
         getContentPane().add(scoreLabel);
-        scoreLabel.setBounds(10, 10, 34, 14);
+        scoreLabel.setBounds(10, 20, 50, 13);
 
+        scorePlaceHolderLabel.setFont(new java.awt.Font("Tw Cen MT", 0, 12)); // NOI18N
         scorePlaceHolderLabel.setText("scorePlaceHolder");
         getContentPane().add(scorePlaceHolderLabel);
-        scorePlaceHolderLabel.setBounds(50, 10, 70, 14);
+        scorePlaceHolderLabel.setBounds(60, 20, 70, 14);
 
         colorLabel.setFont(new java.awt.Font("Tw Cen MT", 1, 36)); // NOI18N
         colorLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -495,54 +540,53 @@ public final class ColorTrap extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void yellowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yellowButtonActionPerformed
-        System.out.println("YELLOW");
+        if (colorLabel.getText() == "ORANGE") {
+            CTE.setScore(CTE.getScore() + 100);
+        }
+        resetBoard();
+        CTE.setTurnsRemaining(CTE.getTurnsRemaining() - 1);
     }//GEN-LAST:event_yellowButtonActionPerformed
 
     private void blueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blueButtonActionPerformed
-        System.out.println("BLUE");
+        if (colorLabel.getText() == "BLUE") {
+            CTE.setScore(CTE.getScore() + 100);
+        }
+        resetBoard();
+        CTE.setTurnsRemaining(CTE.getTurnsRemaining() - 1);
     }//GEN-LAST:event_blueButtonActionPerformed
 
     private void greenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_greenButtonActionPerformed
-        System.out.println("GREEN");
+        if (colorLabel.getText() == "GREEN") {
+            CTE.setScore(CTE.getScore() + 100);
+        }
+
+        resetBoard();
+        CTE.setTurnsRemaining(CTE.getTurnsRemaining() - 1);
     }//GEN-LAST:event_greenButtonActionPerformed
 
     private void redButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redButtonActionPerformed
-        System.out.println("RED");
+        if (colorLabel.getText() == "RED") {
+            CTE.setScore(CTE.getScore() + 100);
+        }
+        resetBoard();
+        CTE.setTurnsRemaining(CTE.getTurnsRemaining() - 1);
     }//GEN-LAST:event_redButtonActionPerformed
 
     private void purpleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purpleButtonActionPerformed
-        System.out.println("PRUPLE");
+        if (colorLabel.getText() == "PURPLE") {
+            CTE.setScore(CTE.getScore() + 100);
+        }
+        resetBoard();
+        CTE.setTurnsRemaining(CTE.getTurnsRemaining() - 1);
     }//GEN-LAST:event_purpleButtonActionPerformed
-
-    private void purpleButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_purpleButtonMouseEntered
-        System.out.println("HOVERING PURPLE");
-    }//GEN-LAST:event_purpleButtonMouseEntered
-
-    private void greenButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_greenButtonMouseEntered
-        System.out.println("HOVERING GREEN");
-    }//GEN-LAST:event_greenButtonMouseEntered
-
-    private void redButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_redButtonMouseEntered
-       System.out.println("HOVERING RED");
-    }//GEN-LAST:event_redButtonMouseEntered
-
-    private void yellowButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_yellowButtonMouseEntered
-        System.out.println("HOVERING YELLOW");
-    }//GEN-LAST:event_yellowButtonMouseEntered
-
-    private void blueButtonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_blueButtonMouseEntered
-        System.out.println("HOVERING BLUE");
-    }//GEN-LAST:event_blueButtonMouseEntered
 
     private void RECOLORActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RECOLORActionPerformed
         setWord();
         setWordColor();
         removeButtons();
         randomAddButtons();
-       
-    }//GEN-LAST:event_RECOLORActionPerformed
 
-    
+    }//GEN-LAST:event_RECOLORActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
