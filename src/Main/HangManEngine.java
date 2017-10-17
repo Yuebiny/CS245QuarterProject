@@ -21,7 +21,7 @@ import java.util.logging.Logger;
  *
  * @author matthhew
  */
-public final class GameEngine {
+public final class HangManEngine {
     
     Random random = new Random();
     
@@ -32,7 +32,7 @@ public final class GameEngine {
     public int score;
     private final ArrayList lettersUsed = new ArrayList<>();
     
-    public GameEngine() {
+    public HangManEngine() {
         setHiddenWord();
         setGuessesRemaining(6);
         setScore(100);
@@ -137,7 +137,7 @@ public final class GameEngine {
         }
         return indexAt;
     }
-    private static final Logger LOG = Logger.getLogger(GameEngine.class.getName());
+    private static final Logger LOG = Logger.getLogger(HangManEngine.class.getName());
     
     
 }

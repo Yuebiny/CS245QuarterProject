@@ -24,7 +24,7 @@ public class GameGUI extends javax.swing.JFrame {
 
     private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
     JLabel[] lb = new JLabel[8];
-    GameEngine game = new GameEngine();
+    HangManEngine game = new HangManEngine();
     boolean solved = false;
     int counter;
     ArrayList lettersUsed = new ArrayList();
