@@ -1,4 +1,14 @@
-
+/***************************************************************
+* File: HighScoreEngine.java
+* Author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
+* Class: CS 245 - Programming Graphical User Interfaces
+*
+* Assignment: Hangman V1.0
+* Date last modified: 10/9/17
+*
+* Purpose: This code Calculates and stores the High Scores of the games. This
+* Does not include the UI of the High Score Screen.
+****************************************************************/ 
 package Main;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

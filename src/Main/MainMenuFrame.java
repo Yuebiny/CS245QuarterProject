@@ -1,12 +1,12 @@
 /***************************************************************
-* file: MainMenuFrame.java
-* author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
-* class: CS 245 - Programming Graphical User Interfaces
+* File: MainMenuFrame.java
+* Author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
+* Class: CS 245 - Programming Graphical User Interfaces
 *
-* assignment: Hangman V1.0
-* date last modified: 10/3/17
+* Assignment: Hangman V1.0
+* Date last modified: 10/3/17
 *
-* purpose: This class creates the Main Menu Frame that allows the user to click
+* Purpose: This class creates the Main Menu Frame that allows the user to click
 * play, high score, or credits.
 *
 ****************************************************************/ 

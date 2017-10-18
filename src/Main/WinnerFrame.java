@@ -1,21 +1,17 @@
 /***************************************************************
-* file: WinnerFrame.java
-* author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
-* class: CS 245 - Programming Graphical User Interfaces
+* File: WinnerFrame.java
+* Author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
+* Class: CS 245 - Programming Graphical User Interfaces
 *
-* assignment: Hangman V1.0
-* date last modified: 10/9/17
+* Assignment: Hangman V1.0
+* Date last modified: 10/9/17
 *
-* purpose: This class creates the frame to show the player that they have won 
+* Purpose: This class creates the frame to show the player that they have won 
 * the game as well as displays their score and gives them an option to return 
 * to the main menu
 ****************************************************************/ 
 package Main;
 
-/**
- *
- * @author Computer
- */
 public class WinnerFrame extends javax.swing.JFrame {
 
     
