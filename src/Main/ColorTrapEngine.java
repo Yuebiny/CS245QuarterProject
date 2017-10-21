@@ -1,17 +1,15 @@
-/***************************************************************
-* file: MainMenuFrame.java
-* author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
-* class: CS 245 - Programming Graphical User Interfaces
-*
-* assignment: Hangman V1.0
-* date last modified: 10/15/17
-*
-* purpose: This class is to contain the word that needs to be guess,
-* the letters that have been revealed, and the remaining guesses. This
-* class does not deal with user input and calls other classes to handle
-* user input.
-*
-****************************************************************/ 
+/** *************************************************************
+ * File: ColorTrapEngine.java
+ * Author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
+ * Class: CS 245 - Programming Graphical User Interfaces
+ *
+ * Assignment: Hangman V1.1
+ * Date last modified: 10/15/17
+ *
+ * Purpose: This class is where the game mechanics of the color trap game are
+ * calculated and stored.
+ *
+ *************************************************************** */
 package Main;
 
 import java.util.Random;

@@ -1,12 +1,12 @@
 /** *************************************************************
- * file: GameFrame.java
- * author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
- * class: CS 245 - Programming Graphical User Interfaces
+ * File: GameFrame.java
+ * Author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
+ * Class: CS 245 - Programming Graphical User Interfaces
  *
- * assignment: Hangman V1.0
- * date last modified: 10/9/17
+ * Assignment: Hangman V1.0
+ * Date last modified: 10/9/17
  *
- * purpose: This class creates the frame where the hangman game is played, as
+ * Purpose: This class creates the frame where the hangman game is played, as
  * well as all calculations that relate to the game.
  *************************************************************** */
 package Main;

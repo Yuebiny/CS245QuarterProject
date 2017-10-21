@@ -1,15 +1,13 @@
 /** *************************************************************
- * file: MainMenuFrame.java
- * author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
- * class: CS 245 - Programming Graphical User Interfaces
+ * File: ColorTrap.java
+ * Author: Albert Gil, Cody Nguyen, Ynebin Yin, Matt Musquiz
+ * Class: CS 245 - Programming Graphical User Interfaces
  *
- * assignment: Hangman V1.0
- * date last modified: 10/15/17
+ * Assignment: Hangman V1.1
+ * Date last modified: 10/15/17
  *
- * purpose: This class is to contain the word that needs to be guess,
- * the letters that have been revealed, and the remaining guesses. This
- * class does not deal with user input and calls other classes to handle
- * user input.
+ * purpose: This class designs the User interface for the Color Trap Game. This
+ * Does not include the engine of the game itself.
  *
  *************************************************************** */
 package Main;
@@ -35,6 +33,7 @@ public final class ColorTrap extends javax.swing.JFrame {
     ColorTrapEngine CTE = new ColorTrapEngine();
     private final HighScoreEngine hiScoreRecords = new HighScoreEngine("0", 0);
     int score;
+    private String wordColor = null;
     
     public ColorTrap(int x) {
         hiScoreRecords.loadScoreFromFile();
@@ -295,18 +294,23 @@ public final class ColorTrap extends javax.swing.JFrame {
         switch (randNum) {
             case 0:
                 colorLabel.setForeground(Color.GREEN);
+                wordColor = "GREEN";
                 break;
             case 1:
                 colorLabel.setForeground(Color.BLUE);
+                wordColor = "BLUE";
                 break;
             case 2:
                 colorLabel.setForeground(Color.RED);
+                wordColor = "RED";
                 break;
             case 3:
                 colorLabel.setForeground(Color.ORANGE);
+                wordColor = "ORANGE";
                 break;
             case 4:
                 colorLabel.setForeground(Color.MAGENTA);
+                wordColor = "PURPLE";
                 break;
             default:
                 System.out.println();
@@ -552,7 +556,7 @@ public final class ColorTrap extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void yellowButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_yellowButtonActionPerformed
-        if (colorLabel.getText() == "ORANGE") {
+        if (wordColor == "ORANGE") {
             CTE.setScore(CTE.getScore() + 100);
         }
         resetBoard();
@@ -560,7 +564,7 @@ public final class ColorTrap extends javax.swing.JFrame {
     }//GEN-LAST:event_yellowButtonActionPerformed
 
     private void blueButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blueButtonActionPerformed
-        if (colorLabel.getText() == "BLUE") {
+        if (wordColor == "BLUE") {
             CTE.setScore(CTE.getScore() + 100);
         }
         resetBoard();
@@ -568,7 +572,7 @@ public final class ColorTrap extends javax.swing.JFrame {
     }//GEN-LAST:event_blueButtonActionPerformed
 
     private void greenButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_greenButtonActionPerformed
-        if (colorLabel.getText() == "GREEN") {
+        if (wordColor == "GREEN") {
             CTE.setScore(CTE.getScore() + 100);
         }
         resetBoard();
@@ -576,7 +580,7 @@ public final class ColorTrap extends javax.swing.JFrame {
     }//GEN-LAST:event_greenButtonActionPerformed
 
     private void redButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_redButtonActionPerformed
-        if (colorLabel.getText() == "RED") {
+        if (wordColor == "RED") {
             CTE.setScore(CTE.getScore() + 100);
         }
         resetBoard();
@@ -584,7 +588,7 @@ public final class ColorTrap extends javax.swing.JFrame {
     }//GEN-LAST:event_redButtonActionPerformed
 
     private void purpleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_purpleButtonActionPerformed
-        if (colorLabel.getText() == "PURPLE") {
+        if (wordColor == "PURPLE") {
             CTE.setScore(CTE.getScore() + 100);
         }
         resetBoard();
